@@ -67,7 +67,4 @@ templates_tmp/
 
 certificates
 
-/src/generated/*
-!/src/generated/.gitattributes
-
 .vscode/mcp.json
