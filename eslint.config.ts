@@ -245,6 +245,7 @@ export default defineConfig([
       "next-sitemap.config.js",
       "postcss.config.js",
       "global.d.ts",
+      "prisma.config.ts",
     ],
     rules: {
       "import/no-default-export": "off",
@@ -262,6 +263,22 @@ export default defineConfig([
       "import/resolver": {
         typescript: {
           project: path.resolve(import.meta.dirname, "./scripts"),
+        },
+      },
+    },
+  },
+  {
+    files: ["prisma/**/*.ts"],
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+    settings: {
+      "import/resolver": {
+        typescript: {
+          project: path.resolve(import.meta.dirname, "./prisma"),
         },
       },
     },

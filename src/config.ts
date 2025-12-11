@@ -2,6 +2,8 @@ import { ensureApiEnvVar, ensureNextEnvVar } from "@/utils/os";
 import { isTruthy } from "@/utils/string";
 
 export const config = {
+  _dbUrl: ensureApiEnvVar(process.env.DATABASE_URL, ""),
+  _seeding: ensureApiEnvVar(process.env._SEEDING, isTruthy, false),
   admin: {
     login: ensureApiEnvVar(process.env.ADMIN_LOGIN, ""),
     password: ensureApiEnvVar(process.env.ADMIN_PASSWORD, ""),

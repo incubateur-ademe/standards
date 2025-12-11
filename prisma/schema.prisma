@@ -1,0 +1,268 @@
+generator client {
+    provider        = "prisma-client"
+    output          = "../src/generated/prisma"
+    previewFeatures = ["typedSql", "views", "fullTextSearchPostgres"]
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+/// Standard model representing the Notion "Standards" database.
+model Standard {
+    /// @notion(false)
+    id String @id @default(cuid())
+
+    /// Title of the standard
+    /// @notion("Standard")
+    title String?
+
+    /// Description (from Notion page content)
+    /// @notion(current.content)
+    description String?
+
+    /// Unique identifier from Notion (e.g. "STD14")
+    /// @notion("ID")
+    notionId String?
+
+    /// Roles (formerly "Métier(s)") — relation to Job model
+    /// @notion("Métier(s)")
+    roles Job[]
+
+    /// Actions related to this standard (Notion relation property `Actions`)
+    /// @notion("Actions")
+    actions Action[]
+
+    /// @notion(false)
+    createdAt DateTime @default(now())
+    /// @notion(false)
+    updatedAt DateTime @updatedAt
+
+    /// @notion(false)
+    couldHavePhaseId  String?
+    /// @notion(false)
+    shouldHavePhaseId String?
+    /// @notion(false)
+    mustHavePhaseId   String?
+
+    /// Phase relations mapped from Notion properties (optional):
+    /// - Phase Could Have
+    /// - Phase Should Have
+    /// - Phase Must Have
+    /// @notion("Phase Could Have")
+    couldHavePhase  Phase? @relation("StandardPhaseCouldHave", fields: [couldHavePhaseId], references: [id])
+    /// @notion("Phase Should Have")
+    shouldHavePhase Phase? @relation("StandardPhaseShouldHave", fields: [shouldHavePhaseId], references: [id])
+    /// @notion("Phase Must Have")
+    mustHavePhase   Phase? @relation("StandardPhaseMustHave", fields: [mustHavePhaseId], references: [id])
+
+    // @@fulltext([title])
+    // @@fulltext([description])
+    // @@fulltext([title, description])
+
+    @@unique([notionId])
+    @@unique([id, notionId])
+    @@index([couldHavePhaseId])
+    @@index([shouldHavePhaseId])
+    @@index([mustHavePhaseId])
+}
+
+/// Action entries linked from Standards.
+model Action {
+    /// @notion(false)
+    id String @id @default(cuid())
+
+    /// Unique identifier from Notion (e.g. "ACT4")
+    /// @notion("ID")
+    notionId String?
+
+    /// Title of the action page
+    /// @notion("Action")
+    title String?
+
+    /// Description (from Notion page content)
+    /// @notion(current.content)
+    description String?
+
+    /// KPI / Mesure
+    /// @notion("KPI / Mesure")
+    kpi String?
+
+    /// Pourquoi ? (reason)
+    /// @notion("Pourquoi ?")
+    reason String?
+
+    /// Free URLs extracted from Notion source property
+    /// @notion("Source")
+    sourcesUrls String[]
+
+    /// Relation to ActionSource pages (if present in Notion)
+    /// @notion("Type source")
+    sources ActionSource[] @relation("ActionToActionSource")
+
+    /// notion("Standard Beta")
+    standardBeta String?
+
+    /// @notion(false)
+    createdAt DateTime @default(now())
+    /// @notion(false)
+    updatedAt DateTime @updatedAt
+
+    /// Relation back to Standard via Notion relation `Standard`
+    /// @notion("Standard")
+    standard   Standard? @relation(fields: [standardId], references: [id])
+    standardId String?
+}
+
+model ActionSource {
+    /// @notion(false)
+    id String @id @default(cuid())
+
+    /// Name of the source (got from "Select".name property in Notion)
+    /// @notion("Type source".name)
+    name String?
+
+    /// Description
+    /// @notion(false)
+    description String?
+
+    /// Definition URL of the source
+    /// @notion(false)
+    url String?
+
+    /// @notion(false)
+    createdAt DateTime @default(now())
+    /// @notion(false)
+    updatedAt DateTime @updatedAt
+
+    /// Back relation to Action
+    /// @notion(false)
+    actions Action[] @relation("ActionToActionSource")
+}
+
+/// Domain entries (formerly "Métier").
+model Job {
+    /// @notion(false)
+    id String @id @default(cuid())
+
+    /// Job / role name (got from Notion page title)
+    /// @notion(current.title)
+    name String?
+
+    /// Job / role description (from Notion page content)
+    /// @notion(current.content)
+    description String?
+
+    /// Unique identifier from Notion for this Job page
+    notionId String?
+
+    /// Manager: linked to `User` in Prisma (not imported from Notion)
+    /// @notion(false)
+    managerId String?
+    manager   User?   @relation(fields: [managerId], references: [id])
+
+    /// Back relation to standards — Notion relation `Métier(s)`
+    /// @notion(false)
+    standards Standard[]
+}
+
+/// Phase entries used by multiple phase relations.
+model Phase {
+    /// @notion(false)
+    id String @id @default(cuid())
+
+    /// Phase name (got from Notion page title)
+    /// @notion(current.title)
+    name String?
+
+    /// Description (from Notion page content)
+    /// @notion(current.content)
+    description String?
+
+    /// Unique identifier from Notion for this Phase page
+    notionId String?
+
+    /// Link to a source document
+    /// @notion("Source doc beta")
+    sourceDocBetaUrl String?
+
+    /// Back relations to standards for the different phase properties
+    /// @notion(false)
+    standardsCouldHave  Standard[] @relation("StandardPhaseCouldHave")
+    /// @notion(false)
+    standardsShouldHave Standard[] @relation("StandardPhaseShouldHave")
+    /// @notion(false)
+    standardsMustHave   Standard[] @relation("StandardPhaseMustHave")
+}
+
+model User {
+    id            String    @id @default(cuid())
+    name          String?
+    email         String?   @unique
+    emailVerified DateTime?
+    image         String?
+    username      String?   @unique
+
+    accounts       Account[]
+    sessions       Session[]
+    authenticators Authenticator[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    jobs      Job[]
+}
+
+// NextAuth
+model Account {
+    id                 String    @id @default(cuid())
+    userId             String
+    providerType       String
+    providerId         String
+    providerAccountId  String
+    refreshToken       String?
+    accessToken        String?
+    accessTokenExpires DateTime?
+    createdAt          DateTime  @default(now())
+    updatedAt          DateTime  @updatedAt
+    user               User      @relation(fields: [userId], references: [id])
+
+    @@unique([providerId, providerAccountId])
+}
+
+model Session {
+    id           String   @id @default(cuid())
+    userId       String
+    expires      DateTime
+    sessionToken String   @unique
+    accessToken  String   @unique
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+    user         User     @relation(fields: [userId], references: [id])
+}
+
+model VerificationRequest {
+    id         String   @id @default(cuid())
+    identifier String
+    token      String   @unique
+    expires    DateTime
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+
+    @@unique([identifier, token])
+}
+
+// Optional for WebAuthn support
+model Authenticator {
+    credentialID         String  @unique
+    userId               String
+    providerAccountId    String
+    credentialPublicKey  String
+    counter              Int
+    credentialDeviceType String
+    credentialBackedUp   Boolean
+    transports           String?
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@id([userId, credentialID])
+}

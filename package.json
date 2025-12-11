@@ -10,8 +10,11 @@
     "build": "pnpm prebuild && next build",
     "start": "next start",
     "lint": "eslint .",
-    "run-script": "tsx --tsconfig scripts/tsconfig.json",
-    "generateEnvDeclaration": "pnpm run-script scripts/generateEnvDeclaration.ts"
+    "script": "tsx --tsconfig scripts/tsconfig.json",
+    "generateEnvDeclaration": "pnpm script scripts/generateEnvDeclaration.ts",
+    "prisma:reset": "prisma migrate reset --force",
+    "notion:export": "tsx ./scripts/export-notion-json.ts",
+    "prisma:seed": "prisma db seed"
   },
   "keywords": [ ],
   "author": "",
@@ -21,6 +24,7 @@
     "node": "^24"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.11.1",
     "@codegouvfr/react-dsfr": "^1.29.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
@@ -29,6 +33,8 @@
     "@mui/lab": "^7.0.1-beta.20",
     "@mui/material": "^7.3.6",
     "@mui/material-nextjs": "^7.3.6",
+    "@prisma/adapter-pg": "^7.1.0",
+    "@prisma/client": "^7.1.0",
     "@tanstack/react-query": "^5.90.12",
     "@tanstack/react-query-devtools": "^5.91.1",
     "date-fns": "^4.1.0",
@@ -47,7 +53,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@next/env": "^16.0.8",
     "@next/eslint-plugin-next": "^16.0.7",
+    "@notionhq/client": "^5.4.0",
     "@tailwindcss/postcss": "^4.1.17",
     "@tsconfig/next": "^2.0.4",
     "@types/eslint": "^9.6.1",
@@ -78,6 +86,7 @@
     "prettier": "^3.7.4",
     "prettier-eslint": "^16.4.2",
     "prettier-eslint-cli": "^8.0.1",
+    "prisma": "^7.1.0",
     "sass": "^1.94.2",
     "tailwindcss": "^4.1.17",
     "tsx": "^4.21.0",
