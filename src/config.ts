@@ -4,10 +4,16 @@ import { isTruthy } from "@/utils/string";
 export const config = {
   _dbUrl: ensureApiEnvVar(process.env.DATABASE_URL, ""),
   _seeding: ensureApiEnvVar(process.env._SEEDING, isTruthy, false),
-  admin: {
-    login: ensureApiEnvVar(process.env.ADMIN_LOGIN, ""),
-    password: ensureApiEnvVar(process.env.ADMIN_PASSWORD, ""),
-  },
+  admins: ensureApiEnvVar(
+    process.env.ADMINS,
+    v =>
+      v
+        .trim()
+        .split(",")
+        .map(a => a.trim())
+        .filter(Boolean),
+    ["lilian.sagetlethias", "julien.bouqillon"],
+  ),
   appVersion: ensureNextEnvVar(process.env.NEXT_PUBLIC_APP_VERSION, "dev"),
   appVersionCommit: ensureNextEnvVar(process.env.NEXT_PUBLIC_APP_VERSION_COMMIT, "unknown"),
   betaGouvUrl: ensureApiEnvVar(process.env.BETA_GOUV_URL, "https://beta.gouv.fr"),
@@ -28,7 +34,22 @@ export const config = {
     tagline: "Standards de l'Accelérateur de la Transition Écologique",
   },
   env: ensureApiEnvVar<"dev" | "prod" | "review" | "staging">(process.env.APP_ENV, "dev"),
+  espaceMembre: {
+    apiKey: ensureApiEnvVar(process.env.ESPACE_MEMBRE_API_KEY, ""),
+    url: ensureApiEnvVar(process.env.ESPACE_MEMBRE_URL, "https://espace-membre.incubateur.net"),
+  },
   host: ensureNextEnvVar(process.env.NEXT_PUBLIC_SITE_URL, "http://localhost:3000"),
+  mailer: {
+    // TODO: change
+    from: ensureApiEnvVar(process.env.MAILER_FROM_EMAIL, "Roadmaps <noreply@roadmap.beta.gouv.fr>"),
+    host: ensureApiEnvVar(process.env.MAILER_SMTP_HOST, "127.0.0.1"),
+    smtp: {
+      login: ensureApiEnvVar(process.env.MAILER_SMTP_LOGIN, ""),
+      password: ensureApiEnvVar(process.env.MAILER_SMTP_PASSWORD, ""),
+      port: ensureApiEnvVar(process.env.MAILER_SMTP_PORT, Number, 1025),
+      ssl: ensureApiEnvVar(process.env.MAILER_SMTP_SSL, isTruthy, false),
+    },
+  },
   maintenance: ensureApiEnvVar(process.env.MAINTENANCE_MODE, isTruthy, false),
   repositoryUrl: ensureNextEnvVar(
     process.env.NEXT_PUBLIC_REPOSITORY_URL,
@@ -38,7 +59,11 @@ export const config = {
     return this.host.replace(/^(https?:\/\/)?(www\.)?/, "");
   },
   security: {
-    adminCookieMaxAge: ensureApiEnvVar(process.env.SECURITY_ADMIN_COOKIE_MAX_AGE, parseInt, 1000 * 60 * 60),
-    adminCookieName: ensureApiEnvVar(process.env.SECURITY_ADMIN_COOKIE_NAME, "standards-admin-auth"),
+    auth: {
+      secret: ensureApiEnvVar(process.env.SECURITY_JWT_SECRET, "secret"),
+    },
+    webhook: {
+      secret: ensureApiEnvVar(process.env.SECURITY_WEBHOOK_SECRET, "secret"),
+    },
   },
 } as const;

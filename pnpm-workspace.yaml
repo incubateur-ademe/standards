@@ -1,8 +1,4 @@
 # minimumReleaseAge: 10080
-trustPolicy: no-downgrade
-trustPolicyExclude:
-  - chokidar@4.0.3
-  - webpack@4.47.0 || 5.102.1
 onlyBuiltDependencies:
   - next
   - prisma
@@ -10,10 +6,14 @@ onlyBuiltDependencies:
   - bcrypt
   - protobufjs
 
+overrides:
+  "@auth/core": "$@auth/core"
+
 ignoreDepScripts: true
 childConcurrency: 10
 engineStrict: true
 autoInstallPeers: false
+dedupePeerDependents: true
 peerDependencyRules:
   allowedVersions:
     react: "19"

@@ -390,6 +390,7 @@ export const ModelName = {
   Job: 'Job',
   Phase: 'Phase',
   User: 'User',
+  UserOnStartup: 'UserOnStartup',
   Account: 'Account',
   Session: 'Session',
   VerificationRequest: 'VerificationRequest',
@@ -409,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "standard" | "action" | "actionSource" | "job" | "phase" | "user" | "account" | "session" | "verificationRequest" | "authenticator"
+    modelProps: "standard" | "action" | "actionSource" | "job" | "phase" | "user" | "userOnStartup" | "account" | "session" | "verificationRequest" | "authenticator"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -857,6 +858,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    UserOnStartup: {
+      payload: Prisma.$UserOnStartupPayload<ExtArgs>
+      fields: Prisma.UserOnStartupFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserOnStartupFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserOnStartupPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserOnStartupFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserOnStartupPayload>
+        }
+        findFirst: {
+          args: Prisma.UserOnStartupFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserOnStartupPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserOnStartupFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserOnStartupPayload>
+        }
+        findMany: {
+          args: Prisma.UserOnStartupFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserOnStartupPayload>[]
+        }
+        create: {
+          args: Prisma.UserOnStartupCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserOnStartupPayload>
+        }
+        createMany: {
+          args: Prisma.UserOnStartupCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserOnStartupCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserOnStartupPayload>[]
+        }
+        delete: {
+          args: Prisma.UserOnStartupDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserOnStartupPayload>
+        }
+        update: {
+          args: Prisma.UserOnStartupUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserOnStartupPayload>
+        }
+        deleteMany: {
+          args: Prisma.UserOnStartupDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserOnStartupUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserOnStartupUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserOnStartupPayload>[]
+        }
+        upsert: {
+          args: Prisma.UserOnStartupUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserOnStartupPayload>
+        }
+        aggregate: {
+          args: Prisma.UserOnStartupAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserOnStartup>
+        }
+        groupBy: {
+          args: Prisma.UserOnStartupGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserOnStartupGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserOnStartupCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserOnStartupCountAggregateOutputType> | number
+        }
+      }
+    }
     Account: {
       payload: Prisma.$AccountPayload<ExtArgs>
       fields: Prisma.AccountFieldRefs
@@ -1269,11 +1344,24 @@ export const UserScalarFieldEnum = {
   emailVerified: 'emailVerified',
   image: 'image',
   username: 'username',
+  status: 'status',
+  role: 'role',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const UserOnStartupScalarFieldEnum = {
+  startupId: 'startupId',
+  userId: 'userId',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserOnStartupScalarFieldEnum = (typeof UserOnStartupScalarFieldEnum)[keyof typeof UserOnStartupScalarFieldEnum]
 
 
 export const AccountScalarFieldEnum = {
@@ -1426,6 +1514,15 @@ export const UserOrderByRelevanceFieldEnum = {
 export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
 
 
+export const UserOnStartupOrderByRelevanceFieldEnum = {
+  startupId: 'startupId',
+  userId: 'userId',
+  role: 'role'
+} as const
+
+export type UserOnStartupOrderByRelevanceFieldEnum = (typeof UserOnStartupOrderByRelevanceFieldEnum)[keyof typeof UserOnStartupOrderByRelevanceFieldEnum]
+
+
 export const AccountOrderByRelevanceFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -1501,6 +1598,34 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'UserStatus'
+ */
+export type EnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'UserStatus[]'
+ */
+export type ListEnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'UserRole'
+ */
+export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole'>
+    
+
+
+/**
+ * Reference to a field of type 'UserRole[]'
+ */
+export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole[]'>
     
 
 
@@ -1639,6 +1764,7 @@ export type GlobalOmitConfig = {
   job?: Prisma.JobOmit
   phase?: Prisma.PhaseOmit
   user?: Prisma.UserOmit
+  userOnStartup?: Prisma.UserOnStartupOmit
   account?: Prisma.AccountOmit
   session?: Prisma.SessionOmit
   verificationRequest?: Prisma.VerificationRequestOmit

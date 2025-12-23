@@ -70,6 +70,11 @@ export type Phase = Prisma.PhaseModel
  */
 export type User = Prisma.UserModel
 /**
+ * Model UserOnStartup
+ * 
+ */
+export type UserOnStartup = Prisma.UserOnStartupModel
+/**
  * Model Account
  * 
  */

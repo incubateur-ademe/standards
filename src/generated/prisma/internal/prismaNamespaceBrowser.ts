@@ -57,6 +57,7 @@ export const ModelName = {
   Job: 'Job',
   Phase: 'Phase',
   User: 'User',
+  UserOnStartup: 'UserOnStartup',
   Account: 'Account',
   Session: 'Session',
   VerificationRequest: 'VerificationRequest',
@@ -152,11 +153,24 @@ export const UserScalarFieldEnum = {
   emailVerified: 'emailVerified',
   image: 'image',
   username: 'username',
+  status: 'status',
+  role: 'role',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const UserOnStartupScalarFieldEnum = {
+  startupId: 'startupId',
+  userId: 'userId',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserOnStartupScalarFieldEnum = (typeof UserOnStartupScalarFieldEnum)[keyof typeof UserOnStartupScalarFieldEnum]
 
 
 export const AccountScalarFieldEnum = {
@@ -307,6 +321,15 @@ export const UserOrderByRelevanceFieldEnum = {
 } as const
 
 export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
+export const UserOnStartupOrderByRelevanceFieldEnum = {
+  startupId: 'startupId',
+  userId: 'userId',
+  role: 'role'
+} as const
+
+export type UserOnStartupOrderByRelevanceFieldEnum = (typeof UserOnStartupOrderByRelevanceFieldEnum)[keyof typeof UserOnStartupOrderByRelevanceFieldEnum]
 
 
 export const AccountOrderByRelevanceFieldEnum = {

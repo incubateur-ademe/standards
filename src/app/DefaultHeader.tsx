@@ -4,6 +4,7 @@ import Header from "@codegouvfr/react-dsfr/Header";
 import { Brand } from "@/components/Brand";
 import { config } from "@/config";
 
+import { UserHeaderItem } from "./AuthHeaderItems";
 import { Navigation } from "./Navigation";
 
 // interface DefaultHeaderProps {
@@ -37,5 +38,6 @@ export const DefaultHeader = () => (
     classes={{
       operator: "shimmer custom-operator-logo",
     }}
+    quickAccessItems={config.maintenance ? [] : [<UserHeaderItem key="hqai-user" />].filter(Boolean)}
   />
 );

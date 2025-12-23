@@ -1,24 +1,19 @@
 import "./globals.scss";
 import "react-loading-skeleton/dist/skeleton.css";
-import { fr } from "@codegouvfr/react-dsfr";
 import Display from "@codegouvfr/react-dsfr/Display/Display";
-import MuiDsfrThemeProvider from "@codegouvfr/react-dsfr/mui";
 import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { type Metadata } from "next";
 import { type PropsWithChildren } from "react";
-import { SkeletonTheme } from "react-loading-skeleton";
 
 import { ClientAnimate } from "@/components/utils/ClientAnimate";
 import { config } from "@/config";
-import { DsfrProvider } from "@/dsfr-bootstrap";
 import { DsfrHead, getHtmlAttributes } from "@/dsfr-bootstrap/server-only-index";
 
 import { DefaultFooter } from "./DefaultFooter";
 import { DefaultHeader } from "./DefaultHeader";
-import { QueryProvider } from "./QueryProvider";
-import styles from "./root.module.scss";
+import styles from "./index.module.scss";
+import { Providers } from "./Providers";
 import { sharedMetadata } from "./shared-metadata";
 import { SystemMessageDisplay } from "./SystemMessageDisplay";
 
@@ -64,41 +59,28 @@ const RootLayout = ({ children }: PropsWithChildren) => {
         />
       </head>
       <body>
-        <QueryProvider>
-          <AppRouterCacheProvider>
-            <DsfrProvider lang={lang}>
-              <MuiDsfrThemeProvider>
-                <SkeletonTheme
-                  baseColor={fr.colors.decisions.background.contrast.grey.default}
-                  highlightColor={fr.colors.decisions.background.contrast.grey.active}
-                  borderRadius={fr.spacing("1v")}
-                  duration={2}
-                >
-                  <Display />
-                  <SkipLinks
-                    links={[
-                      {
-                        anchor: `#${contentId}`,
-                        label: "Contenu",
-                      },
-                      {
-                        anchor: `#${footerId}`,
-                        label: "Pied de page",
-                      },
-                    ]}
-                  />
-                  <div className={styles.app}>
-                    <DefaultHeader />
-                    <ClientAnimate as="main" id="content" className={styles.content}>
-                      {config.maintenance ? <SystemMessageDisplay code="maintenance" noRedirect /> : children}
-                    </ClientAnimate>
-                    <DefaultFooter id="footer" />
-                  </div>
-                </SkeletonTheme>
-              </MuiDsfrThemeProvider>
-            </DsfrProvider>
-          </AppRouterCacheProvider>
-        </QueryProvider>
+        <Providers lang={lang}>
+          <Display />
+          <SkipLinks
+            links={[
+              {
+                anchor: `#${contentId}`,
+                label: "Contenu",
+              },
+              {
+                anchor: `#${footerId}`,
+                label: "Pied de page",
+              },
+            ]}
+          />
+          <div className={styles.app}>
+            <DefaultHeader />
+            <ClientAnimate as="main" id="content" className={styles.content}>
+              {config.maintenance ? <SystemMessageDisplay code="maintenance" noRedirect /> : children}
+            </ClientAnimate>
+            <DefaultFooter id="footer" />
+          </div>
+        </Providers>
       </body>
     </html>
   );

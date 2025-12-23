@@ -92,10 +92,20 @@ const config: NextConfig = {
       },
     ]);
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: "espace-membre.incubateur.net",
+        pathname: "/api/public/member/*/image",
+        port: "",
+        protocol: "https",
+        search: "",
+      },
+    ],
+  },
   pageExtensions: ["js", "jsx", "ts", "tsx"],
   poweredByHeader: false,
   reactCompiler: true,
-
   turbopack: {},
 };
 

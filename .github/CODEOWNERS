@@ -2,3 +2,4 @@
 .github/workflows/*.yml @incubateur-ademe/core
 .github/workflows/*.yaml @incubateur-ademe/core
 .github/CODEOWNERS @incubateur-ademe/core
+.git-crypt/**/* @incubateur-ademe/core

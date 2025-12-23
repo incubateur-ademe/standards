@@ -195,13 +195,27 @@ model Phase {
     standardsMustHave   Standard[] @relation("StandardPhaseMustHave")
 }
 
+enum UserStatus {
+    ACTIVE
+    BLOCKED
+    DELETED
+}
+
+enum UserRole {
+    USER
+    ADMIN
+    REVIEWER
+}
+
 model User {
-    id            String    @id @default(cuid())
+    id            String     @id @default(cuid())
     name          String?
-    email         String?   @unique
+    email         String     @unique
     emailVerified DateTime?
     image         String?
-    username      String?   @unique
+    username      String     @unique
+    status        UserStatus @default(ACTIVE)
+    role          UserRole   @default(USER)
 
     accounts       Account[]
     sessions       Session[]
@@ -210,6 +224,16 @@ model User {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     jobs      Job[]
+}
+
+model UserOnStartup {
+    startupId String
+    userId    String
+    role      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@id([startupId, userId])
 }
 
 // NextAuth

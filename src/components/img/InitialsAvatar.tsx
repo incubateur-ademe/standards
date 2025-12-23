@@ -1,18 +1,23 @@
 import { fr } from "@codegouvfr/react-dsfr";
+import { cx, type CxArg } from "@codegouvfr/react-dsfr/tools/cx";
 import { type AvatarProps } from "@mui/material/Avatar";
 
 import styles from "./InitialsAvatar.module.scss";
 
 export interface InitialsAvatarProps {
+  className?: CxArg;
   name: string;
   size?: number;
 }
 
-export const InitialsAvatar = ({ name }: InitialsAvatarProps) => {
+export const InitialsAvatar = ({ className, name }: InitialsAvatarProps) => {
   const initials = getInitials(name);
   const background = generateBackground(name);
   return (
-    <div className={styles["initials-avatar"]} style={{ backgroundColor: background[0], color: background[1] }}>
+    <div
+      className={cx(styles["initials-avatar"], className)}
+      style={{ backgroundColor: background[0], color: background[1] }}
+    >
       <span>{initials}</span>
     </div>
   );
@@ -24,7 +29,7 @@ export function generateBackground(name: string) {
 
   const initials = getInitials(name);
   // Generate a number between 0 and the number of colors based on both initials
-  const colorIndex = (initials.charCodeAt(0) + initials.charCodeAt(1)) % bgColors.length;
+  const colorIndex = (initials.charCodeAt(0) + (initials.charCodeAt(1) || initials.charCodeAt(0))) % bgColors.length;
   return [bgColors[colorIndex], fgColors[colorIndex]];
 }
 
