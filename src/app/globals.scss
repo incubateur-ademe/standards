@@ -183,7 +183,7 @@ $postStatusColor: (
 
     /* --- Réinitialisations DSFR inutiles --- */
     .fr-nav__item:before {
-        content: none;
+        content: none !important;
     }
 
     .fr-menu__list {

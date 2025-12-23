@@ -1,11 +1,13 @@
 import js from "@eslint/js";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
+import importPlugin from "eslint-plugin-import";
 import lodash from "eslint-plugin-lodash";
 import perfectionist from "eslint-plugin-perfectionist";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import unusedImports from "eslint-plugin-unused-imports";
 import { defineConfig } from "eslint/config";
+import globals from "globals";
 import path from "path";
 import tseslint from "typescript-eslint";
 
@@ -32,9 +34,11 @@ const nextFiles = [
   "proxy",
 ].join("|");
 
+const extGlob = "?(c|m)+(t|j)s?(x)";
+
 export default defineConfig([
   {
-    ignores: ["node_modules/**", "src/generated/**", "**/*.js?(x)", "\\.yarn/**", "\\.husky/**"],
+    ignores: ["node_modules/**", "src/generated/**", "\\.husky/**"],
     name: "Global ignore patterns",
   },
   {
@@ -59,16 +63,7 @@ export default defineConfig([
       },
     },
     name: "TypeScript type checking",
-  },
-  {
-    name: "Project specific rules",
-    plugins: {
-      lodash,
-      perfectionist,
-      "unused-imports": unusedImports,
-    },
     rules: {
-      "@next/next/no-html-link-for-pages": ["error", ["src/app", "src/pages"]],
       "@typescript-eslint/adjacent-overload-signatures": "error",
       "@typescript-eslint/array-type": [
         "error",
@@ -140,6 +135,31 @@ export default defineConfig([
         },
       ],
       "@typescript-eslint/sort-type-constituents": "warn",
+    },
+  },
+  {
+    files: ["**/*.tsx", "**/*.jsx"],
+    name: "React rules",
+    rules: {
+      "react-hooks/exhaustive-deps": "warn", // Vérifie les tableaux de dépendances
+      "react-hooks/rules-of-hooks": "error", // Vérifie les règles des Hooks
+      "react/no-unescaped-entities": [
+        "error",
+        {
+          forbid: [">", "}"],
+        },
+      ],
+    },
+  },
+  {
+    name: "Project specific rules",
+    plugins: {
+      lodash,
+      perfectionist,
+      "unused-imports": unusedImports,
+    },
+    rules: {
+      "@next/next/no-html-link-for-pages": ["error", ["src/app", "src/pages"]],
       "import/consistent-type-specifier-style": ["error", "prefer-inline"],
       "import/export": "off",
       "import/named": "off",
@@ -209,14 +229,6 @@ export default defineConfig([
           trailingComma: "all",
         },
       ],
-      "react-hooks/exhaustive-deps": "warn", // Vérifie les tableaux de dépendances
-      "react-hooks/rules-of-hooks": "error", // Vérifie les règles des Hooks
-      "react/no-unescaped-entities": [
-        "error",
-        {
-          forbid: [">", "}"],
-        },
-      ],
       "sort-import": "off",
       "unused-imports/no-unused-imports": "error",
       "unused-imports/no-unused-vars": [
@@ -236,23 +248,35 @@ export default defineConfig([
     },
   },
   {
+    files: [`**/*.js`, `**/*.cjs`, `**/*.mjs`],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+    name: "JS files",
+    plugins: {
+      import: importPlugin,
+    },
+  },
+  {
     files: [
-      "src/pages/**/*.ts?(x)",
-      `src/app/**/+(${nextFiles}).ts?(x)`,
-      "next.config.ts",
-      "eslint.config.ts",
-      "tailwind.config.ts",
-      "next-sitemap.config.js",
-      "postcss.config.js",
-      "global.d.ts",
-      "prisma.config.ts",
+      `src/pages/**/*.${extGlob}`,
+      `src/app/**/+(${nextFiles}).${extGlob}`,
+      `next.config.${extGlob}`,
+      `eslint.config.${extGlob}`,
+      `tailwind.config.${extGlob}`,
+      `next-sitemap.config.${extGlob}`,
+      `postcss.config.${extGlob}`,
+      `global.d.${extGlob}`,
+      `prisma.config.${extGlob}`,
     ],
     rules: {
       "import/no-default-export": "off",
     },
   },
   {
-    files: ["scripts/**/*.ts"],
+    files: [`scripts/**/*.ts`],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {

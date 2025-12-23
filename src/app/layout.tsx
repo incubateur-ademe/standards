@@ -12,8 +12,8 @@ import { DsfrHead, getHtmlAttributes } from "@/dsfr-bootstrap/server-only-index"
 
 import { DefaultFooter } from "./DefaultFooter";
 import { DefaultHeader } from "./DefaultHeader";
-import styles from "./index.module.scss";
 import { Providers } from "./Providers";
+import styles from "./root.module.scss";
 import { sharedMetadata } from "./shared-metadata";
 import { SystemMessageDisplay } from "./SystemMessageDisplay";
 

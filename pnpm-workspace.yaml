@@ -5,6 +5,7 @@ onlyBuiltDependencies:
   - "@prisma/client"
   - bcrypt
   - protobufjs
+  - tailwindcss
 
 overrides:
   "@auth/core": "$@auth/core"
