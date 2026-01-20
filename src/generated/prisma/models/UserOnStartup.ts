@@ -25,25 +25,34 @@ export type AggregateUserOnStartup = {
 }
 
 export type UserOnStartupMinAggregateOutputType = {
-  startupId: string | null
+  id: string | null
+  startupShadowId: string | null
   userId: string | null
-  role: string | null
+  kind: $Enums.StartupAccessKind | null
+  reason: string | null
+  expiresAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type UserOnStartupMaxAggregateOutputType = {
-  startupId: string | null
+  id: string | null
+  startupShadowId: string | null
   userId: string | null
-  role: string | null
+  kind: $Enums.StartupAccessKind | null
+  reason: string | null
+  expiresAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type UserOnStartupCountAggregateOutputType = {
-  startupId: number
+  id: number
+  startupShadowId: number
   userId: number
-  role: number
+  kind: number
+  reason: number
+  expiresAt: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -51,25 +60,34 @@ export type UserOnStartupCountAggregateOutputType = {
 
 
 export type UserOnStartupMinAggregateInputType = {
-  startupId?: true
+  id?: true
+  startupShadowId?: true
   userId?: true
-  role?: true
+  kind?: true
+  reason?: true
+  expiresAt?: true
   createdAt?: true
   updatedAt?: true
 }
 
 export type UserOnStartupMaxAggregateInputType = {
-  startupId?: true
+  id?: true
+  startupShadowId?: true
   userId?: true
-  role?: true
+  kind?: true
+  reason?: true
+  expiresAt?: true
   createdAt?: true
   updatedAt?: true
 }
 
 export type UserOnStartupCountAggregateInputType = {
-  startupId?: true
+  id?: true
+  startupShadowId?: true
   userId?: true
-  role?: true
+  kind?: true
+  reason?: true
+  expiresAt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -148,9 +166,12 @@ export type UserOnStartupGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 export type UserOnStartupGroupByOutputType = {
-  startupId: string
+  id: string
+  startupShadowId: string
   userId: string
-  role: string
+  kind: $Enums.StartupAccessKind
+  reason: string | null
+  expiresAt: Date | null
   createdAt: Date
   updatedAt: Date
   _count: UserOnStartupCountAggregateOutputType | null
@@ -177,38 +198,56 @@ export type UserOnStartupWhereInput = {
   AND?: Prisma.UserOnStartupWhereInput | Prisma.UserOnStartupWhereInput[]
   OR?: Prisma.UserOnStartupWhereInput[]
   NOT?: Prisma.UserOnStartupWhereInput | Prisma.UserOnStartupWhereInput[]
-  startupId?: Prisma.StringFilter<"UserOnStartup"> | string
+  id?: Prisma.StringFilter<"UserOnStartup"> | string
+  startupShadowId?: Prisma.StringFilter<"UserOnStartup"> | string
   userId?: Prisma.StringFilter<"UserOnStartup"> | string
-  role?: Prisma.StringFilter<"UserOnStartup"> | string
+  kind?: Prisma.EnumStartupAccessKindFilter<"UserOnStartup"> | $Enums.StartupAccessKind
+  reason?: Prisma.StringNullableFilter<"UserOnStartup"> | string | null
+  expiresAt?: Prisma.DateTimeNullableFilter<"UserOnStartup"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"UserOnStartup"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"UserOnStartup"> | Date | string
+  startupShadow?: Prisma.XOR<Prisma.StartupShadowScalarRelationFilter, Prisma.StartupShadowWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type UserOnStartupOrderByWithRelationInput = {
-  startupId?: Prisma.SortOrder
+  id?: Prisma.SortOrder
+  startupShadowId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  role?: Prisma.SortOrder
+  kind?: Prisma.SortOrder
+  reason?: Prisma.SortOrderInput | Prisma.SortOrder
+  expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  startupShadow?: Prisma.StartupShadowOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
   _relevance?: Prisma.UserOnStartupOrderByRelevanceInput
 }
 
 export type UserOnStartupWhereUniqueInput = Prisma.AtLeast<{
-  startupId_userId?: Prisma.UserOnStartupStartupIdUserIdCompoundUniqueInput
+  id?: string
+  startupShadowId_userId_kind?: Prisma.UserOnStartupStartupShadowIdUserIdKindCompoundUniqueInput
   AND?: Prisma.UserOnStartupWhereInput | Prisma.UserOnStartupWhereInput[]
   OR?: Prisma.UserOnStartupWhereInput[]
   NOT?: Prisma.UserOnStartupWhereInput | Prisma.UserOnStartupWhereInput[]
-  startupId?: Prisma.StringFilter<"UserOnStartup"> | string
+  startupShadowId?: Prisma.StringFilter<"UserOnStartup"> | string
   userId?: Prisma.StringFilter<"UserOnStartup"> | string
-  role?: Prisma.StringFilter<"UserOnStartup"> | string
+  kind?: Prisma.EnumStartupAccessKindFilter<"UserOnStartup"> | $Enums.StartupAccessKind
+  reason?: Prisma.StringNullableFilter<"UserOnStartup"> | string | null
+  expiresAt?: Prisma.DateTimeNullableFilter<"UserOnStartup"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"UserOnStartup"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"UserOnStartup"> | Date | string
-}, "startupId_userId">
+  startupShadow?: Prisma.XOR<Prisma.StartupShadowScalarRelationFilter, Prisma.StartupShadowWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+}, "id" | "startupShadowId_userId_kind">
 
 export type UserOnStartupOrderByWithAggregationInput = {
-  startupId?: Prisma.SortOrder
+  id?: Prisma.SortOrder
+  startupShadowId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  role?: Prisma.SortOrder
+  kind?: Prisma.SortOrder
+  reason?: Prisma.SortOrderInput | Prisma.SortOrder
+  expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserOnStartupCountOrderByAggregateInput
@@ -220,67 +259,99 @@ export type UserOnStartupScalarWhereWithAggregatesInput = {
   AND?: Prisma.UserOnStartupScalarWhereWithAggregatesInput | Prisma.UserOnStartupScalarWhereWithAggregatesInput[]
   OR?: Prisma.UserOnStartupScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserOnStartupScalarWhereWithAggregatesInput | Prisma.UserOnStartupScalarWhereWithAggregatesInput[]
-  startupId?: Prisma.StringWithAggregatesFilter<"UserOnStartup"> | string
+  id?: Prisma.StringWithAggregatesFilter<"UserOnStartup"> | string
+  startupShadowId?: Prisma.StringWithAggregatesFilter<"UserOnStartup"> | string
   userId?: Prisma.StringWithAggregatesFilter<"UserOnStartup"> | string
-  role?: Prisma.StringWithAggregatesFilter<"UserOnStartup"> | string
+  kind?: Prisma.EnumStartupAccessKindWithAggregatesFilter<"UserOnStartup"> | $Enums.StartupAccessKind
+  reason?: Prisma.StringNullableWithAggregatesFilter<"UserOnStartup"> | string | null
+  expiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"UserOnStartup"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"UserOnStartup"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"UserOnStartup"> | Date | string
 }
 
 export type UserOnStartupCreateInput = {
-  startupId: string
-  userId: string
-  role: string
+  id?: string
+  kind?: $Enums.StartupAccessKind
+  reason?: string | null
+  expiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  startupShadow: Prisma.StartupShadowCreateNestedOneWithoutAccessGrantsInput
+  user: Prisma.UserCreateNestedOneWithoutUserOnStartupsInput
 }
 
 export type UserOnStartupUncheckedCreateInput = {
-  startupId: string
+  id?: string
+  startupShadowId: string
   userId: string
-  role: string
+  kind?: $Enums.StartupAccessKind
+  reason?: string | null
+  expiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type UserOnStartupUpdateInput = {
-  startupId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumStartupAccessKindFieldUpdateOperationsInput | $Enums.StartupAccessKind
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startupShadow?: Prisma.StartupShadowUpdateOneRequiredWithoutAccessGrantsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutUserOnStartupsNestedInput
 }
 
 export type UserOnStartupUncheckedUpdateInput = {
-  startupId?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  startupShadowId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumStartupAccessKindFieldUpdateOperationsInput | $Enums.StartupAccessKind
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserOnStartupCreateManyInput = {
-  startupId: string
+  id?: string
+  startupShadowId: string
   userId: string
-  role: string
+  kind?: $Enums.StartupAccessKind
+  reason?: string | null
+  expiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type UserOnStartupUpdateManyMutationInput = {
-  startupId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumStartupAccessKindFieldUpdateOperationsInput | $Enums.StartupAccessKind
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserOnStartupUncheckedUpdateManyInput = {
-  startupId?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  startupShadowId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumStartupAccessKindFieldUpdateOperationsInput | $Enums.StartupAccessKind
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserOnStartupListRelationFilter = {
+  every?: Prisma.UserOnStartupWhereInput
+  some?: Prisma.UserOnStartupWhereInput
+  none?: Prisma.UserOnStartupWhereInput
+}
+
+export type UserOnStartupOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type UserOnStartupOrderByRelevanceInput = {
@@ -289,78 +360,404 @@ export type UserOnStartupOrderByRelevanceInput = {
   search: string
 }
 
-export type UserOnStartupStartupIdUserIdCompoundUniqueInput = {
-  startupId: string
+export type UserOnStartupStartupShadowIdUserIdKindCompoundUniqueInput = {
+  startupShadowId: string
   userId: string
+  kind: $Enums.StartupAccessKind
 }
 
 export type UserOnStartupCountOrderByAggregateInput = {
-  startupId?: Prisma.SortOrder
+  id?: Prisma.SortOrder
+  startupShadowId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  role?: Prisma.SortOrder
+  kind?: Prisma.SortOrder
+  reason?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type UserOnStartupMaxOrderByAggregateInput = {
-  startupId?: Prisma.SortOrder
+  id?: Prisma.SortOrder
+  startupShadowId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  role?: Prisma.SortOrder
+  kind?: Prisma.SortOrder
+  reason?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type UserOnStartupMinOrderByAggregateInput = {
-  startupId?: Prisma.SortOrder
+  id?: Prisma.SortOrder
+  startupShadowId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  role?: Prisma.SortOrder
+  kind?: Prisma.SortOrder
+  reason?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type UserOnStartupCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.UserOnStartupCreateWithoutUserInput, Prisma.UserOnStartupUncheckedCreateWithoutUserInput> | Prisma.UserOnStartupCreateWithoutUserInput[] | Prisma.UserOnStartupUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.UserOnStartupCreateOrConnectWithoutUserInput | Prisma.UserOnStartupCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.UserOnStartupCreateManyUserInputEnvelope
+  connect?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+}
+
+export type UserOnStartupUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.UserOnStartupCreateWithoutUserInput, Prisma.UserOnStartupUncheckedCreateWithoutUserInput> | Prisma.UserOnStartupCreateWithoutUserInput[] | Prisma.UserOnStartupUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.UserOnStartupCreateOrConnectWithoutUserInput | Prisma.UserOnStartupCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.UserOnStartupCreateManyUserInputEnvelope
+  connect?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+}
+
+export type UserOnStartupUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.UserOnStartupCreateWithoutUserInput, Prisma.UserOnStartupUncheckedCreateWithoutUserInput> | Prisma.UserOnStartupCreateWithoutUserInput[] | Prisma.UserOnStartupUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.UserOnStartupCreateOrConnectWithoutUserInput | Prisma.UserOnStartupCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.UserOnStartupUpsertWithWhereUniqueWithoutUserInput | Prisma.UserOnStartupUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.UserOnStartupCreateManyUserInputEnvelope
+  set?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  disconnect?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  delete?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  connect?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  update?: Prisma.UserOnStartupUpdateWithWhereUniqueWithoutUserInput | Prisma.UserOnStartupUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.UserOnStartupUpdateManyWithWhereWithoutUserInput | Prisma.UserOnStartupUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.UserOnStartupScalarWhereInput | Prisma.UserOnStartupScalarWhereInput[]
+}
+
+export type UserOnStartupUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.UserOnStartupCreateWithoutUserInput, Prisma.UserOnStartupUncheckedCreateWithoutUserInput> | Prisma.UserOnStartupCreateWithoutUserInput[] | Prisma.UserOnStartupUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.UserOnStartupCreateOrConnectWithoutUserInput | Prisma.UserOnStartupCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.UserOnStartupUpsertWithWhereUniqueWithoutUserInput | Prisma.UserOnStartupUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.UserOnStartupCreateManyUserInputEnvelope
+  set?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  disconnect?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  delete?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  connect?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  update?: Prisma.UserOnStartupUpdateWithWhereUniqueWithoutUserInput | Prisma.UserOnStartupUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.UserOnStartupUpdateManyWithWhereWithoutUserInput | Prisma.UserOnStartupUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.UserOnStartupScalarWhereInput | Prisma.UserOnStartupScalarWhereInput[]
+}
+
+export type UserOnStartupCreateNestedManyWithoutStartupShadowInput = {
+  create?: Prisma.XOR<Prisma.UserOnStartupCreateWithoutStartupShadowInput, Prisma.UserOnStartupUncheckedCreateWithoutStartupShadowInput> | Prisma.UserOnStartupCreateWithoutStartupShadowInput[] | Prisma.UserOnStartupUncheckedCreateWithoutStartupShadowInput[]
+  connectOrCreate?: Prisma.UserOnStartupCreateOrConnectWithoutStartupShadowInput | Prisma.UserOnStartupCreateOrConnectWithoutStartupShadowInput[]
+  createMany?: Prisma.UserOnStartupCreateManyStartupShadowInputEnvelope
+  connect?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+}
+
+export type UserOnStartupUncheckedCreateNestedManyWithoutStartupShadowInput = {
+  create?: Prisma.XOR<Prisma.UserOnStartupCreateWithoutStartupShadowInput, Prisma.UserOnStartupUncheckedCreateWithoutStartupShadowInput> | Prisma.UserOnStartupCreateWithoutStartupShadowInput[] | Prisma.UserOnStartupUncheckedCreateWithoutStartupShadowInput[]
+  connectOrCreate?: Prisma.UserOnStartupCreateOrConnectWithoutStartupShadowInput | Prisma.UserOnStartupCreateOrConnectWithoutStartupShadowInput[]
+  createMany?: Prisma.UserOnStartupCreateManyStartupShadowInputEnvelope
+  connect?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+}
+
+export type UserOnStartupUpdateManyWithoutStartupShadowNestedInput = {
+  create?: Prisma.XOR<Prisma.UserOnStartupCreateWithoutStartupShadowInput, Prisma.UserOnStartupUncheckedCreateWithoutStartupShadowInput> | Prisma.UserOnStartupCreateWithoutStartupShadowInput[] | Prisma.UserOnStartupUncheckedCreateWithoutStartupShadowInput[]
+  connectOrCreate?: Prisma.UserOnStartupCreateOrConnectWithoutStartupShadowInput | Prisma.UserOnStartupCreateOrConnectWithoutStartupShadowInput[]
+  upsert?: Prisma.UserOnStartupUpsertWithWhereUniqueWithoutStartupShadowInput | Prisma.UserOnStartupUpsertWithWhereUniqueWithoutStartupShadowInput[]
+  createMany?: Prisma.UserOnStartupCreateManyStartupShadowInputEnvelope
+  set?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  disconnect?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  delete?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  connect?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  update?: Prisma.UserOnStartupUpdateWithWhereUniqueWithoutStartupShadowInput | Prisma.UserOnStartupUpdateWithWhereUniqueWithoutStartupShadowInput[]
+  updateMany?: Prisma.UserOnStartupUpdateManyWithWhereWithoutStartupShadowInput | Prisma.UserOnStartupUpdateManyWithWhereWithoutStartupShadowInput[]
+  deleteMany?: Prisma.UserOnStartupScalarWhereInput | Prisma.UserOnStartupScalarWhereInput[]
+}
+
+export type UserOnStartupUncheckedUpdateManyWithoutStartupShadowNestedInput = {
+  create?: Prisma.XOR<Prisma.UserOnStartupCreateWithoutStartupShadowInput, Prisma.UserOnStartupUncheckedCreateWithoutStartupShadowInput> | Prisma.UserOnStartupCreateWithoutStartupShadowInput[] | Prisma.UserOnStartupUncheckedCreateWithoutStartupShadowInput[]
+  connectOrCreate?: Prisma.UserOnStartupCreateOrConnectWithoutStartupShadowInput | Prisma.UserOnStartupCreateOrConnectWithoutStartupShadowInput[]
+  upsert?: Prisma.UserOnStartupUpsertWithWhereUniqueWithoutStartupShadowInput | Prisma.UserOnStartupUpsertWithWhereUniqueWithoutStartupShadowInput[]
+  createMany?: Prisma.UserOnStartupCreateManyStartupShadowInputEnvelope
+  set?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  disconnect?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  delete?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  connect?: Prisma.UserOnStartupWhereUniqueInput | Prisma.UserOnStartupWhereUniqueInput[]
+  update?: Prisma.UserOnStartupUpdateWithWhereUniqueWithoutStartupShadowInput | Prisma.UserOnStartupUpdateWithWhereUniqueWithoutStartupShadowInput[]
+  updateMany?: Prisma.UserOnStartupUpdateManyWithWhereWithoutStartupShadowInput | Prisma.UserOnStartupUpdateManyWithWhereWithoutStartupShadowInput[]
+  deleteMany?: Prisma.UserOnStartupScalarWhereInput | Prisma.UserOnStartupScalarWhereInput[]
+}
+
+export type EnumStartupAccessKindFieldUpdateOperationsInput = {
+  set?: $Enums.StartupAccessKind
+}
+
+export type UserOnStartupCreateWithoutUserInput = {
+  id?: string
+  kind?: $Enums.StartupAccessKind
+  reason?: string | null
+  expiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  startupShadow: Prisma.StartupShadowCreateNestedOneWithoutAccessGrantsInput
+}
+
+export type UserOnStartupUncheckedCreateWithoutUserInput = {
+  id?: string
+  startupShadowId: string
+  kind?: $Enums.StartupAccessKind
+  reason?: string | null
+  expiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type UserOnStartupCreateOrConnectWithoutUserInput = {
+  where: Prisma.UserOnStartupWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserOnStartupCreateWithoutUserInput, Prisma.UserOnStartupUncheckedCreateWithoutUserInput>
+}
+
+export type UserOnStartupCreateManyUserInputEnvelope = {
+  data: Prisma.UserOnStartupCreateManyUserInput | Prisma.UserOnStartupCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type UserOnStartupUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.UserOnStartupWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserOnStartupUpdateWithoutUserInput, Prisma.UserOnStartupUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.UserOnStartupCreateWithoutUserInput, Prisma.UserOnStartupUncheckedCreateWithoutUserInput>
+}
+
+export type UserOnStartupUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.UserOnStartupWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserOnStartupUpdateWithoutUserInput, Prisma.UserOnStartupUncheckedUpdateWithoutUserInput>
+}
+
+export type UserOnStartupUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.UserOnStartupScalarWhereInput
+  data: Prisma.XOR<Prisma.UserOnStartupUpdateManyMutationInput, Prisma.UserOnStartupUncheckedUpdateManyWithoutUserInput>
+}
+
+export type UserOnStartupScalarWhereInput = {
+  AND?: Prisma.UserOnStartupScalarWhereInput | Prisma.UserOnStartupScalarWhereInput[]
+  OR?: Prisma.UserOnStartupScalarWhereInput[]
+  NOT?: Prisma.UserOnStartupScalarWhereInput | Prisma.UserOnStartupScalarWhereInput[]
+  id?: Prisma.StringFilter<"UserOnStartup"> | string
+  startupShadowId?: Prisma.StringFilter<"UserOnStartup"> | string
+  userId?: Prisma.StringFilter<"UserOnStartup"> | string
+  kind?: Prisma.EnumStartupAccessKindFilter<"UserOnStartup"> | $Enums.StartupAccessKind
+  reason?: Prisma.StringNullableFilter<"UserOnStartup"> | string | null
+  expiresAt?: Prisma.DateTimeNullableFilter<"UserOnStartup"> | Date | string | null
+  createdAt?: Prisma.DateTimeFilter<"UserOnStartup"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"UserOnStartup"> | Date | string
+}
+
+export type UserOnStartupCreateWithoutStartupShadowInput = {
+  id?: string
+  kind?: $Enums.StartupAccessKind
+  reason?: string | null
+  expiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutUserOnStartupsInput
+}
+
+export type UserOnStartupUncheckedCreateWithoutStartupShadowInput = {
+  id?: string
+  userId: string
+  kind?: $Enums.StartupAccessKind
+  reason?: string | null
+  expiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type UserOnStartupCreateOrConnectWithoutStartupShadowInput = {
+  where: Prisma.UserOnStartupWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserOnStartupCreateWithoutStartupShadowInput, Prisma.UserOnStartupUncheckedCreateWithoutStartupShadowInput>
+}
+
+export type UserOnStartupCreateManyStartupShadowInputEnvelope = {
+  data: Prisma.UserOnStartupCreateManyStartupShadowInput | Prisma.UserOnStartupCreateManyStartupShadowInput[]
+  skipDuplicates?: boolean
+}
+
+export type UserOnStartupUpsertWithWhereUniqueWithoutStartupShadowInput = {
+  where: Prisma.UserOnStartupWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserOnStartupUpdateWithoutStartupShadowInput, Prisma.UserOnStartupUncheckedUpdateWithoutStartupShadowInput>
+  create: Prisma.XOR<Prisma.UserOnStartupCreateWithoutStartupShadowInput, Prisma.UserOnStartupUncheckedCreateWithoutStartupShadowInput>
+}
+
+export type UserOnStartupUpdateWithWhereUniqueWithoutStartupShadowInput = {
+  where: Prisma.UserOnStartupWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserOnStartupUpdateWithoutStartupShadowInput, Prisma.UserOnStartupUncheckedUpdateWithoutStartupShadowInput>
+}
+
+export type UserOnStartupUpdateManyWithWhereWithoutStartupShadowInput = {
+  where: Prisma.UserOnStartupScalarWhereInput
+  data: Prisma.XOR<Prisma.UserOnStartupUpdateManyMutationInput, Prisma.UserOnStartupUncheckedUpdateManyWithoutStartupShadowInput>
+}
+
+export type UserOnStartupCreateManyUserInput = {
+  id?: string
+  startupShadowId: string
+  kind?: $Enums.StartupAccessKind
+  reason?: string | null
+  expiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type UserOnStartupUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumStartupAccessKindFieldUpdateOperationsInput | $Enums.StartupAccessKind
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startupShadow?: Prisma.StartupShadowUpdateOneRequiredWithoutAccessGrantsNestedInput
+}
+
+export type UserOnStartupUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  startupShadowId?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumStartupAccessKindFieldUpdateOperationsInput | $Enums.StartupAccessKind
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserOnStartupUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  startupShadowId?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumStartupAccessKindFieldUpdateOperationsInput | $Enums.StartupAccessKind
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserOnStartupCreateManyStartupShadowInput = {
+  id?: string
+  userId: string
+  kind?: $Enums.StartupAccessKind
+  reason?: string | null
+  expiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type UserOnStartupUpdateWithoutStartupShadowInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumStartupAccessKindFieldUpdateOperationsInput | $Enums.StartupAccessKind
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutUserOnStartupsNestedInput
+}
+
+export type UserOnStartupUncheckedUpdateWithoutStartupShadowInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumStartupAccessKindFieldUpdateOperationsInput | $Enums.StartupAccessKind
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserOnStartupUncheckedUpdateManyWithoutStartupShadowInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumStartupAccessKindFieldUpdateOperationsInput | $Enums.StartupAccessKind
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
 
 export type UserOnStartupSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  startupId?: boolean
+  id?: boolean
+  startupShadowId?: boolean
   userId?: boolean
-  role?: boolean
+  kind?: boolean
+  reason?: boolean
+  expiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  startupShadow?: boolean | Prisma.StartupShadowDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userOnStartup"]>
 
 export type UserOnStartupSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  startupId?: boolean
+  id?: boolean
+  startupShadowId?: boolean
   userId?: boolean
-  role?: boolean
+  kind?: boolean
+  reason?: boolean
+  expiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  startupShadow?: boolean | Prisma.StartupShadowDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userOnStartup"]>
 
 export type UserOnStartupSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  startupId?: boolean
+  id?: boolean
+  startupShadowId?: boolean
   userId?: boolean
-  role?: boolean
+  kind?: boolean
+  reason?: boolean
+  expiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  startupShadow?: boolean | Prisma.StartupShadowDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["userOnStartup"]>
 
 export type UserOnStartupSelectScalar = {
-  startupId?: boolean
+  id?: boolean
+  startupShadowId?: boolean
   userId?: boolean
-  role?: boolean
+  kind?: boolean
+  reason?: boolean
+  expiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOnStartupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"startupId" | "userId" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["userOnStartup"]>
+export type UserOnStartupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "startupShadowId" | "userId" | "kind" | "reason" | "expiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["userOnStartup"]>
+export type UserOnStartupInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  startupShadow?: boolean | Prisma.StartupShadowDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type UserOnStartupIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  startupShadow?: boolean | Prisma.StartupShadowDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type UserOnStartupIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  startupShadow?: boolean | Prisma.StartupShadowDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
 
 export type $UserOnStartupPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "UserOnStartup"
-  objects: {}
+  objects: {
+    startupShadow: Prisma.$StartupShadowPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    startupId: string
+    id: string
+    startupShadowId: string
     userId: string
-    role: string
+    kind: $Enums.StartupAccessKind
+    /**
+     * optionnel : justification libre
+     */
+    reason: string | null
+    /**
+     * optionnel : accès temporaire
+     */
+    expiresAt: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["userOnStartup"]>
@@ -446,8 +843,8 @@ export interface UserOnStartupDelegate<ExtArgs extends runtime.Types.Extensions.
    * // Get first 10 UserOnStartups
    * const userOnStartups = await prisma.userOnStartup.findMany({ take: 10 })
    * 
-   * // Only select the `startupId`
-   * const userOnStartupWithStartupIdOnly = await prisma.userOnStartup.findMany({ select: { startupId: true } })
+   * // Only select the `id`
+   * const userOnStartupWithIdOnly = await prisma.userOnStartup.findMany({ select: { id: true } })
    * 
    */
   findMany<T extends UserOnStartupFindManyArgs>(args?: Prisma.SelectSubset<T, UserOnStartupFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserOnStartupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -491,9 +888,9 @@ export interface UserOnStartupDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Create many UserOnStartups and only return the `startupId`
-   * const userOnStartupWithStartupIdOnly = await prisma.userOnStartup.createManyAndReturn({
-   *   select: { startupId: true },
+   * // Create many UserOnStartups and only return the `id`
+   * const userOnStartupWithIdOnly = await prisma.userOnStartup.createManyAndReturn({
+   *   select: { id: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -582,9 +979,9 @@ export interface UserOnStartupDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Update zero or more UserOnStartups and only return the `startupId`
-   * const userOnStartupWithStartupIdOnly = await prisma.userOnStartup.updateManyAndReturn({
-   *   select: { startupId: true },
+   * // Update zero or more UserOnStartups and only return the `id`
+   * const userOnStartupWithIdOnly = await prisma.userOnStartup.updateManyAndReturn({
+   *   select: { id: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -757,6 +1154,8 @@ readonly fields: UserOnStartupFieldRefs;
  */
 export interface Prisma__UserOnStartupClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  startupShadow<T extends Prisma.StartupShadowDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StartupShadowDefaultArgs<ExtArgs>>): Prisma.Prisma__StartupShadowClient<runtime.Types.Result.GetResult<Prisma.$StartupShadowPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -786,9 +1185,12 @@ export interface Prisma__UserOnStartupClient<T, Null = never, ExtArgs extends ru
  * Fields of the UserOnStartup model
  */
 export interface UserOnStartupFieldRefs {
-  readonly startupId: Prisma.FieldRef<"UserOnStartup", 'String'>
+  readonly id: Prisma.FieldRef<"UserOnStartup", 'String'>
+  readonly startupShadowId: Prisma.FieldRef<"UserOnStartup", 'String'>
   readonly userId: Prisma.FieldRef<"UserOnStartup", 'String'>
-  readonly role: Prisma.FieldRef<"UserOnStartup", 'String'>
+  readonly kind: Prisma.FieldRef<"UserOnStartup", 'StartupAccessKind'>
+  readonly reason: Prisma.FieldRef<"UserOnStartup", 'String'>
+  readonly expiresAt: Prisma.FieldRef<"UserOnStartup", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"UserOnStartup", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"UserOnStartup", 'DateTime'>
 }
@@ -808,6 +1210,10 @@ export type UserOnStartupFindUniqueArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.UserOnStartupOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserOnStartupInclude<ExtArgs> | null
+  /**
    * Filter, which UserOnStartup to fetch.
    */
   where: Prisma.UserOnStartupWhereUniqueInput
@@ -826,6 +1232,10 @@ export type UserOnStartupFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Ext
    */
   omit?: Prisma.UserOnStartupOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserOnStartupInclude<ExtArgs> | null
+  /**
    * Filter, which UserOnStartup to fetch.
    */
   where: Prisma.UserOnStartupWhereUniqueInput
@@ -843,6 +1253,10 @@ export type UserOnStartupFindFirstArgs<ExtArgs extends runtime.Types.Extensions.
    * Omit specific fields from the UserOnStartup
    */
   omit?: Prisma.UserOnStartupOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserOnStartupInclude<ExtArgs> | null
   /**
    * Filter, which UserOnStartup to fetch.
    */
@@ -892,6 +1306,10 @@ export type UserOnStartupFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Exte
    */
   omit?: Prisma.UserOnStartupOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserOnStartupInclude<ExtArgs> | null
+  /**
    * Filter, which UserOnStartup to fetch.
    */
   where?: Prisma.UserOnStartupWhereInput
@@ -940,6 +1358,10 @@ export type UserOnStartupFindManyArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.UserOnStartupOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserOnStartupInclude<ExtArgs> | null
+  /**
    * Filter, which UserOnStartups to fetch.
    */
   where?: Prisma.UserOnStartupWhereInput
@@ -983,6 +1405,10 @@ export type UserOnStartupCreateArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   omit?: Prisma.UserOnStartupOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserOnStartupInclude<ExtArgs> | null
+  /**
    * The data needed to create a UserOnStartup.
    */
   data: Prisma.XOR<Prisma.UserOnStartupCreateInput, Prisma.UserOnStartupUncheckedCreateInput>
@@ -1016,6 +1442,10 @@ export type UserOnStartupCreateManyAndReturnArgs<ExtArgs extends runtime.Types.E
    */
   data: Prisma.UserOnStartupCreateManyInput | Prisma.UserOnStartupCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserOnStartupIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1030,6 +1460,10 @@ export type UserOnStartupUpdateArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the UserOnStartup
    */
   omit?: Prisma.UserOnStartupOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserOnStartupInclude<ExtArgs> | null
   /**
    * The data needed to update a UserOnStartup.
    */
@@ -1082,6 +1516,10 @@ export type UserOnStartupUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.E
    * Limit how many UserOnStartups to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserOnStartupIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1096,6 +1534,10 @@ export type UserOnStartupUpsertArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the UserOnStartup
    */
   omit?: Prisma.UserOnStartupOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserOnStartupInclude<ExtArgs> | null
   /**
    * The filter to search for the UserOnStartup to update in case it exists.
    */
@@ -1122,6 +1564,10 @@ export type UserOnStartupDeleteArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the UserOnStartup
    */
   omit?: Prisma.UserOnStartupOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserOnStartupInclude<ExtArgs> | null
   /**
    * Filter which UserOnStartup to delete.
    */
@@ -1154,4 +1600,8 @@ export type UserOnStartupDefaultArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the UserOnStartup
    */
   omit?: Prisma.UserOnStartupOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserOnStartupInclude<ExtArgs> | null
 }

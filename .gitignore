@@ -68,3 +68,4 @@ templates_tmp/
 certificates
 
 .vscode/mcp.json
+logs/

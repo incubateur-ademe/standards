@@ -23,7 +23,7 @@ model Standard {
 
     /// Unique identifier from Notion (e.g. "STD14")
     /// @notion("ID")
-    notionId String?
+    notionId String? @unique
 
     /// Roles (formerly "Métier(s)") — relation to Job model
     /// @notion("Métier(s)")
@@ -60,8 +60,6 @@ model Standard {
     // @@fulltext([description])
     // @@fulltext([title, description])
 
-    @@unique([notionId])
-    @@unique([id, notionId])
     @@index([couldHavePhaseId])
     @@index([shouldHavePhaseId])
     @@index([mustHavePhaseId])
@@ -74,7 +72,7 @@ model Action {
 
     /// Unique identifier from Notion (e.g. "ACT4")
     /// @notion("ID")
-    notionId String?
+    notionId String? @unique
 
     /// Title of the action page
     /// @notion("Action")
@@ -110,8 +108,12 @@ model Action {
 
     /// Relation back to Standard via Notion relation `Standard`
     /// @notion("Standard")
-    standard   Standard? @relation(fields: [standardId], references: [id])
-    standardId String?
+    standard                 Standard?                @relation(fields: [standardId], references: [id])
+    standardId               String?
+    actionProgresses         ActionProgress[]
+    snapshotActionProgresses SnapshotActionProgress[]
+
+    @@index([standardId])
 }
 
 model ActionSource {
@@ -159,7 +161,7 @@ model Job {
     /// Manager: linked to `User` in Prisma (not imported from Notion)
     /// @notion(false)
     managerId String?
-    manager   User?   @relation(fields: [managerId], references: [id])
+    manager   User?   @relation("JobManager", fields: [managerId], references: [id])
 
     /// Back relation to standards — Notion relation `Métier(s)`
     /// @notion(false)
@@ -188,11 +190,13 @@ model Phase {
 
     /// Back relations to standards for the different phase properties
     /// @notion(false)
-    standardsCouldHave  Standard[] @relation("StandardPhaseCouldHave")
+    standardsCouldHave  Standard[]      @relation("StandardPhaseCouldHave")
     /// @notion(false)
-    standardsShouldHave Standard[] @relation("StandardPhaseShouldHave")
+    standardsShouldHave Standard[]      @relation("StandardPhaseShouldHave")
     /// @notion(false)
-    standardsMustHave   Standard[] @relation("StandardPhaseMustHave")
+    standardsMustHave   Standard[]      @relation("StandardPhaseMustHave")
+    startupShadows      StartupShadow[]
+    snapshots           Snapshot[]
 }
 
 enum UserStatus {
@@ -221,19 +225,70 @@ model User {
     sessions       Session[]
     authenticators Authenticator[]
 
+    createdAt               DateTime         @default(now())
+    updatedAt               DateTime         @updatedAt
+    managedJobs             Job[]            @relation("JobManager")
+    userOnStartups          UserOnStartup[]
+    ownedActionProgresses   ActionProgress[] @relation("ActionProgressOwner")
+    updatedActionProgresses ActionProgress[] @relation("ActionProgressUpdatedBy")
+    actionProofs            ActionProof[]    @relation("ActionProofCreatedBy")
+    actionComments          ActionComment[]  @relation("ActionCommentCreatedBy")
+    snapshots               Snapshot[]
+}
+
+model StartupShadow {
+    id String @id @default(cuid())
+
+    /// ID externe (API incubateur)
+    externalId String @unique
+
+    name String?
+
+    /// Phase courante (issue de l’API externe, mappée à ton Phase interne)
+    currentPhaseId String?
+    currentPhase   Phase?  @relation(fields: [currentPhaseId], references: [id])
+
+    /// Overrides locaux (assistance, audit, etc.)
+    accessGrants UserOnStartup[]
+
+    actionProgresses ActionProgress[]
+    snapshots        Snapshot[]
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    jobs      Job[]
+
+    @@index([currentPhaseId])
+}
+
+enum StartupAccessKind {
+    ASSISTANCE
+    AUDIT
+    TEMP
+    OTHER
 }
 
 model UserOnStartup {
-    startupId String
-    userId    String
-    role      String
+    id String @id @default(cuid())
+
+    startupShadowId String
+    startupShadow   StartupShadow @relation(fields: [startupShadowId], references: [id], onDelete: Cascade)
+
+    userId String
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    kind   StartupAccessKind @default(ASSISTANCE)
+    /// optionnel : justification libre
+    reason String?
+
+    /// optionnel : accès temporaire
+    expiresAt DateTime?
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    @@id([startupId, userId])
+    @@unique([startupShadowId, userId, kind])
+    @@index([userId])
+    @@index([expiresAt])
 }
 
 // NextAuth
@@ -289,4 +344,148 @@ model Authenticator {
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@id([userId, credentialID])
+}
+
+enum ActionStatus {
+    TODO
+    IN_PROGRESS
+    DONE
+    BLOCKED
+}
+
+enum ProofKind {
+    URL
+    FILE
+    NOTE
+}
+
+model ActionProgress {
+    id String @id @default(cuid())
+
+    startupShadowId String
+    startupShadow   StartupShadow @relation(fields: [startupShadowId], references: [id], onDelete: Cascade)
+
+    actionId String
+    action   Action @relation(fields: [actionId], references: [id], onDelete: Cascade)
+
+    status ActionStatus @default(TODO)
+
+    ownerId String?
+    owner   User?   @relation("ActionProgressOwner", fields: [ownerId], references: [id])
+
+    updatedById String?
+    updatedBy   User?   @relation("ActionProgressUpdatedBy", fields: [updatedById], references: [id])
+
+    proofs   ActionProof[]
+    comments ActionComment[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@unique([startupShadowId, actionId])
+    @@index([startupShadowId])
+    @@index([actionId])
+    @@index([status])
+    @@index([ownerId])
+}
+
+model ActionProof {
+    id String @id @default(cuid())
+
+    actionProgressId String
+    actionProgress   ActionProgress @relation(fields: [actionProgressId], references: [id], onDelete: Cascade)
+
+    kind ProofKind @default(URL)
+
+    /// URL ou clé S3 (ou autre stockage)
+    ref String?
+
+    /// Contexte/label/description
+    note String?
+
+    createdById String?
+    createdBy   User?   @relation("ActionProofCreatedBy", fields: [createdById], references: [id])
+
+    createdAt DateTime  @default(now())
+    deletedAt DateTime?
+
+    @@index([actionProgressId, createdAt])
+    @@index([deletedAt])
+    @@index([createdById])
+}
+
+model ActionComment {
+    id String @id @default(cuid())
+
+    actionProgressId String
+    actionProgress   ActionProgress @relation(fields: [actionProgressId], references: [id], onDelete: Cascade)
+
+    body String
+
+    createdById String?
+    createdBy   User?   @relation("ActionCommentCreatedBy", fields: [createdById], references: [id])
+
+    /// Snapshot du rôle applicatif au moment de l’écriture
+    authorRole UserRole?
+
+    createdAt DateTime  @default(now())
+    deletedAt DateTime?
+
+    @@index([actionProgressId, createdAt])
+    @@index([deletedAt])
+    @@index([createdById])
+}
+
+model Snapshot {
+    id String @id @default(cuid())
+
+    startupShadowId String
+    startupShadow   StartupShadow @relation(fields: [startupShadowId], references: [id], onDelete: Cascade)
+
+    /// Phase courante au moment du snapshot
+    phaseId String
+    phase   Phase? @relation(fields: [phaseId], references: [id])
+
+    createdById String?
+    createdBy   User?   @relation(fields: [createdById], references: [id])
+
+    createdAt DateTime @default(now())
+
+    items SnapshotActionProgress[]
+
+    @@index([startupShadowId, createdAt])
+    @@index([phaseId])
+}
+
+model SnapshotActionProgress {
+    id String @id @default(cuid())
+
+    snapshotId String
+    snapshot   Snapshot @relation(fields: [snapshotId], references: [id], onDelete: Cascade)
+
+    actionId String
+    action   Action @relation(fields: [actionId], references: [id])
+
+    status ActionStatus
+
+    proofs SnapshotActionProof[]
+
+    @@unique([snapshotId, actionId])
+    @@index([snapshotId])
+    @@index([actionId])
+}
+
+model SnapshotActionProof {
+    id String @id @default(cuid())
+
+    snapshotActionProgressId String
+    snapshotActionProgress   SnapshotActionProgress @relation(fields: [snapshotActionProgressId], references: [id], onDelete: Cascade)
+
+    kind ProofKind
+    ref  String?
+    note String?
+
+    createdAt DateTime @default(now())
+
+    @@index([snapshotActionProgressId])
 }

@@ -70,6 +70,11 @@ export type Phase = Prisma.PhaseModel
  */
 export type User = Prisma.UserModel
 /**
+ * Model StartupShadow
+ * 
+ */
+export type StartupShadow = Prisma.StartupShadowModel
+/**
  * Model UserOnStartup
  * 
  */
@@ -94,3 +99,33 @@ export type VerificationRequest = Prisma.VerificationRequestModel
  * 
  */
 export type Authenticator = Prisma.AuthenticatorModel
+/**
+ * Model ActionProgress
+ * 
+ */
+export type ActionProgress = Prisma.ActionProgressModel
+/**
+ * Model ActionProof
+ * 
+ */
+export type ActionProof = Prisma.ActionProofModel
+/**
+ * Model ActionComment
+ * 
+ */
+export type ActionComment = Prisma.ActionCommentModel
+/**
+ * Model Snapshot
+ * 
+ */
+export type Snapshot = Prisma.SnapshotModel
+/**
+ * Model SnapshotActionProgress
+ * 
+ */
+export type SnapshotActionProgress = Prisma.SnapshotActionProgressModel
+/**
+ * Model SnapshotActionProof
+ * 
+ */
+export type SnapshotActionProof = Prisma.SnapshotActionProofModel

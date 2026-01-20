@@ -237,7 +237,7 @@ export type JobCreateInput = {
   name?: string | null
   description?: string | null
   notionId?: string | null
-  manager?: Prisma.UserCreateNestedOneWithoutJobsInput
+  manager?: Prisma.UserCreateNestedOneWithoutManagedJobsInput
   standards?: Prisma.StandardCreateNestedManyWithoutRolesInput
 }
 
@@ -255,7 +255,7 @@ export type JobUpdateInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  manager?: Prisma.UserUpdateOneWithoutJobsNestedInput
+  manager?: Prisma.UserUpdateOneWithoutManagedJobsNestedInput
   standards?: Prisma.StandardUpdateManyWithoutRolesNestedInput
 }
 
@@ -416,7 +416,7 @@ export type JobCreateWithoutStandardsInput = {
   name?: string | null
   description?: string | null
   notionId?: string | null
-  manager?: Prisma.UserCreateNestedOneWithoutJobsInput
+  manager?: Prisma.UserCreateNestedOneWithoutManagedJobsInput
 }
 
 export type JobUncheckedCreateWithoutStandardsInput = {
@@ -506,7 +506,7 @@ export type JobUpdateWithoutStandardsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  manager?: Prisma.UserUpdateOneWithoutJobsNestedInput
+  manager?: Prisma.UserUpdateOneWithoutManagedJobsNestedInput
 }
 
 export type JobUncheckedUpdateWithoutStandardsInput = {

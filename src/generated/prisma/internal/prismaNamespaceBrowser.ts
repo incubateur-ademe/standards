@@ -57,11 +57,18 @@ export const ModelName = {
   Job: 'Job',
   Phase: 'Phase',
   User: 'User',
+  StartupShadow: 'StartupShadow',
   UserOnStartup: 'UserOnStartup',
   Account: 'Account',
   Session: 'Session',
   VerificationRequest: 'VerificationRequest',
-  Authenticator: 'Authenticator'
+  Authenticator: 'Authenticator',
+  ActionProgress: 'ActionProgress',
+  ActionProof: 'ActionProof',
+  ActionComment: 'ActionComment',
+  Snapshot: 'Snapshot',
+  SnapshotActionProgress: 'SnapshotActionProgress',
+  SnapshotActionProof: 'SnapshotActionProof'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -162,10 +169,25 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const StartupShadowScalarFieldEnum = {
+  id: 'id',
+  externalId: 'externalId',
+  name: 'name',
+  currentPhaseId: 'currentPhaseId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type StartupShadowScalarFieldEnum = (typeof StartupShadowScalarFieldEnum)[keyof typeof StartupShadowScalarFieldEnum]
+
+
 export const UserOnStartupScalarFieldEnum = {
-  startupId: 'startupId',
+  id: 'id',
+  startupShadowId: 'startupShadowId',
   userId: 'userId',
-  role: 'role',
+  kind: 'kind',
+  reason: 'reason',
+  expiresAt: 'expiresAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -226,6 +248,80 @@ export const AuthenticatorScalarFieldEnum = {
 } as const
 
 export type AuthenticatorScalarFieldEnum = (typeof AuthenticatorScalarFieldEnum)[keyof typeof AuthenticatorScalarFieldEnum]
+
+
+export const ActionProgressScalarFieldEnum = {
+  id: 'id',
+  startupShadowId: 'startupShadowId',
+  actionId: 'actionId',
+  status: 'status',
+  ownerId: 'ownerId',
+  updatedById: 'updatedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ActionProgressScalarFieldEnum = (typeof ActionProgressScalarFieldEnum)[keyof typeof ActionProgressScalarFieldEnum]
+
+
+export const ActionProofScalarFieldEnum = {
+  id: 'id',
+  actionProgressId: 'actionProgressId',
+  kind: 'kind',
+  ref: 'ref',
+  note: 'note',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type ActionProofScalarFieldEnum = (typeof ActionProofScalarFieldEnum)[keyof typeof ActionProofScalarFieldEnum]
+
+
+export const ActionCommentScalarFieldEnum = {
+  id: 'id',
+  actionProgressId: 'actionProgressId',
+  body: 'body',
+  createdById: 'createdById',
+  authorRole: 'authorRole',
+  createdAt: 'createdAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type ActionCommentScalarFieldEnum = (typeof ActionCommentScalarFieldEnum)[keyof typeof ActionCommentScalarFieldEnum]
+
+
+export const SnapshotScalarFieldEnum = {
+  id: 'id',
+  startupShadowId: 'startupShadowId',
+  phaseId: 'phaseId',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+} as const
+
+export type SnapshotScalarFieldEnum = (typeof SnapshotScalarFieldEnum)[keyof typeof SnapshotScalarFieldEnum]
+
+
+export const SnapshotActionProgressScalarFieldEnum = {
+  id: 'id',
+  snapshotId: 'snapshotId',
+  actionId: 'actionId',
+  status: 'status'
+} as const
+
+export type SnapshotActionProgressScalarFieldEnum = (typeof SnapshotActionProgressScalarFieldEnum)[keyof typeof SnapshotActionProgressScalarFieldEnum]
+
+
+export const SnapshotActionProofScalarFieldEnum = {
+  id: 'id',
+  snapshotActionProgressId: 'snapshotActionProgressId',
+  kind: 'kind',
+  ref: 'ref',
+  note: 'note',
+  createdAt: 'createdAt'
+} as const
+
+export type SnapshotActionProofScalarFieldEnum = (typeof SnapshotActionProofScalarFieldEnum)[keyof typeof SnapshotActionProofScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -323,10 +419,21 @@ export const UserOrderByRelevanceFieldEnum = {
 export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
 
 
+export const StartupShadowOrderByRelevanceFieldEnum = {
+  id: 'id',
+  externalId: 'externalId',
+  name: 'name',
+  currentPhaseId: 'currentPhaseId'
+} as const
+
+export type StartupShadowOrderByRelevanceFieldEnum = (typeof StartupShadowOrderByRelevanceFieldEnum)[keyof typeof StartupShadowOrderByRelevanceFieldEnum]
+
+
 export const UserOnStartupOrderByRelevanceFieldEnum = {
-  startupId: 'startupId',
+  id: 'id',
+  startupShadowId: 'startupShadowId',
   userId: 'userId',
-  role: 'role'
+  reason: 'reason'
 } as const
 
 export type UserOnStartupOrderByRelevanceFieldEnum = (typeof UserOnStartupOrderByRelevanceFieldEnum)[keyof typeof UserOnStartupOrderByRelevanceFieldEnum]
@@ -374,4 +481,65 @@ export const AuthenticatorOrderByRelevanceFieldEnum = {
 } as const
 
 export type AuthenticatorOrderByRelevanceFieldEnum = (typeof AuthenticatorOrderByRelevanceFieldEnum)[keyof typeof AuthenticatorOrderByRelevanceFieldEnum]
+
+
+export const ActionProgressOrderByRelevanceFieldEnum = {
+  id: 'id',
+  startupShadowId: 'startupShadowId',
+  actionId: 'actionId',
+  ownerId: 'ownerId',
+  updatedById: 'updatedById'
+} as const
+
+export type ActionProgressOrderByRelevanceFieldEnum = (typeof ActionProgressOrderByRelevanceFieldEnum)[keyof typeof ActionProgressOrderByRelevanceFieldEnum]
+
+
+export const ActionProofOrderByRelevanceFieldEnum = {
+  id: 'id',
+  actionProgressId: 'actionProgressId',
+  ref: 'ref',
+  note: 'note',
+  createdById: 'createdById'
+} as const
+
+export type ActionProofOrderByRelevanceFieldEnum = (typeof ActionProofOrderByRelevanceFieldEnum)[keyof typeof ActionProofOrderByRelevanceFieldEnum]
+
+
+export const ActionCommentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  actionProgressId: 'actionProgressId',
+  body: 'body',
+  createdById: 'createdById'
+} as const
+
+export type ActionCommentOrderByRelevanceFieldEnum = (typeof ActionCommentOrderByRelevanceFieldEnum)[keyof typeof ActionCommentOrderByRelevanceFieldEnum]
+
+
+export const SnapshotOrderByRelevanceFieldEnum = {
+  id: 'id',
+  startupShadowId: 'startupShadowId',
+  phaseId: 'phaseId',
+  createdById: 'createdById'
+} as const
+
+export type SnapshotOrderByRelevanceFieldEnum = (typeof SnapshotOrderByRelevanceFieldEnum)[keyof typeof SnapshotOrderByRelevanceFieldEnum]
+
+
+export const SnapshotActionProgressOrderByRelevanceFieldEnum = {
+  id: 'id',
+  snapshotId: 'snapshotId',
+  actionId: 'actionId'
+} as const
+
+export type SnapshotActionProgressOrderByRelevanceFieldEnum = (typeof SnapshotActionProgressOrderByRelevanceFieldEnum)[keyof typeof SnapshotActionProgressOrderByRelevanceFieldEnum]
+
+
+export const SnapshotActionProofOrderByRelevanceFieldEnum = {
+  id: 'id',
+  snapshotActionProgressId: 'snapshotActionProgressId',
+  ref: 'ref',
+  note: 'note'
+} as const
+
+export type SnapshotActionProofOrderByRelevanceFieldEnum = (typeof SnapshotActionProofOrderByRelevanceFieldEnum)[keyof typeof SnapshotActionProofOrderByRelevanceFieldEnum]
 

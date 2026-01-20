@@ -25,3 +25,32 @@ export const UserRole = {
 } as const
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+
+export const StartupAccessKind = {
+  ASSISTANCE: 'ASSISTANCE',
+  AUDIT: 'AUDIT',
+  TEMP: 'TEMP',
+  OTHER: 'OTHER'
+} as const
+
+export type StartupAccessKind = (typeof StartupAccessKind)[keyof typeof StartupAccessKind]
+
+
+export const ActionStatus = {
+  TODO: 'TODO',
+  IN_PROGRESS: 'IN_PROGRESS',
+  DONE: 'DONE',
+  BLOCKED: 'BLOCKED'
+} as const
+
+export type ActionStatus = (typeof ActionStatus)[keyof typeof ActionStatus]
+
+
+export const ProofKind = {
+  URL: 'URL',
+  FILE: 'FILE',
+  NOTE: 'NOTE'
+} as const
+
+export type ProofKind = (typeof ProofKind)[keyof typeof ProofKind]

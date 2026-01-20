@@ -228,6 +228,8 @@ export type ActionWhereInput = {
   standardId?: Prisma.StringNullableFilter<"Action"> | string | null
   sources?: Prisma.ActionSourceListRelationFilter
   standard?: Prisma.XOR<Prisma.StandardNullableScalarRelationFilter, Prisma.StandardWhereInput> | null
+  actionProgresses?: Prisma.ActionProgressListRelationFilter
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressListRelationFilter
 }
 
 export type ActionOrderByWithRelationInput = {
@@ -244,15 +246,17 @@ export type ActionOrderByWithRelationInput = {
   standardId?: Prisma.SortOrderInput | Prisma.SortOrder
   sources?: Prisma.ActionSourceOrderByRelationAggregateInput
   standard?: Prisma.StandardOrderByWithRelationInput
+  actionProgresses?: Prisma.ActionProgressOrderByRelationAggregateInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressOrderByRelationAggregateInput
   _relevance?: Prisma.ActionOrderByRelevanceInput
 }
 
 export type ActionWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  notionId?: string
   AND?: Prisma.ActionWhereInput | Prisma.ActionWhereInput[]
   OR?: Prisma.ActionWhereInput[]
   NOT?: Prisma.ActionWhereInput | Prisma.ActionWhereInput[]
-  notionId?: Prisma.StringNullableFilter<"Action"> | string | null
   title?: Prisma.StringNullableFilter<"Action"> | string | null
   description?: Prisma.StringNullableFilter<"Action"> | string | null
   kpi?: Prisma.StringNullableFilter<"Action"> | string | null
@@ -264,7 +268,9 @@ export type ActionWhereUniqueInput = Prisma.AtLeast<{
   standardId?: Prisma.StringNullableFilter<"Action"> | string | null
   sources?: Prisma.ActionSourceListRelationFilter
   standard?: Prisma.XOR<Prisma.StandardNullableScalarRelationFilter, Prisma.StandardWhereInput> | null
-}, "id">
+  actionProgresses?: Prisma.ActionProgressListRelationFilter
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressListRelationFilter
+}, "id" | "notionId">
 
 export type ActionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -313,6 +319,8 @@ export type ActionCreateInput = {
   updatedAt?: Date | string
   sources?: Prisma.ActionSourceCreateNestedManyWithoutActionsInput
   standard?: Prisma.StandardCreateNestedOneWithoutActionsInput
+  actionProgresses?: Prisma.ActionProgressCreateNestedManyWithoutActionInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressCreateNestedManyWithoutActionInput
 }
 
 export type ActionUncheckedCreateInput = {
@@ -328,6 +336,8 @@ export type ActionUncheckedCreateInput = {
   updatedAt?: Date | string
   standardId?: string | null
   sources?: Prisma.ActionSourceUncheckedCreateNestedManyWithoutActionsInput
+  actionProgresses?: Prisma.ActionProgressUncheckedCreateNestedManyWithoutActionInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedCreateNestedManyWithoutActionInput
 }
 
 export type ActionUpdateInput = {
@@ -343,6 +353,8 @@ export type ActionUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sources?: Prisma.ActionSourceUpdateManyWithoutActionsNestedInput
   standard?: Prisma.StandardUpdateOneWithoutActionsNestedInput
+  actionProgresses?: Prisma.ActionProgressUpdateManyWithoutActionNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUpdateManyWithoutActionNestedInput
 }
 
 export type ActionUncheckedUpdateInput = {
@@ -358,6 +370,8 @@ export type ActionUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   standardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sources?: Prisma.ActionSourceUncheckedUpdateManyWithoutActionsNestedInput
+  actionProgresses?: Prisma.ActionProgressUncheckedUpdateManyWithoutActionNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedUpdateManyWithoutActionNestedInput
 }
 
 export type ActionCreateManyInput = {
@@ -465,6 +479,11 @@ export type ActionMinOrderByAggregateInput = {
   standardId?: Prisma.SortOrder
 }
 
+export type ActionScalarRelationFilter = {
+  is?: Prisma.ActionWhereInput
+  isNot?: Prisma.ActionWhereInput
+}
+
 export type ActionCreateNestedManyWithoutStandardInput = {
   create?: Prisma.XOR<Prisma.ActionCreateWithoutStandardInput, Prisma.ActionUncheckedCreateWithoutStandardInput> | Prisma.ActionCreateWithoutStandardInput[] | Prisma.ActionUncheckedCreateWithoutStandardInput[]
   connectOrCreate?: Prisma.ActionCreateOrConnectWithoutStandardInput | Prisma.ActionCreateOrConnectWithoutStandardInput[]
@@ -554,6 +573,34 @@ export type ActionUncheckedUpdateManyWithoutSourcesNestedInput = {
   deleteMany?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
 }
 
+export type ActionCreateNestedOneWithoutActionProgressesInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutActionProgressesInput, Prisma.ActionUncheckedCreateWithoutActionProgressesInput>
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutActionProgressesInput
+  connect?: Prisma.ActionWhereUniqueInput
+}
+
+export type ActionUpdateOneRequiredWithoutActionProgressesNestedInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutActionProgressesInput, Prisma.ActionUncheckedCreateWithoutActionProgressesInput>
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutActionProgressesInput
+  upsert?: Prisma.ActionUpsertWithoutActionProgressesInput
+  connect?: Prisma.ActionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ActionUpdateToOneWithWhereWithoutActionProgressesInput, Prisma.ActionUpdateWithoutActionProgressesInput>, Prisma.ActionUncheckedUpdateWithoutActionProgressesInput>
+}
+
+export type ActionCreateNestedOneWithoutSnapshotActionProgressesInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutSnapshotActionProgressesInput, Prisma.ActionUncheckedCreateWithoutSnapshotActionProgressesInput>
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutSnapshotActionProgressesInput
+  connect?: Prisma.ActionWhereUniqueInput
+}
+
+export type ActionUpdateOneRequiredWithoutSnapshotActionProgressesNestedInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutSnapshotActionProgressesInput, Prisma.ActionUncheckedCreateWithoutSnapshotActionProgressesInput>
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutSnapshotActionProgressesInput
+  upsert?: Prisma.ActionUpsertWithoutSnapshotActionProgressesInput
+  connect?: Prisma.ActionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ActionUpdateToOneWithWhereWithoutSnapshotActionProgressesInput, Prisma.ActionUpdateWithoutSnapshotActionProgressesInput>, Prisma.ActionUncheckedUpdateWithoutSnapshotActionProgressesInput>
+}
+
 export type ActionCreateWithoutStandardInput = {
   id?: string
   notionId?: string | null
@@ -566,6 +613,8 @@ export type ActionCreateWithoutStandardInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   sources?: Prisma.ActionSourceCreateNestedManyWithoutActionsInput
+  actionProgresses?: Prisma.ActionProgressCreateNestedManyWithoutActionInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressCreateNestedManyWithoutActionInput
 }
 
 export type ActionUncheckedCreateWithoutStandardInput = {
@@ -580,6 +629,8 @@ export type ActionUncheckedCreateWithoutStandardInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   sources?: Prisma.ActionSourceUncheckedCreateNestedManyWithoutActionsInput
+  actionProgresses?: Prisma.ActionProgressUncheckedCreateNestedManyWithoutActionInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedCreateNestedManyWithoutActionInput
 }
 
 export type ActionCreateOrConnectWithoutStandardInput = {
@@ -637,6 +688,8 @@ export type ActionCreateWithoutSourcesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   standard?: Prisma.StandardCreateNestedOneWithoutActionsInput
+  actionProgresses?: Prisma.ActionProgressCreateNestedManyWithoutActionInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressCreateNestedManyWithoutActionInput
 }
 
 export type ActionUncheckedCreateWithoutSourcesInput = {
@@ -651,6 +704,8 @@ export type ActionUncheckedCreateWithoutSourcesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   standardId?: string | null
+  actionProgresses?: Prisma.ActionProgressUncheckedCreateNestedManyWithoutActionInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedCreateNestedManyWithoutActionInput
 }
 
 export type ActionCreateOrConnectWithoutSourcesInput = {
@@ -672,6 +727,166 @@ export type ActionUpdateWithWhereUniqueWithoutSourcesInput = {
 export type ActionUpdateManyWithWhereWithoutSourcesInput = {
   where: Prisma.ActionScalarWhereInput
   data: Prisma.XOR<Prisma.ActionUpdateManyMutationInput, Prisma.ActionUncheckedUpdateManyWithoutSourcesInput>
+}
+
+export type ActionCreateWithoutActionProgressesInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sources?: Prisma.ActionSourceCreateNestedManyWithoutActionsInput
+  standard?: Prisma.StandardCreateNestedOneWithoutActionsInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressCreateNestedManyWithoutActionInput
+}
+
+export type ActionUncheckedCreateWithoutActionProgressesInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  standardId?: string | null
+  sources?: Prisma.ActionSourceUncheckedCreateNestedManyWithoutActionsInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedCreateNestedManyWithoutActionInput
+}
+
+export type ActionCreateOrConnectWithoutActionProgressesInput = {
+  where: Prisma.ActionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ActionCreateWithoutActionProgressesInput, Prisma.ActionUncheckedCreateWithoutActionProgressesInput>
+}
+
+export type ActionUpsertWithoutActionProgressesInput = {
+  update: Prisma.XOR<Prisma.ActionUpdateWithoutActionProgressesInput, Prisma.ActionUncheckedUpdateWithoutActionProgressesInput>
+  create: Prisma.XOR<Prisma.ActionCreateWithoutActionProgressesInput, Prisma.ActionUncheckedCreateWithoutActionProgressesInput>
+  where?: Prisma.ActionWhereInput
+}
+
+export type ActionUpdateToOneWithWhereWithoutActionProgressesInput = {
+  where?: Prisma.ActionWhereInput
+  data: Prisma.XOR<Prisma.ActionUpdateWithoutActionProgressesInput, Prisma.ActionUncheckedUpdateWithoutActionProgressesInput>
+}
+
+export type ActionUpdateWithoutActionProgressesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sources?: Prisma.ActionSourceUpdateManyWithoutActionsNestedInput
+  standard?: Prisma.StandardUpdateOneWithoutActionsNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUpdateManyWithoutActionNestedInput
+}
+
+export type ActionUncheckedUpdateWithoutActionProgressesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  standardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sources?: Prisma.ActionSourceUncheckedUpdateManyWithoutActionsNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedUpdateManyWithoutActionNestedInput
+}
+
+export type ActionCreateWithoutSnapshotActionProgressesInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sources?: Prisma.ActionSourceCreateNestedManyWithoutActionsInput
+  standard?: Prisma.StandardCreateNestedOneWithoutActionsInput
+  actionProgresses?: Prisma.ActionProgressCreateNestedManyWithoutActionInput
+}
+
+export type ActionUncheckedCreateWithoutSnapshotActionProgressesInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  standardId?: string | null
+  sources?: Prisma.ActionSourceUncheckedCreateNestedManyWithoutActionsInput
+  actionProgresses?: Prisma.ActionProgressUncheckedCreateNestedManyWithoutActionInput
+}
+
+export type ActionCreateOrConnectWithoutSnapshotActionProgressesInput = {
+  where: Prisma.ActionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ActionCreateWithoutSnapshotActionProgressesInput, Prisma.ActionUncheckedCreateWithoutSnapshotActionProgressesInput>
+}
+
+export type ActionUpsertWithoutSnapshotActionProgressesInput = {
+  update: Prisma.XOR<Prisma.ActionUpdateWithoutSnapshotActionProgressesInput, Prisma.ActionUncheckedUpdateWithoutSnapshotActionProgressesInput>
+  create: Prisma.XOR<Prisma.ActionCreateWithoutSnapshotActionProgressesInput, Prisma.ActionUncheckedCreateWithoutSnapshotActionProgressesInput>
+  where?: Prisma.ActionWhereInput
+}
+
+export type ActionUpdateToOneWithWhereWithoutSnapshotActionProgressesInput = {
+  where?: Prisma.ActionWhereInput
+  data: Prisma.XOR<Prisma.ActionUpdateWithoutSnapshotActionProgressesInput, Prisma.ActionUncheckedUpdateWithoutSnapshotActionProgressesInput>
+}
+
+export type ActionUpdateWithoutSnapshotActionProgressesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sources?: Prisma.ActionSourceUpdateManyWithoutActionsNestedInput
+  standard?: Prisma.StandardUpdateOneWithoutActionsNestedInput
+  actionProgresses?: Prisma.ActionProgressUpdateManyWithoutActionNestedInput
+}
+
+export type ActionUncheckedUpdateWithoutSnapshotActionProgressesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  standardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sources?: Prisma.ActionSourceUncheckedUpdateManyWithoutActionsNestedInput
+  actionProgresses?: Prisma.ActionProgressUncheckedUpdateManyWithoutActionNestedInput
 }
 
 export type ActionCreateManyStandardInput = {
@@ -699,6 +914,8 @@ export type ActionUpdateWithoutStandardInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sources?: Prisma.ActionSourceUpdateManyWithoutActionsNestedInput
+  actionProgresses?: Prisma.ActionProgressUpdateManyWithoutActionNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUpdateManyWithoutActionNestedInput
 }
 
 export type ActionUncheckedUpdateWithoutStandardInput = {
@@ -713,6 +930,8 @@ export type ActionUncheckedUpdateWithoutStandardInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sources?: Prisma.ActionSourceUncheckedUpdateManyWithoutActionsNestedInput
+  actionProgresses?: Prisma.ActionProgressUncheckedUpdateManyWithoutActionNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedUpdateManyWithoutActionNestedInput
 }
 
 export type ActionUncheckedUpdateManyWithoutStandardInput = {
@@ -740,6 +959,8 @@ export type ActionUpdateWithoutSourcesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   standard?: Prisma.StandardUpdateOneWithoutActionsNestedInput
+  actionProgresses?: Prisma.ActionProgressUpdateManyWithoutActionNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUpdateManyWithoutActionNestedInput
 }
 
 export type ActionUncheckedUpdateWithoutSourcesInput = {
@@ -754,6 +975,8 @@ export type ActionUncheckedUpdateWithoutSourcesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   standardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  actionProgresses?: Prisma.ActionProgressUncheckedUpdateManyWithoutActionNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedUpdateManyWithoutActionNestedInput
 }
 
 export type ActionUncheckedUpdateManyWithoutSourcesInput = {
@@ -777,10 +1000,14 @@ export type ActionUncheckedUpdateManyWithoutSourcesInput = {
 
 export type ActionCountOutputType = {
   sources: number
+  actionProgresses: number
+  snapshotActionProgresses: number
 }
 
 export type ActionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sources?: boolean | ActionCountOutputTypeCountSourcesArgs
+  actionProgresses?: boolean | ActionCountOutputTypeCountActionProgressesArgs
+  snapshotActionProgresses?: boolean | ActionCountOutputTypeCountSnapshotActionProgressesArgs
 }
 
 /**
@@ -800,6 +1027,20 @@ export type ActionCountOutputTypeCountSourcesArgs<ExtArgs extends runtime.Types.
   where?: Prisma.ActionSourceWhereInput
 }
 
+/**
+ * ActionCountOutputType without action
+ */
+export type ActionCountOutputTypeCountActionProgressesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActionProgressWhereInput
+}
+
+/**
+ * ActionCountOutputType without action
+ */
+export type ActionCountOutputTypeCountSnapshotActionProgressesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SnapshotActionProgressWhereInput
+}
+
 
 export type ActionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -815,6 +1056,8 @@ export type ActionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   standardId?: boolean
   sources?: boolean | Prisma.Action$sourcesArgs<ExtArgs>
   standard?: boolean | Prisma.Action$standardArgs<ExtArgs>
+  actionProgresses?: boolean | Prisma.Action$actionProgressesArgs<ExtArgs>
+  snapshotActionProgresses?: boolean | Prisma.Action$snapshotActionProgressesArgs<ExtArgs>
   _count?: boolean | Prisma.ActionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["action"]>
 
@@ -866,6 +1109,8 @@ export type ActionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 export type ActionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sources?: boolean | Prisma.Action$sourcesArgs<ExtArgs>
   standard?: boolean | Prisma.Action$standardArgs<ExtArgs>
+  actionProgresses?: boolean | Prisma.Action$actionProgressesArgs<ExtArgs>
+  snapshotActionProgresses?: boolean | Prisma.Action$snapshotActionProgressesArgs<ExtArgs>
   _count?: boolean | Prisma.ActionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ActionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -888,6 +1133,8 @@ export type $ActionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
      * @notion("Standard")
      */
     standard: Prisma.$StandardPayload<ExtArgs> | null
+    actionProgresses: Prisma.$ActionProgressPayload<ExtArgs>[]
+    snapshotActionProgresses: Prisma.$SnapshotActionProgressPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     /**
@@ -1333,6 +1580,8 @@ export interface Prisma__ActionClient<T, Null = never, ExtArgs extends runtime.T
   readonly [Symbol.toStringTag]: "PrismaPromise"
   sources<T extends Prisma.Action$sourcesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Action$sourcesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActionSourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   standard<T extends Prisma.Action$standardArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Action$standardArgs<ExtArgs>>): Prisma.Prisma__StandardClient<runtime.Types.Result.GetResult<Prisma.$StandardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  actionProgresses<T extends Prisma.Action$actionProgressesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Action$actionProgressesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActionProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  snapshotActionProgresses<T extends Prisma.Action$snapshotActionProgressesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Action$snapshotActionProgressesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SnapshotActionProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1809,6 +2058,54 @@ export type Action$standardArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   include?: Prisma.StandardInclude<ExtArgs> | null
   where?: Prisma.StandardWhereInput
+}
+
+/**
+ * Action.actionProgresses
+ */
+export type Action$actionProgressesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ActionProgress
+   */
+  select?: Prisma.ActionProgressSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ActionProgress
+   */
+  omit?: Prisma.ActionProgressOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ActionProgressInclude<ExtArgs> | null
+  where?: Prisma.ActionProgressWhereInput
+  orderBy?: Prisma.ActionProgressOrderByWithRelationInput | Prisma.ActionProgressOrderByWithRelationInput[]
+  cursor?: Prisma.ActionProgressWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ActionProgressScalarFieldEnum | Prisma.ActionProgressScalarFieldEnum[]
+}
+
+/**
+ * Action.snapshotActionProgresses
+ */
+export type Action$snapshotActionProgressesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SnapshotActionProgress
+   */
+  select?: Prisma.SnapshotActionProgressSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SnapshotActionProgress
+   */
+  omit?: Prisma.SnapshotActionProgressOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SnapshotActionProgressInclude<ExtArgs> | null
+  where?: Prisma.SnapshotActionProgressWhereInput
+  orderBy?: Prisma.SnapshotActionProgressOrderByWithRelationInput | Prisma.SnapshotActionProgressOrderByWithRelationInput[]
+  cursor?: Prisma.SnapshotActionProgressWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SnapshotActionProgressScalarFieldEnum | Prisma.SnapshotActionProgressScalarFieldEnum[]
 }
 
 /**

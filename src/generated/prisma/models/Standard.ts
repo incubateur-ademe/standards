@@ -242,7 +242,6 @@ export type StandardOrderByWithRelationInput = {
 export type StandardWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   notionId?: string
-  id_notionId?: Prisma.StandardIdNotionIdCompoundUniqueInput
   AND?: Prisma.StandardWhereInput | Prisma.StandardWhereInput[]
   OR?: Prisma.StandardWhereInput[]
   NOT?: Prisma.StandardWhereInput | Prisma.StandardWhereInput[]
@@ -258,7 +257,7 @@ export type StandardWhereUniqueInput = Prisma.AtLeast<{
   couldHavePhase?: Prisma.XOR<Prisma.PhaseNullableScalarRelationFilter, Prisma.PhaseWhereInput> | null
   shouldHavePhase?: Prisma.XOR<Prisma.PhaseNullableScalarRelationFilter, Prisma.PhaseWhereInput> | null
   mustHavePhase?: Prisma.XOR<Prisma.PhaseNullableScalarRelationFilter, Prisma.PhaseWhereInput> | null
-}, "id" | "notionId" | "id_notionId">
+}, "id" | "notionId">
 
 export type StandardOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -383,11 +382,6 @@ export type StandardOrderByRelevanceInput = {
   fields: Prisma.StandardOrderByRelevanceFieldEnum | Prisma.StandardOrderByRelevanceFieldEnum[]
   sort: Prisma.SortOrder
   search: string
-}
-
-export type StandardIdNotionIdCompoundUniqueInput = {
-  id: string
-  notionId: string
 }
 
 export type StandardCountOrderByAggregateInput = {
