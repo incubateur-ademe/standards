@@ -1,15 +1,9 @@
-/*
-  Warnings:
+-- CreateEnum
+CREATE TYPE "UserStatus" AS ENUM ('ACTIVE', 'BLOCKED', 'DELETED');
 
-  - The primary key for the `UserOnStartup` table will be changed. If it partially fails, the table could be left without primary key constraint.
-  - You are about to drop the column `role` on the `UserOnStartup` table. All the data in the column will be lost.
-  - You are about to drop the column `startupId` on the `UserOnStartup` table. All the data in the column will be lost.
-  - A unique constraint covering the columns `[notionId]` on the table `Action` will be added. If there are existing duplicate values, this will fail.
-  - A unique constraint covering the columns `[startupShadowId,userId,kind]` on the table `UserOnStartup` will be added. If there are existing duplicate values, this will fail.
-  - The required column `id` was added to the `UserOnStartup` table with a prisma-level default value. This is not possible if the table is not empty. Please add this column as optional, then populate it before making it required.
-  - Added the required column `startupShadowId` to the `UserOnStartup` table without a default value. This is not possible if the table is not empty.
+-- CreateEnum
+CREATE TYPE "UserRole" AS ENUM ('USER', 'ADMIN', 'REVIEWER');
 
-*/
 -- CreateEnum
 CREATE TYPE "StartupAccessKind" AS ENUM ('ASSISTANCE', 'AUDIT', 'TEMP', 'OTHER');
 
@@ -19,19 +13,75 @@ CREATE TYPE "ActionStatus" AS ENUM ('TODO', 'IN_PROGRESS', 'DONE', 'BLOCKED');
 -- CreateEnum
 CREATE TYPE "ProofKind" AS ENUM ('URL', 'FILE', 'NOTE');
 
--- DropIndex
-DROP INDEX "Standard_id_notionId_key";
+-- CreateTable
+CREATE TABLE "Action" (
+    "id" TEXT NOT NULL,
+    "notionId" TEXT,
+    "title" TEXT,
+    "description" TEXT,
+    "kpi" TEXT,
+    "reason" TEXT,
+    "sourcesUrls" TEXT[],
+    "standardBeta" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "couldHavePhaseId" TEXT,
+    "shouldHavePhaseId" TEXT,
+    "mustHavePhaseId" TEXT,
+    "standards" TEXT[],
 
--- AlterTable
-ALTER TABLE "UserOnStartup" DROP CONSTRAINT "UserOnStartup_pkey",
-DROP COLUMN "role",
-DROP COLUMN "startupId",
-ADD COLUMN     "expiresAt" TIMESTAMP(3),
-ADD COLUMN     "id" TEXT NOT NULL,
-ADD COLUMN     "kind" "StartupAccessKind" NOT NULL DEFAULT 'ASSISTANCE',
-ADD COLUMN     "reason" TEXT,
-ADD COLUMN     "startupShadowId" TEXT NOT NULL,
-ADD CONSTRAINT "UserOnStartup_pkey" PRIMARY KEY ("id");
+    CONSTRAINT "Action_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ActionSource" (
+    "id" TEXT NOT NULL,
+    "name" TEXT,
+    "description" TEXT,
+    "url" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "ActionSource_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Job" (
+    "id" TEXT NOT NULL,
+    "name" TEXT,
+    "description" TEXT,
+    "notionId" TEXT,
+    "managerId" TEXT,
+
+    CONSTRAINT "Job_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Phase" (
+    "id" TEXT NOT NULL,
+    "name" TEXT,
+    "description" TEXT,
+    "notionId" TEXT,
+    "sourceDocBetaUrl" TEXT,
+
+    CONSTRAINT "Phase_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "User" (
+    "id" TEXT NOT NULL,
+    "name" TEXT,
+    "email" TEXT NOT NULL,
+    "emailVerified" TIMESTAMP(3),
+    "image" TEXT,
+    "username" TEXT NOT NULL,
+    "status" "UserStatus" NOT NULL DEFAULT 'ACTIVE',
+    "role" "UserRole" NOT NULL DEFAULT 'USER',
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "StartupShadow" (
@@ -43,6 +93,75 @@ CREATE TABLE "StartupShadow" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "StartupShadow_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "UserOnStartup" (
+    "id" TEXT NOT NULL,
+    "startupShadowId" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "kind" "StartupAccessKind" NOT NULL DEFAULT 'ASSISTANCE',
+    "reason" TEXT,
+    "expiresAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "UserOnStartup_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Account" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "providerType" TEXT NOT NULL,
+    "providerId" TEXT NOT NULL,
+    "providerAccountId" TEXT NOT NULL,
+    "refreshToken" TEXT,
+    "accessToken" TEXT,
+    "accessTokenExpires" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Account_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Session" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "expires" TIMESTAMP(3) NOT NULL,
+    "sessionToken" TEXT NOT NULL,
+    "accessToken" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Session_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "VerificationRequest" (
+    "id" TEXT NOT NULL,
+    "identifier" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
+    "expires" TIMESTAMP(3) NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "VerificationRequest_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Authenticator" (
+    "credentialID" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "providerAccountId" TEXT NOT NULL,
+    "credentialPublicKey" TEXT NOT NULL,
+    "counter" INTEGER NOT NULL,
+    "credentialDeviceType" TEXT NOT NULL,
+    "credentialBackedUp" BOOLEAN NOT NULL,
+    "transports" TEXT,
+
+    CONSTRAINT "Authenticator_pkey" PRIMARY KEY ("userId","credentialID")
 );
 
 -- CreateTable
@@ -119,11 +238,63 @@ CREATE TABLE "SnapshotActionProof" (
     CONSTRAINT "SnapshotActionProof_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "_ActionToActionSource" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_ActionToActionSource_AB_pkey" PRIMARY KEY ("A","B")
+);
+
+-- CreateTable
+CREATE TABLE "_ActionToJob" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_ActionToJob_AB_pkey" PRIMARY KEY ("A","B")
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Action_notionId_key" ON "Action"("notionId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+
 -- CreateIndex
 CREATE UNIQUE INDEX "StartupShadow_externalId_key" ON "StartupShadow"("externalId");
 
 -- CreateIndex
 CREATE INDEX "StartupShadow_currentPhaseId_idx" ON "StartupShadow"("currentPhaseId");
+
+-- CreateIndex
+CREATE INDEX "UserOnStartup_userId_idx" ON "UserOnStartup"("userId");
+
+-- CreateIndex
+CREATE INDEX "UserOnStartup_expiresAt_idx" ON "UserOnStartup"("expiresAt");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UserOnStartup_startupShadowId_userId_kind_key" ON "UserOnStartup"("startupShadowId", "userId", "kind");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Account_providerId_providerAccountId_key" ON "Account"("providerId", "providerAccountId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Session_sessionToken_key" ON "Session"("sessionToken");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Session_accessToken_key" ON "Session"("accessToken");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "VerificationRequest_token_key" ON "VerificationRequest"("token");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "VerificationRequest_identifier_token_key" ON "VerificationRequest"("identifier", "token");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Authenticator_credentialID_key" ON "Authenticator"("credentialID");
 
 -- CreateIndex
 CREATE INDEX "ActionProgress_startupShadowId_idx" ON "ActionProgress"("startupShadowId");
@@ -177,19 +348,22 @@ CREATE UNIQUE INDEX "SnapshotActionProgress_snapshotId_actionId_key" ON "Snapsho
 CREATE INDEX "SnapshotActionProof_snapshotActionProgressId_idx" ON "SnapshotActionProof"("snapshotActionProgressId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Action_notionId_key" ON "Action"("notionId");
+CREATE INDEX "_ActionToActionSource_B_index" ON "_ActionToActionSource"("B");
 
 -- CreateIndex
-CREATE INDEX "Action_standardId_idx" ON "Action"("standardId");
+CREATE INDEX "_ActionToJob_B_index" ON "_ActionToJob"("B");
 
--- CreateIndex
-CREATE INDEX "UserOnStartup_userId_idx" ON "UserOnStartup"("userId");
+-- AddForeignKey
+ALTER TABLE "Action" ADD CONSTRAINT "Action_couldHavePhaseId_fkey" FOREIGN KEY ("couldHavePhaseId") REFERENCES "Phase"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
--- CreateIndex
-CREATE INDEX "UserOnStartup_expiresAt_idx" ON "UserOnStartup"("expiresAt");
+-- AddForeignKey
+ALTER TABLE "Action" ADD CONSTRAINT "Action_shouldHavePhaseId_fkey" FOREIGN KEY ("shouldHavePhaseId") REFERENCES "Phase"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
--- CreateIndex
-CREATE UNIQUE INDEX "UserOnStartup_startupShadowId_userId_kind_key" ON "UserOnStartup"("startupShadowId", "userId", "kind");
+-- AddForeignKey
+ALTER TABLE "Action" ADD CONSTRAINT "Action_mustHavePhaseId_fkey" FOREIGN KEY ("mustHavePhaseId") REFERENCES "Phase"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Job" ADD CONSTRAINT "Job_managerId_fkey" FOREIGN KEY ("managerId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "StartupShadow" ADD CONSTRAINT "StartupShadow_currentPhaseId_fkey" FOREIGN KEY ("currentPhaseId") REFERENCES "Phase"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -199,6 +373,15 @@ ALTER TABLE "UserOnStartup" ADD CONSTRAINT "UserOnStartup_startupShadowId_fkey" 
 
 -- AddForeignKey
 ALTER TABLE "UserOnStartup" ADD CONSTRAINT "UserOnStartup_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Authenticator" ADD CONSTRAINT "Authenticator_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "ActionProgress" ADD CONSTRAINT "ActionProgress_startupShadowId_fkey" FOREIGN KEY ("startupShadowId") REFERENCES "StartupShadow"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -241,3 +424,15 @@ ALTER TABLE "SnapshotActionProgress" ADD CONSTRAINT "SnapshotActionProgress_acti
 
 -- AddForeignKey
 ALTER TABLE "SnapshotActionProof" ADD CONSTRAINT "SnapshotActionProof_snapshotActionProgressId_fkey" FOREIGN KEY ("snapshotActionProgressId") REFERENCES "SnapshotActionProgress"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ActionToActionSource" ADD CONSTRAINT "_ActionToActionSource_A_fkey" FOREIGN KEY ("A") REFERENCES "Action"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ActionToActionSource" ADD CONSTRAINT "_ActionToActionSource_B_fkey" FOREIGN KEY ("B") REFERENCES "ActionSource"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ActionToJob" ADD CONSTRAINT "_ActionToJob_A_fkey" FOREIGN KEY ("A") REFERENCES "Action"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ActionToJob" ADD CONSTRAINT "_ActionToJob_B_fkey" FOREIGN KEY ("B") REFERENCES "Job"("id") ON DELETE CASCADE ON UPDATE CASCADE;

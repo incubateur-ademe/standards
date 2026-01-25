@@ -8,7 +8,6 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Standard'
 export type * from './models/Action'
 export type * from './models/ActionSource'
 export type * from './models/Job'

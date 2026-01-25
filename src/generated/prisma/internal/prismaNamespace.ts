@@ -384,7 +384,6 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Standard: 'Standard',
   Action: 'Action',
   ActionSource: 'ActionSource',
   Job: 'Job',
@@ -417,84 +416,10 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "standard" | "action" | "actionSource" | "job" | "phase" | "user" | "startupShadow" | "userOnStartup" | "account" | "session" | "verificationRequest" | "authenticator" | "actionProgress" | "actionProof" | "actionComment" | "snapshot" | "snapshotActionProgress" | "snapshotActionProof"
+    modelProps: "action" | "actionSource" | "job" | "phase" | "user" | "startupShadow" | "userOnStartup" | "account" | "session" | "verificationRequest" | "authenticator" | "actionProgress" | "actionProof" | "actionComment" | "snapshot" | "snapshotActionProgress" | "snapshotActionProof"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
-    Standard: {
-      payload: Prisma.$StandardPayload<ExtArgs>
-      fields: Prisma.StandardFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.StandardFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StandardPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.StandardFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StandardPayload>
-        }
-        findFirst: {
-          args: Prisma.StandardFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StandardPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.StandardFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StandardPayload>
-        }
-        findMany: {
-          args: Prisma.StandardFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StandardPayload>[]
-        }
-        create: {
-          args: Prisma.StandardCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StandardPayload>
-        }
-        createMany: {
-          args: Prisma.StandardCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.StandardCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StandardPayload>[]
-        }
-        delete: {
-          args: Prisma.StandardDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StandardPayload>
-        }
-        update: {
-          args: Prisma.StandardUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StandardPayload>
-        }
-        deleteMany: {
-          args: Prisma.StandardDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.StandardUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.StandardUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StandardPayload>[]
-        }
-        upsert: {
-          args: Prisma.StandardUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StandardPayload>
-        }
-        aggregate: {
-          args: Prisma.StandardAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateStandard>
-        }
-        groupBy: {
-          args: Prisma.StandardGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.StandardGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.StandardCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.StandardCountAggregateOutputType> | number
-        }
-      }
-    }
     Action: {
       payload: Prisma.$ActionPayload<ExtArgs>
       fields: Prisma.ActionFieldRefs
@@ -1796,21 +1721,6 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const StandardScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  description: 'description',
-  notionId: 'notionId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  couldHavePhaseId: 'couldHavePhaseId',
-  shouldHavePhaseId: 'shouldHavePhaseId',
-  mustHavePhaseId: 'mustHavePhaseId'
-} as const
-
-export type StandardScalarFieldEnum = (typeof StandardScalarFieldEnum)[keyof typeof StandardScalarFieldEnum]
-
-
 export const ActionScalarFieldEnum = {
   id: 'id',
   notionId: 'notionId',
@@ -1822,7 +1732,10 @@ export const ActionScalarFieldEnum = {
   standardBeta: 'standardBeta',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  standardId: 'standardId'
+  couldHavePhaseId: 'couldHavePhaseId',
+  shouldHavePhaseId: 'shouldHavePhaseId',
+  mustHavePhaseId: 'mustHavePhaseId',
+  standards: 'standards'
 } as const
 
 export type ActionScalarFieldEnum = (typeof ActionScalarFieldEnum)[keyof typeof ActionScalarFieldEnum]
@@ -2057,19 +1970,6 @@ export const NullsOrder = {
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
-export const StandardOrderByRelevanceFieldEnum = {
-  id: 'id',
-  title: 'title',
-  description: 'description',
-  notionId: 'notionId',
-  couldHavePhaseId: 'couldHavePhaseId',
-  shouldHavePhaseId: 'shouldHavePhaseId',
-  mustHavePhaseId: 'mustHavePhaseId'
-} as const
-
-export type StandardOrderByRelevanceFieldEnum = (typeof StandardOrderByRelevanceFieldEnum)[keyof typeof StandardOrderByRelevanceFieldEnum]
-
-
 export const ActionOrderByRelevanceFieldEnum = {
   id: 'id',
   notionId: 'notionId',
@@ -2079,7 +1979,10 @@ export const ActionOrderByRelevanceFieldEnum = {
   reason: 'reason',
   sourcesUrls: 'sourcesUrls',
   standardBeta: 'standardBeta',
-  standardId: 'standardId'
+  couldHavePhaseId: 'couldHavePhaseId',
+  shouldHavePhaseId: 'shouldHavePhaseId',
+  mustHavePhaseId: 'mustHavePhaseId',
+  standards: 'standards'
 } as const
 
 export type ActionOrderByRelevanceFieldEnum = (typeof ActionOrderByRelevanceFieldEnum)[keyof typeof ActionOrderByRelevanceFieldEnum]
@@ -2486,7 +2389,6 @@ export type PrismaClientOptions = ({
   comments?: runtime.SqlCommenterPlugin[]
 }
 export type GlobalOmitConfig = {
-  standard?: Prisma.StandardOmit
   action?: Prisma.ActionOmit
   actionSource?: Prisma.ActionSourceOmit
   job?: Prisma.JobOmit

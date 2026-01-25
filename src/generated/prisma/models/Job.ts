@@ -183,7 +183,7 @@ export type JobWhereInput = {
   notionId?: Prisma.StringNullableFilter<"Job"> | string | null
   managerId?: Prisma.StringNullableFilter<"Job"> | string | null
   manager?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  standards?: Prisma.StandardListRelationFilter
+  actions?: Prisma.ActionListRelationFilter
 }
 
 export type JobOrderByWithRelationInput = {
@@ -193,7 +193,7 @@ export type JobOrderByWithRelationInput = {
   notionId?: Prisma.SortOrderInput | Prisma.SortOrder
   managerId?: Prisma.SortOrderInput | Prisma.SortOrder
   manager?: Prisma.UserOrderByWithRelationInput
-  standards?: Prisma.StandardOrderByRelationAggregateInput
+  actions?: Prisma.ActionOrderByRelationAggregateInput
   _relevance?: Prisma.JobOrderByRelevanceInput
 }
 
@@ -207,7 +207,7 @@ export type JobWhereUniqueInput = Prisma.AtLeast<{
   notionId?: Prisma.StringNullableFilter<"Job"> | string | null
   managerId?: Prisma.StringNullableFilter<"Job"> | string | null
   manager?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  standards?: Prisma.StandardListRelationFilter
+  actions?: Prisma.ActionListRelationFilter
 }, "id">
 
 export type JobOrderByWithAggregationInput = {
@@ -238,7 +238,7 @@ export type JobCreateInput = {
   description?: string | null
   notionId?: string | null
   manager?: Prisma.UserCreateNestedOneWithoutManagedJobsInput
-  standards?: Prisma.StandardCreateNestedManyWithoutRolesInput
+  actions?: Prisma.ActionCreateNestedManyWithoutRolesInput
 }
 
 export type JobUncheckedCreateInput = {
@@ -247,7 +247,7 @@ export type JobUncheckedCreateInput = {
   description?: string | null
   notionId?: string | null
   managerId?: string | null
-  standards?: Prisma.StandardUncheckedCreateNestedManyWithoutRolesInput
+  actions?: Prisma.ActionUncheckedCreateNestedManyWithoutRolesInput
 }
 
 export type JobUpdateInput = {
@@ -256,7 +256,7 @@ export type JobUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   manager?: Prisma.UserUpdateOneWithoutManagedJobsNestedInput
-  standards?: Prisma.StandardUpdateManyWithoutRolesNestedInput
+  actions?: Prisma.ActionUpdateManyWithoutRolesNestedInput
 }
 
 export type JobUncheckedUpdateInput = {
@@ -265,7 +265,7 @@ export type JobUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standards?: Prisma.StandardUncheckedUpdateManyWithoutRolesNestedInput
+  actions?: Prisma.ActionUncheckedUpdateManyWithoutRolesNestedInput
 }
 
 export type JobCreateManyInput = {
@@ -331,41 +331,41 @@ export type JobMinOrderByAggregateInput = {
   managerId?: Prisma.SortOrder
 }
 
-export type JobCreateNestedManyWithoutStandardsInput = {
-  create?: Prisma.XOR<Prisma.JobCreateWithoutStandardsInput, Prisma.JobUncheckedCreateWithoutStandardsInput> | Prisma.JobCreateWithoutStandardsInput[] | Prisma.JobUncheckedCreateWithoutStandardsInput[]
-  connectOrCreate?: Prisma.JobCreateOrConnectWithoutStandardsInput | Prisma.JobCreateOrConnectWithoutStandardsInput[]
+export type JobCreateNestedManyWithoutActionsInput = {
+  create?: Prisma.XOR<Prisma.JobCreateWithoutActionsInput, Prisma.JobUncheckedCreateWithoutActionsInput> | Prisma.JobCreateWithoutActionsInput[] | Prisma.JobUncheckedCreateWithoutActionsInput[]
+  connectOrCreate?: Prisma.JobCreateOrConnectWithoutActionsInput | Prisma.JobCreateOrConnectWithoutActionsInput[]
   connect?: Prisma.JobWhereUniqueInput | Prisma.JobWhereUniqueInput[]
 }
 
-export type JobUncheckedCreateNestedManyWithoutStandardsInput = {
-  create?: Prisma.XOR<Prisma.JobCreateWithoutStandardsInput, Prisma.JobUncheckedCreateWithoutStandardsInput> | Prisma.JobCreateWithoutStandardsInput[] | Prisma.JobUncheckedCreateWithoutStandardsInput[]
-  connectOrCreate?: Prisma.JobCreateOrConnectWithoutStandardsInput | Prisma.JobCreateOrConnectWithoutStandardsInput[]
+export type JobUncheckedCreateNestedManyWithoutActionsInput = {
+  create?: Prisma.XOR<Prisma.JobCreateWithoutActionsInput, Prisma.JobUncheckedCreateWithoutActionsInput> | Prisma.JobCreateWithoutActionsInput[] | Prisma.JobUncheckedCreateWithoutActionsInput[]
+  connectOrCreate?: Prisma.JobCreateOrConnectWithoutActionsInput | Prisma.JobCreateOrConnectWithoutActionsInput[]
   connect?: Prisma.JobWhereUniqueInput | Prisma.JobWhereUniqueInput[]
 }
 
-export type JobUpdateManyWithoutStandardsNestedInput = {
-  create?: Prisma.XOR<Prisma.JobCreateWithoutStandardsInput, Prisma.JobUncheckedCreateWithoutStandardsInput> | Prisma.JobCreateWithoutStandardsInput[] | Prisma.JobUncheckedCreateWithoutStandardsInput[]
-  connectOrCreate?: Prisma.JobCreateOrConnectWithoutStandardsInput | Prisma.JobCreateOrConnectWithoutStandardsInput[]
-  upsert?: Prisma.JobUpsertWithWhereUniqueWithoutStandardsInput | Prisma.JobUpsertWithWhereUniqueWithoutStandardsInput[]
+export type JobUpdateManyWithoutActionsNestedInput = {
+  create?: Prisma.XOR<Prisma.JobCreateWithoutActionsInput, Prisma.JobUncheckedCreateWithoutActionsInput> | Prisma.JobCreateWithoutActionsInput[] | Prisma.JobUncheckedCreateWithoutActionsInput[]
+  connectOrCreate?: Prisma.JobCreateOrConnectWithoutActionsInput | Prisma.JobCreateOrConnectWithoutActionsInput[]
+  upsert?: Prisma.JobUpsertWithWhereUniqueWithoutActionsInput | Prisma.JobUpsertWithWhereUniqueWithoutActionsInput[]
   set?: Prisma.JobWhereUniqueInput | Prisma.JobWhereUniqueInput[]
   disconnect?: Prisma.JobWhereUniqueInput | Prisma.JobWhereUniqueInput[]
   delete?: Prisma.JobWhereUniqueInput | Prisma.JobWhereUniqueInput[]
   connect?: Prisma.JobWhereUniqueInput | Prisma.JobWhereUniqueInput[]
-  update?: Prisma.JobUpdateWithWhereUniqueWithoutStandardsInput | Prisma.JobUpdateWithWhereUniqueWithoutStandardsInput[]
-  updateMany?: Prisma.JobUpdateManyWithWhereWithoutStandardsInput | Prisma.JobUpdateManyWithWhereWithoutStandardsInput[]
+  update?: Prisma.JobUpdateWithWhereUniqueWithoutActionsInput | Prisma.JobUpdateWithWhereUniqueWithoutActionsInput[]
+  updateMany?: Prisma.JobUpdateManyWithWhereWithoutActionsInput | Prisma.JobUpdateManyWithWhereWithoutActionsInput[]
   deleteMany?: Prisma.JobScalarWhereInput | Prisma.JobScalarWhereInput[]
 }
 
-export type JobUncheckedUpdateManyWithoutStandardsNestedInput = {
-  create?: Prisma.XOR<Prisma.JobCreateWithoutStandardsInput, Prisma.JobUncheckedCreateWithoutStandardsInput> | Prisma.JobCreateWithoutStandardsInput[] | Prisma.JobUncheckedCreateWithoutStandardsInput[]
-  connectOrCreate?: Prisma.JobCreateOrConnectWithoutStandardsInput | Prisma.JobCreateOrConnectWithoutStandardsInput[]
-  upsert?: Prisma.JobUpsertWithWhereUniqueWithoutStandardsInput | Prisma.JobUpsertWithWhereUniqueWithoutStandardsInput[]
+export type JobUncheckedUpdateManyWithoutActionsNestedInput = {
+  create?: Prisma.XOR<Prisma.JobCreateWithoutActionsInput, Prisma.JobUncheckedCreateWithoutActionsInput> | Prisma.JobCreateWithoutActionsInput[] | Prisma.JobUncheckedCreateWithoutActionsInput[]
+  connectOrCreate?: Prisma.JobCreateOrConnectWithoutActionsInput | Prisma.JobCreateOrConnectWithoutActionsInput[]
+  upsert?: Prisma.JobUpsertWithWhereUniqueWithoutActionsInput | Prisma.JobUpsertWithWhereUniqueWithoutActionsInput[]
   set?: Prisma.JobWhereUniqueInput | Prisma.JobWhereUniqueInput[]
   disconnect?: Prisma.JobWhereUniqueInput | Prisma.JobWhereUniqueInput[]
   delete?: Prisma.JobWhereUniqueInput | Prisma.JobWhereUniqueInput[]
   connect?: Prisma.JobWhereUniqueInput | Prisma.JobWhereUniqueInput[]
-  update?: Prisma.JobUpdateWithWhereUniqueWithoutStandardsInput | Prisma.JobUpdateWithWhereUniqueWithoutStandardsInput[]
-  updateMany?: Prisma.JobUpdateManyWithWhereWithoutStandardsInput | Prisma.JobUpdateManyWithWhereWithoutStandardsInput[]
+  update?: Prisma.JobUpdateWithWhereUniqueWithoutActionsInput | Prisma.JobUpdateWithWhereUniqueWithoutActionsInput[]
+  updateMany?: Prisma.JobUpdateManyWithWhereWithoutActionsInput | Prisma.JobUpdateManyWithWhereWithoutActionsInput[]
   deleteMany?: Prisma.JobScalarWhereInput | Prisma.JobScalarWhereInput[]
 }
 
@@ -411,7 +411,7 @@ export type JobUncheckedUpdateManyWithoutManagerNestedInput = {
   deleteMany?: Prisma.JobScalarWhereInput | Prisma.JobScalarWhereInput[]
 }
 
-export type JobCreateWithoutStandardsInput = {
+export type JobCreateWithoutActionsInput = {
   id?: string
   name?: string | null
   description?: string | null
@@ -419,7 +419,7 @@ export type JobCreateWithoutStandardsInput = {
   manager?: Prisma.UserCreateNestedOneWithoutManagedJobsInput
 }
 
-export type JobUncheckedCreateWithoutStandardsInput = {
+export type JobUncheckedCreateWithoutActionsInput = {
   id?: string
   name?: string | null
   description?: string | null
@@ -427,25 +427,25 @@ export type JobUncheckedCreateWithoutStandardsInput = {
   managerId?: string | null
 }
 
-export type JobCreateOrConnectWithoutStandardsInput = {
+export type JobCreateOrConnectWithoutActionsInput = {
   where: Prisma.JobWhereUniqueInput
-  create: Prisma.XOR<Prisma.JobCreateWithoutStandardsInput, Prisma.JobUncheckedCreateWithoutStandardsInput>
+  create: Prisma.XOR<Prisma.JobCreateWithoutActionsInput, Prisma.JobUncheckedCreateWithoutActionsInput>
 }
 
-export type JobUpsertWithWhereUniqueWithoutStandardsInput = {
+export type JobUpsertWithWhereUniqueWithoutActionsInput = {
   where: Prisma.JobWhereUniqueInput
-  update: Prisma.XOR<Prisma.JobUpdateWithoutStandardsInput, Prisma.JobUncheckedUpdateWithoutStandardsInput>
-  create: Prisma.XOR<Prisma.JobCreateWithoutStandardsInput, Prisma.JobUncheckedCreateWithoutStandardsInput>
+  update: Prisma.XOR<Prisma.JobUpdateWithoutActionsInput, Prisma.JobUncheckedUpdateWithoutActionsInput>
+  create: Prisma.XOR<Prisma.JobCreateWithoutActionsInput, Prisma.JobUncheckedCreateWithoutActionsInput>
 }
 
-export type JobUpdateWithWhereUniqueWithoutStandardsInput = {
+export type JobUpdateWithWhereUniqueWithoutActionsInput = {
   where: Prisma.JobWhereUniqueInput
-  data: Prisma.XOR<Prisma.JobUpdateWithoutStandardsInput, Prisma.JobUncheckedUpdateWithoutStandardsInput>
+  data: Prisma.XOR<Prisma.JobUpdateWithoutActionsInput, Prisma.JobUncheckedUpdateWithoutActionsInput>
 }
 
-export type JobUpdateManyWithWhereWithoutStandardsInput = {
+export type JobUpdateManyWithWhereWithoutActionsInput = {
   where: Prisma.JobScalarWhereInput
-  data: Prisma.XOR<Prisma.JobUpdateManyMutationInput, Prisma.JobUncheckedUpdateManyWithoutStandardsInput>
+  data: Prisma.XOR<Prisma.JobUpdateManyMutationInput, Prisma.JobUncheckedUpdateManyWithoutActionsInput>
 }
 
 export type JobScalarWhereInput = {
@@ -464,7 +464,7 @@ export type JobCreateWithoutManagerInput = {
   name?: string | null
   description?: string | null
   notionId?: string | null
-  standards?: Prisma.StandardCreateNestedManyWithoutRolesInput
+  actions?: Prisma.ActionCreateNestedManyWithoutRolesInput
 }
 
 export type JobUncheckedCreateWithoutManagerInput = {
@@ -472,7 +472,7 @@ export type JobUncheckedCreateWithoutManagerInput = {
   name?: string | null
   description?: string | null
   notionId?: string | null
-  standards?: Prisma.StandardUncheckedCreateNestedManyWithoutRolesInput
+  actions?: Prisma.ActionUncheckedCreateNestedManyWithoutRolesInput
 }
 
 export type JobCreateOrConnectWithoutManagerInput = {
@@ -501,7 +501,7 @@ export type JobUpdateManyWithWhereWithoutManagerInput = {
   data: Prisma.XOR<Prisma.JobUpdateManyMutationInput, Prisma.JobUncheckedUpdateManyWithoutManagerInput>
 }
 
-export type JobUpdateWithoutStandardsInput = {
+export type JobUpdateWithoutActionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -509,7 +509,7 @@ export type JobUpdateWithoutStandardsInput = {
   manager?: Prisma.UserUpdateOneWithoutManagedJobsNestedInput
 }
 
-export type JobUncheckedUpdateWithoutStandardsInput = {
+export type JobUncheckedUpdateWithoutActionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -517,7 +517,7 @@ export type JobUncheckedUpdateWithoutStandardsInput = {
   managerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type JobUncheckedUpdateManyWithoutStandardsInput = {
+export type JobUncheckedUpdateManyWithoutActionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -537,7 +537,7 @@ export type JobUpdateWithoutManagerInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standards?: Prisma.StandardUpdateManyWithoutRolesNestedInput
+  actions?: Prisma.ActionUpdateManyWithoutRolesNestedInput
 }
 
 export type JobUncheckedUpdateWithoutManagerInput = {
@@ -545,7 +545,7 @@ export type JobUncheckedUpdateWithoutManagerInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standards?: Prisma.StandardUncheckedUpdateManyWithoutRolesNestedInput
+  actions?: Prisma.ActionUncheckedUpdateManyWithoutRolesNestedInput
 }
 
 export type JobUncheckedUpdateManyWithoutManagerInput = {
@@ -561,11 +561,11 @@ export type JobUncheckedUpdateManyWithoutManagerInput = {
  */
 
 export type JobCountOutputType = {
-  standards: number
+  actions: number
 }
 
 export type JobCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  standards?: boolean | JobCountOutputTypeCountStandardsArgs
+  actions?: boolean | JobCountOutputTypeCountActionsArgs
 }
 
 /**
@@ -581,8 +581,8 @@ export type JobCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensio
 /**
  * JobCountOutputType without action
  */
-export type JobCountOutputTypeCountStandardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.StandardWhereInput
+export type JobCountOutputTypeCountActionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActionWhereInput
 }
 
 
@@ -593,7 +593,7 @@ export type JobSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   notionId?: boolean
   managerId?: boolean
   manager?: boolean | Prisma.Job$managerArgs<ExtArgs>
-  standards?: boolean | Prisma.Job$standardsArgs<ExtArgs>
+  actions?: boolean | Prisma.Job$actionsArgs<ExtArgs>
   _count?: boolean | Prisma.JobCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["job"]>
 
@@ -626,7 +626,7 @@ export type JobSelectScalar = {
 export type JobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "notionId" | "managerId", ExtArgs["result"]["job"]>
 export type JobInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   manager?: boolean | Prisma.Job$managerArgs<ExtArgs>
-  standards?: boolean | Prisma.Job$standardsArgs<ExtArgs>
+  actions?: boolean | Prisma.Job$actionsArgs<ExtArgs>
   _count?: boolean | Prisma.JobCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type JobIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -641,10 +641,10 @@ export type $JobPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   objects: {
     manager: Prisma.$UserPayload<ExtArgs> | null
     /**
-     * Back relation to standards — Notion relation `Métier(s)`
+     * Back relation to actions — Notion relation `Métier(s)`
      * @notion(false)
      */
-    standards: Prisma.$StandardPayload<ExtArgs>[]
+    actions: Prisma.$ActionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     /**
@@ -1065,7 +1065,7 @@ readonly fields: JobFieldRefs;
 export interface Prisma__JobClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   manager<T extends Prisma.Job$managerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Job$managerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  standards<T extends Prisma.Job$standardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Job$standardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StandardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  actions<T extends Prisma.Job$actionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Job$actionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1515,27 +1515,27 @@ export type Job$managerArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 }
 
 /**
- * Job.standards
+ * Job.actions
  */
-export type Job$standardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Job$actionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Standard
+   * Select specific fields to fetch from the Action
    */
-  select?: Prisma.StandardSelect<ExtArgs> | null
+  select?: Prisma.ActionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Standard
+   * Omit specific fields from the Action
    */
-  omit?: Prisma.StandardOmit<ExtArgs> | null
+  omit?: Prisma.ActionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.StandardInclude<ExtArgs> | null
-  where?: Prisma.StandardWhereInput
-  orderBy?: Prisma.StandardOrderByWithRelationInput | Prisma.StandardOrderByWithRelationInput[]
-  cursor?: Prisma.StandardWhereUniqueInput
+  include?: Prisma.ActionInclude<ExtArgs> | null
+  where?: Prisma.ActionWhereInput
+  orderBy?: Prisma.ActionOrderByWithRelationInput | Prisma.ActionOrderByWithRelationInput[]
+  cursor?: Prisma.ActionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.StandardScalarFieldEnum | Prisma.StandardScalarFieldEnum[]
+  distinct?: Prisma.ActionScalarFieldEnum | Prisma.ActionScalarFieldEnum[]
 }
 
 /**

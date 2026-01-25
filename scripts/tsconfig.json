@@ -13,12 +13,9 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
-      "@lib/*": [
-        "../src/lib/*"
-      ],
-      "@api/*": [
-        "../src/api/*"
-      ],
+      "@/*": [
+        "../src/*"
+      ]
     }
   }
 }

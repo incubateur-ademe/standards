@@ -182,9 +182,9 @@ export type PhaseWhereInput = {
   description?: Prisma.StringNullableFilter<"Phase"> | string | null
   notionId?: Prisma.StringNullableFilter<"Phase"> | string | null
   sourceDocBetaUrl?: Prisma.StringNullableFilter<"Phase"> | string | null
-  standardsCouldHave?: Prisma.StandardListRelationFilter
-  standardsShouldHave?: Prisma.StandardListRelationFilter
-  standardsMustHave?: Prisma.StandardListRelationFilter
+  actionsCouldHave?: Prisma.ActionListRelationFilter
+  actionsShouldHave?: Prisma.ActionListRelationFilter
+  actionsMustHave?: Prisma.ActionListRelationFilter
   startupShadows?: Prisma.StartupShadowListRelationFilter
   snapshots?: Prisma.SnapshotListRelationFilter
 }
@@ -195,9 +195,9 @@ export type PhaseOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   notionId?: Prisma.SortOrderInput | Prisma.SortOrder
   sourceDocBetaUrl?: Prisma.SortOrderInput | Prisma.SortOrder
-  standardsCouldHave?: Prisma.StandardOrderByRelationAggregateInput
-  standardsShouldHave?: Prisma.StandardOrderByRelationAggregateInput
-  standardsMustHave?: Prisma.StandardOrderByRelationAggregateInput
+  actionsCouldHave?: Prisma.ActionOrderByRelationAggregateInput
+  actionsShouldHave?: Prisma.ActionOrderByRelationAggregateInput
+  actionsMustHave?: Prisma.ActionOrderByRelationAggregateInput
   startupShadows?: Prisma.StartupShadowOrderByRelationAggregateInput
   snapshots?: Prisma.SnapshotOrderByRelationAggregateInput
   _relevance?: Prisma.PhaseOrderByRelevanceInput
@@ -212,9 +212,9 @@ export type PhaseWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"Phase"> | string | null
   notionId?: Prisma.StringNullableFilter<"Phase"> | string | null
   sourceDocBetaUrl?: Prisma.StringNullableFilter<"Phase"> | string | null
-  standardsCouldHave?: Prisma.StandardListRelationFilter
-  standardsShouldHave?: Prisma.StandardListRelationFilter
-  standardsMustHave?: Prisma.StandardListRelationFilter
+  actionsCouldHave?: Prisma.ActionListRelationFilter
+  actionsShouldHave?: Prisma.ActionListRelationFilter
+  actionsMustHave?: Prisma.ActionListRelationFilter
   startupShadows?: Prisma.StartupShadowListRelationFilter
   snapshots?: Prisma.SnapshotListRelationFilter
 }, "id">
@@ -247,9 +247,9 @@ export type PhaseCreateInput = {
   description?: string | null
   notionId?: string | null
   sourceDocBetaUrl?: string | null
-  standardsCouldHave?: Prisma.StandardCreateNestedManyWithoutCouldHavePhaseInput
-  standardsShouldHave?: Prisma.StandardCreateNestedManyWithoutShouldHavePhaseInput
-  standardsMustHave?: Prisma.StandardCreateNestedManyWithoutMustHavePhaseInput
+  actionsCouldHave?: Prisma.ActionCreateNestedManyWithoutCouldHavePhaseInput
+  actionsShouldHave?: Prisma.ActionCreateNestedManyWithoutShouldHavePhaseInput
+  actionsMustHave?: Prisma.ActionCreateNestedManyWithoutMustHavePhaseInput
   startupShadows?: Prisma.StartupShadowCreateNestedManyWithoutCurrentPhaseInput
   snapshots?: Prisma.SnapshotCreateNestedManyWithoutPhaseInput
 }
@@ -260,9 +260,9 @@ export type PhaseUncheckedCreateInput = {
   description?: string | null
   notionId?: string | null
   sourceDocBetaUrl?: string | null
-  standardsCouldHave?: Prisma.StandardUncheckedCreateNestedManyWithoutCouldHavePhaseInput
-  standardsShouldHave?: Prisma.StandardUncheckedCreateNestedManyWithoutShouldHavePhaseInput
-  standardsMustHave?: Prisma.StandardUncheckedCreateNestedManyWithoutMustHavePhaseInput
+  actionsCouldHave?: Prisma.ActionUncheckedCreateNestedManyWithoutCouldHavePhaseInput
+  actionsShouldHave?: Prisma.ActionUncheckedCreateNestedManyWithoutShouldHavePhaseInput
+  actionsMustHave?: Prisma.ActionUncheckedCreateNestedManyWithoutMustHavePhaseInput
   startupShadows?: Prisma.StartupShadowUncheckedCreateNestedManyWithoutCurrentPhaseInput
   snapshots?: Prisma.SnapshotUncheckedCreateNestedManyWithoutPhaseInput
 }
@@ -273,9 +273,9 @@ export type PhaseUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceDocBetaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standardsCouldHave?: Prisma.StandardUpdateManyWithoutCouldHavePhaseNestedInput
-  standardsShouldHave?: Prisma.StandardUpdateManyWithoutShouldHavePhaseNestedInput
-  standardsMustHave?: Prisma.StandardUpdateManyWithoutMustHavePhaseNestedInput
+  actionsCouldHave?: Prisma.ActionUpdateManyWithoutCouldHavePhaseNestedInput
+  actionsShouldHave?: Prisma.ActionUpdateManyWithoutShouldHavePhaseNestedInput
+  actionsMustHave?: Prisma.ActionUpdateManyWithoutMustHavePhaseNestedInput
   startupShadows?: Prisma.StartupShadowUpdateManyWithoutCurrentPhaseNestedInput
   snapshots?: Prisma.SnapshotUpdateManyWithoutPhaseNestedInput
 }
@@ -286,9 +286,9 @@ export type PhaseUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceDocBetaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standardsCouldHave?: Prisma.StandardUncheckedUpdateManyWithoutCouldHavePhaseNestedInput
-  standardsShouldHave?: Prisma.StandardUncheckedUpdateManyWithoutShouldHavePhaseNestedInput
-  standardsMustHave?: Prisma.StandardUncheckedUpdateManyWithoutMustHavePhaseNestedInput
+  actionsCouldHave?: Prisma.ActionUncheckedUpdateManyWithoutCouldHavePhaseNestedInput
+  actionsShouldHave?: Prisma.ActionUncheckedUpdateManyWithoutShouldHavePhaseNestedInput
+  actionsMustHave?: Prisma.ActionUncheckedUpdateManyWithoutMustHavePhaseNestedInput
   startupShadows?: Prisma.StartupShadowUncheckedUpdateManyWithoutCurrentPhaseNestedInput
   snapshots?: Prisma.SnapshotUncheckedUpdateManyWithoutPhaseNestedInput
 }
@@ -352,52 +352,52 @@ export type PhaseMinOrderByAggregateInput = {
   sourceDocBetaUrl?: Prisma.SortOrder
 }
 
-export type PhaseCreateNestedOneWithoutStandardsCouldHaveInput = {
-  create?: Prisma.XOR<Prisma.PhaseCreateWithoutStandardsCouldHaveInput, Prisma.PhaseUncheckedCreateWithoutStandardsCouldHaveInput>
-  connectOrCreate?: Prisma.PhaseCreateOrConnectWithoutStandardsCouldHaveInput
+export type PhaseCreateNestedOneWithoutActionsCouldHaveInput = {
+  create?: Prisma.XOR<Prisma.PhaseCreateWithoutActionsCouldHaveInput, Prisma.PhaseUncheckedCreateWithoutActionsCouldHaveInput>
+  connectOrCreate?: Prisma.PhaseCreateOrConnectWithoutActionsCouldHaveInput
   connect?: Prisma.PhaseWhereUniqueInput
 }
 
-export type PhaseCreateNestedOneWithoutStandardsShouldHaveInput = {
-  create?: Prisma.XOR<Prisma.PhaseCreateWithoutStandardsShouldHaveInput, Prisma.PhaseUncheckedCreateWithoutStandardsShouldHaveInput>
-  connectOrCreate?: Prisma.PhaseCreateOrConnectWithoutStandardsShouldHaveInput
+export type PhaseCreateNestedOneWithoutActionsShouldHaveInput = {
+  create?: Prisma.XOR<Prisma.PhaseCreateWithoutActionsShouldHaveInput, Prisma.PhaseUncheckedCreateWithoutActionsShouldHaveInput>
+  connectOrCreate?: Prisma.PhaseCreateOrConnectWithoutActionsShouldHaveInput
   connect?: Prisma.PhaseWhereUniqueInput
 }
 
-export type PhaseCreateNestedOneWithoutStandardsMustHaveInput = {
-  create?: Prisma.XOR<Prisma.PhaseCreateWithoutStandardsMustHaveInput, Prisma.PhaseUncheckedCreateWithoutStandardsMustHaveInput>
-  connectOrCreate?: Prisma.PhaseCreateOrConnectWithoutStandardsMustHaveInput
+export type PhaseCreateNestedOneWithoutActionsMustHaveInput = {
+  create?: Prisma.XOR<Prisma.PhaseCreateWithoutActionsMustHaveInput, Prisma.PhaseUncheckedCreateWithoutActionsMustHaveInput>
+  connectOrCreate?: Prisma.PhaseCreateOrConnectWithoutActionsMustHaveInput
   connect?: Prisma.PhaseWhereUniqueInput
 }
 
-export type PhaseUpdateOneWithoutStandardsCouldHaveNestedInput = {
-  create?: Prisma.XOR<Prisma.PhaseCreateWithoutStandardsCouldHaveInput, Prisma.PhaseUncheckedCreateWithoutStandardsCouldHaveInput>
-  connectOrCreate?: Prisma.PhaseCreateOrConnectWithoutStandardsCouldHaveInput
-  upsert?: Prisma.PhaseUpsertWithoutStandardsCouldHaveInput
+export type PhaseUpdateOneWithoutActionsCouldHaveNestedInput = {
+  create?: Prisma.XOR<Prisma.PhaseCreateWithoutActionsCouldHaveInput, Prisma.PhaseUncheckedCreateWithoutActionsCouldHaveInput>
+  connectOrCreate?: Prisma.PhaseCreateOrConnectWithoutActionsCouldHaveInput
+  upsert?: Prisma.PhaseUpsertWithoutActionsCouldHaveInput
   disconnect?: Prisma.PhaseWhereInput | boolean
   delete?: Prisma.PhaseWhereInput | boolean
   connect?: Prisma.PhaseWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PhaseUpdateToOneWithWhereWithoutStandardsCouldHaveInput, Prisma.PhaseUpdateWithoutStandardsCouldHaveInput>, Prisma.PhaseUncheckedUpdateWithoutStandardsCouldHaveInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PhaseUpdateToOneWithWhereWithoutActionsCouldHaveInput, Prisma.PhaseUpdateWithoutActionsCouldHaveInput>, Prisma.PhaseUncheckedUpdateWithoutActionsCouldHaveInput>
 }
 
-export type PhaseUpdateOneWithoutStandardsShouldHaveNestedInput = {
-  create?: Prisma.XOR<Prisma.PhaseCreateWithoutStandardsShouldHaveInput, Prisma.PhaseUncheckedCreateWithoutStandardsShouldHaveInput>
-  connectOrCreate?: Prisma.PhaseCreateOrConnectWithoutStandardsShouldHaveInput
-  upsert?: Prisma.PhaseUpsertWithoutStandardsShouldHaveInput
+export type PhaseUpdateOneWithoutActionsShouldHaveNestedInput = {
+  create?: Prisma.XOR<Prisma.PhaseCreateWithoutActionsShouldHaveInput, Prisma.PhaseUncheckedCreateWithoutActionsShouldHaveInput>
+  connectOrCreate?: Prisma.PhaseCreateOrConnectWithoutActionsShouldHaveInput
+  upsert?: Prisma.PhaseUpsertWithoutActionsShouldHaveInput
   disconnect?: Prisma.PhaseWhereInput | boolean
   delete?: Prisma.PhaseWhereInput | boolean
   connect?: Prisma.PhaseWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PhaseUpdateToOneWithWhereWithoutStandardsShouldHaveInput, Prisma.PhaseUpdateWithoutStandardsShouldHaveInput>, Prisma.PhaseUncheckedUpdateWithoutStandardsShouldHaveInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PhaseUpdateToOneWithWhereWithoutActionsShouldHaveInput, Prisma.PhaseUpdateWithoutActionsShouldHaveInput>, Prisma.PhaseUncheckedUpdateWithoutActionsShouldHaveInput>
 }
 
-export type PhaseUpdateOneWithoutStandardsMustHaveNestedInput = {
-  create?: Prisma.XOR<Prisma.PhaseCreateWithoutStandardsMustHaveInput, Prisma.PhaseUncheckedCreateWithoutStandardsMustHaveInput>
-  connectOrCreate?: Prisma.PhaseCreateOrConnectWithoutStandardsMustHaveInput
-  upsert?: Prisma.PhaseUpsertWithoutStandardsMustHaveInput
+export type PhaseUpdateOneWithoutActionsMustHaveNestedInput = {
+  create?: Prisma.XOR<Prisma.PhaseCreateWithoutActionsMustHaveInput, Prisma.PhaseUncheckedCreateWithoutActionsMustHaveInput>
+  connectOrCreate?: Prisma.PhaseCreateOrConnectWithoutActionsMustHaveInput
+  upsert?: Prisma.PhaseUpsertWithoutActionsMustHaveInput
   disconnect?: Prisma.PhaseWhereInput | boolean
   delete?: Prisma.PhaseWhereInput | boolean
   connect?: Prisma.PhaseWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PhaseUpdateToOneWithWhereWithoutStandardsMustHaveInput, Prisma.PhaseUpdateWithoutStandardsMustHaveInput>, Prisma.PhaseUncheckedUpdateWithoutStandardsMustHaveInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PhaseUpdateToOneWithWhereWithoutActionsMustHaveInput, Prisma.PhaseUpdateWithoutActionsMustHaveInput>, Prisma.PhaseUncheckedUpdateWithoutActionsMustHaveInput>
 }
 
 export type PhaseCreateNestedOneWithoutStartupShadowsInput = {
@@ -432,194 +432,194 @@ export type PhaseUpdateOneWithoutSnapshotsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PhaseUpdateToOneWithWhereWithoutSnapshotsInput, Prisma.PhaseUpdateWithoutSnapshotsInput>, Prisma.PhaseUncheckedUpdateWithoutSnapshotsInput>
 }
 
-export type PhaseCreateWithoutStandardsCouldHaveInput = {
+export type PhaseCreateWithoutActionsCouldHaveInput = {
   id?: string
   name?: string | null
   description?: string | null
   notionId?: string | null
   sourceDocBetaUrl?: string | null
-  standardsShouldHave?: Prisma.StandardCreateNestedManyWithoutShouldHavePhaseInput
-  standardsMustHave?: Prisma.StandardCreateNestedManyWithoutMustHavePhaseInput
+  actionsShouldHave?: Prisma.ActionCreateNestedManyWithoutShouldHavePhaseInput
+  actionsMustHave?: Prisma.ActionCreateNestedManyWithoutMustHavePhaseInput
   startupShadows?: Prisma.StartupShadowCreateNestedManyWithoutCurrentPhaseInput
   snapshots?: Prisma.SnapshotCreateNestedManyWithoutPhaseInput
 }
 
-export type PhaseUncheckedCreateWithoutStandardsCouldHaveInput = {
+export type PhaseUncheckedCreateWithoutActionsCouldHaveInput = {
   id?: string
   name?: string | null
   description?: string | null
   notionId?: string | null
   sourceDocBetaUrl?: string | null
-  standardsShouldHave?: Prisma.StandardUncheckedCreateNestedManyWithoutShouldHavePhaseInput
-  standardsMustHave?: Prisma.StandardUncheckedCreateNestedManyWithoutMustHavePhaseInput
+  actionsShouldHave?: Prisma.ActionUncheckedCreateNestedManyWithoutShouldHavePhaseInput
+  actionsMustHave?: Prisma.ActionUncheckedCreateNestedManyWithoutMustHavePhaseInput
   startupShadows?: Prisma.StartupShadowUncheckedCreateNestedManyWithoutCurrentPhaseInput
   snapshots?: Prisma.SnapshotUncheckedCreateNestedManyWithoutPhaseInput
 }
 
-export type PhaseCreateOrConnectWithoutStandardsCouldHaveInput = {
+export type PhaseCreateOrConnectWithoutActionsCouldHaveInput = {
   where: Prisma.PhaseWhereUniqueInput
-  create: Prisma.XOR<Prisma.PhaseCreateWithoutStandardsCouldHaveInput, Prisma.PhaseUncheckedCreateWithoutStandardsCouldHaveInput>
+  create: Prisma.XOR<Prisma.PhaseCreateWithoutActionsCouldHaveInput, Prisma.PhaseUncheckedCreateWithoutActionsCouldHaveInput>
 }
 
-export type PhaseCreateWithoutStandardsShouldHaveInput = {
+export type PhaseCreateWithoutActionsShouldHaveInput = {
   id?: string
   name?: string | null
   description?: string | null
   notionId?: string | null
   sourceDocBetaUrl?: string | null
-  standardsCouldHave?: Prisma.StandardCreateNestedManyWithoutCouldHavePhaseInput
-  standardsMustHave?: Prisma.StandardCreateNestedManyWithoutMustHavePhaseInput
+  actionsCouldHave?: Prisma.ActionCreateNestedManyWithoutCouldHavePhaseInput
+  actionsMustHave?: Prisma.ActionCreateNestedManyWithoutMustHavePhaseInput
   startupShadows?: Prisma.StartupShadowCreateNestedManyWithoutCurrentPhaseInput
   snapshots?: Prisma.SnapshotCreateNestedManyWithoutPhaseInput
 }
 
-export type PhaseUncheckedCreateWithoutStandardsShouldHaveInput = {
+export type PhaseUncheckedCreateWithoutActionsShouldHaveInput = {
   id?: string
   name?: string | null
   description?: string | null
   notionId?: string | null
   sourceDocBetaUrl?: string | null
-  standardsCouldHave?: Prisma.StandardUncheckedCreateNestedManyWithoutCouldHavePhaseInput
-  standardsMustHave?: Prisma.StandardUncheckedCreateNestedManyWithoutMustHavePhaseInput
+  actionsCouldHave?: Prisma.ActionUncheckedCreateNestedManyWithoutCouldHavePhaseInput
+  actionsMustHave?: Prisma.ActionUncheckedCreateNestedManyWithoutMustHavePhaseInput
   startupShadows?: Prisma.StartupShadowUncheckedCreateNestedManyWithoutCurrentPhaseInput
   snapshots?: Prisma.SnapshotUncheckedCreateNestedManyWithoutPhaseInput
 }
 
-export type PhaseCreateOrConnectWithoutStandardsShouldHaveInput = {
+export type PhaseCreateOrConnectWithoutActionsShouldHaveInput = {
   where: Prisma.PhaseWhereUniqueInput
-  create: Prisma.XOR<Prisma.PhaseCreateWithoutStandardsShouldHaveInput, Prisma.PhaseUncheckedCreateWithoutStandardsShouldHaveInput>
+  create: Prisma.XOR<Prisma.PhaseCreateWithoutActionsShouldHaveInput, Prisma.PhaseUncheckedCreateWithoutActionsShouldHaveInput>
 }
 
-export type PhaseCreateWithoutStandardsMustHaveInput = {
+export type PhaseCreateWithoutActionsMustHaveInput = {
   id?: string
   name?: string | null
   description?: string | null
   notionId?: string | null
   sourceDocBetaUrl?: string | null
-  standardsCouldHave?: Prisma.StandardCreateNestedManyWithoutCouldHavePhaseInput
-  standardsShouldHave?: Prisma.StandardCreateNestedManyWithoutShouldHavePhaseInput
+  actionsCouldHave?: Prisma.ActionCreateNestedManyWithoutCouldHavePhaseInput
+  actionsShouldHave?: Prisma.ActionCreateNestedManyWithoutShouldHavePhaseInput
   startupShadows?: Prisma.StartupShadowCreateNestedManyWithoutCurrentPhaseInput
   snapshots?: Prisma.SnapshotCreateNestedManyWithoutPhaseInput
 }
 
-export type PhaseUncheckedCreateWithoutStandardsMustHaveInput = {
+export type PhaseUncheckedCreateWithoutActionsMustHaveInput = {
   id?: string
   name?: string | null
   description?: string | null
   notionId?: string | null
   sourceDocBetaUrl?: string | null
-  standardsCouldHave?: Prisma.StandardUncheckedCreateNestedManyWithoutCouldHavePhaseInput
-  standardsShouldHave?: Prisma.StandardUncheckedCreateNestedManyWithoutShouldHavePhaseInput
+  actionsCouldHave?: Prisma.ActionUncheckedCreateNestedManyWithoutCouldHavePhaseInput
+  actionsShouldHave?: Prisma.ActionUncheckedCreateNestedManyWithoutShouldHavePhaseInput
   startupShadows?: Prisma.StartupShadowUncheckedCreateNestedManyWithoutCurrentPhaseInput
   snapshots?: Prisma.SnapshotUncheckedCreateNestedManyWithoutPhaseInput
 }
 
-export type PhaseCreateOrConnectWithoutStandardsMustHaveInput = {
+export type PhaseCreateOrConnectWithoutActionsMustHaveInput = {
   where: Prisma.PhaseWhereUniqueInput
-  create: Prisma.XOR<Prisma.PhaseCreateWithoutStandardsMustHaveInput, Prisma.PhaseUncheckedCreateWithoutStandardsMustHaveInput>
+  create: Prisma.XOR<Prisma.PhaseCreateWithoutActionsMustHaveInput, Prisma.PhaseUncheckedCreateWithoutActionsMustHaveInput>
 }
 
-export type PhaseUpsertWithoutStandardsCouldHaveInput = {
-  update: Prisma.XOR<Prisma.PhaseUpdateWithoutStandardsCouldHaveInput, Prisma.PhaseUncheckedUpdateWithoutStandardsCouldHaveInput>
-  create: Prisma.XOR<Prisma.PhaseCreateWithoutStandardsCouldHaveInput, Prisma.PhaseUncheckedCreateWithoutStandardsCouldHaveInput>
+export type PhaseUpsertWithoutActionsCouldHaveInput = {
+  update: Prisma.XOR<Prisma.PhaseUpdateWithoutActionsCouldHaveInput, Prisma.PhaseUncheckedUpdateWithoutActionsCouldHaveInput>
+  create: Prisma.XOR<Prisma.PhaseCreateWithoutActionsCouldHaveInput, Prisma.PhaseUncheckedCreateWithoutActionsCouldHaveInput>
   where?: Prisma.PhaseWhereInput
 }
 
-export type PhaseUpdateToOneWithWhereWithoutStandardsCouldHaveInput = {
+export type PhaseUpdateToOneWithWhereWithoutActionsCouldHaveInput = {
   where?: Prisma.PhaseWhereInput
-  data: Prisma.XOR<Prisma.PhaseUpdateWithoutStandardsCouldHaveInput, Prisma.PhaseUncheckedUpdateWithoutStandardsCouldHaveInput>
+  data: Prisma.XOR<Prisma.PhaseUpdateWithoutActionsCouldHaveInput, Prisma.PhaseUncheckedUpdateWithoutActionsCouldHaveInput>
 }
 
-export type PhaseUpdateWithoutStandardsCouldHaveInput = {
+export type PhaseUpdateWithoutActionsCouldHaveInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceDocBetaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standardsShouldHave?: Prisma.StandardUpdateManyWithoutShouldHavePhaseNestedInput
-  standardsMustHave?: Prisma.StandardUpdateManyWithoutMustHavePhaseNestedInput
+  actionsShouldHave?: Prisma.ActionUpdateManyWithoutShouldHavePhaseNestedInput
+  actionsMustHave?: Prisma.ActionUpdateManyWithoutMustHavePhaseNestedInput
   startupShadows?: Prisma.StartupShadowUpdateManyWithoutCurrentPhaseNestedInput
   snapshots?: Prisma.SnapshotUpdateManyWithoutPhaseNestedInput
 }
 
-export type PhaseUncheckedUpdateWithoutStandardsCouldHaveInput = {
+export type PhaseUncheckedUpdateWithoutActionsCouldHaveInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceDocBetaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standardsShouldHave?: Prisma.StandardUncheckedUpdateManyWithoutShouldHavePhaseNestedInput
-  standardsMustHave?: Prisma.StandardUncheckedUpdateManyWithoutMustHavePhaseNestedInput
+  actionsShouldHave?: Prisma.ActionUncheckedUpdateManyWithoutShouldHavePhaseNestedInput
+  actionsMustHave?: Prisma.ActionUncheckedUpdateManyWithoutMustHavePhaseNestedInput
   startupShadows?: Prisma.StartupShadowUncheckedUpdateManyWithoutCurrentPhaseNestedInput
   snapshots?: Prisma.SnapshotUncheckedUpdateManyWithoutPhaseNestedInput
 }
 
-export type PhaseUpsertWithoutStandardsShouldHaveInput = {
-  update: Prisma.XOR<Prisma.PhaseUpdateWithoutStandardsShouldHaveInput, Prisma.PhaseUncheckedUpdateWithoutStandardsShouldHaveInput>
-  create: Prisma.XOR<Prisma.PhaseCreateWithoutStandardsShouldHaveInput, Prisma.PhaseUncheckedCreateWithoutStandardsShouldHaveInput>
+export type PhaseUpsertWithoutActionsShouldHaveInput = {
+  update: Prisma.XOR<Prisma.PhaseUpdateWithoutActionsShouldHaveInput, Prisma.PhaseUncheckedUpdateWithoutActionsShouldHaveInput>
+  create: Prisma.XOR<Prisma.PhaseCreateWithoutActionsShouldHaveInput, Prisma.PhaseUncheckedCreateWithoutActionsShouldHaveInput>
   where?: Prisma.PhaseWhereInput
 }
 
-export type PhaseUpdateToOneWithWhereWithoutStandardsShouldHaveInput = {
+export type PhaseUpdateToOneWithWhereWithoutActionsShouldHaveInput = {
   where?: Prisma.PhaseWhereInput
-  data: Prisma.XOR<Prisma.PhaseUpdateWithoutStandardsShouldHaveInput, Prisma.PhaseUncheckedUpdateWithoutStandardsShouldHaveInput>
+  data: Prisma.XOR<Prisma.PhaseUpdateWithoutActionsShouldHaveInput, Prisma.PhaseUncheckedUpdateWithoutActionsShouldHaveInput>
 }
 
-export type PhaseUpdateWithoutStandardsShouldHaveInput = {
+export type PhaseUpdateWithoutActionsShouldHaveInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceDocBetaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standardsCouldHave?: Prisma.StandardUpdateManyWithoutCouldHavePhaseNestedInput
-  standardsMustHave?: Prisma.StandardUpdateManyWithoutMustHavePhaseNestedInput
+  actionsCouldHave?: Prisma.ActionUpdateManyWithoutCouldHavePhaseNestedInput
+  actionsMustHave?: Prisma.ActionUpdateManyWithoutMustHavePhaseNestedInput
   startupShadows?: Prisma.StartupShadowUpdateManyWithoutCurrentPhaseNestedInput
   snapshots?: Prisma.SnapshotUpdateManyWithoutPhaseNestedInput
 }
 
-export type PhaseUncheckedUpdateWithoutStandardsShouldHaveInput = {
+export type PhaseUncheckedUpdateWithoutActionsShouldHaveInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceDocBetaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standardsCouldHave?: Prisma.StandardUncheckedUpdateManyWithoutCouldHavePhaseNestedInput
-  standardsMustHave?: Prisma.StandardUncheckedUpdateManyWithoutMustHavePhaseNestedInput
+  actionsCouldHave?: Prisma.ActionUncheckedUpdateManyWithoutCouldHavePhaseNestedInput
+  actionsMustHave?: Prisma.ActionUncheckedUpdateManyWithoutMustHavePhaseNestedInput
   startupShadows?: Prisma.StartupShadowUncheckedUpdateManyWithoutCurrentPhaseNestedInput
   snapshots?: Prisma.SnapshotUncheckedUpdateManyWithoutPhaseNestedInput
 }
 
-export type PhaseUpsertWithoutStandardsMustHaveInput = {
-  update: Prisma.XOR<Prisma.PhaseUpdateWithoutStandardsMustHaveInput, Prisma.PhaseUncheckedUpdateWithoutStandardsMustHaveInput>
-  create: Prisma.XOR<Prisma.PhaseCreateWithoutStandardsMustHaveInput, Prisma.PhaseUncheckedCreateWithoutStandardsMustHaveInput>
+export type PhaseUpsertWithoutActionsMustHaveInput = {
+  update: Prisma.XOR<Prisma.PhaseUpdateWithoutActionsMustHaveInput, Prisma.PhaseUncheckedUpdateWithoutActionsMustHaveInput>
+  create: Prisma.XOR<Prisma.PhaseCreateWithoutActionsMustHaveInput, Prisma.PhaseUncheckedCreateWithoutActionsMustHaveInput>
   where?: Prisma.PhaseWhereInput
 }
 
-export type PhaseUpdateToOneWithWhereWithoutStandardsMustHaveInput = {
+export type PhaseUpdateToOneWithWhereWithoutActionsMustHaveInput = {
   where?: Prisma.PhaseWhereInput
-  data: Prisma.XOR<Prisma.PhaseUpdateWithoutStandardsMustHaveInput, Prisma.PhaseUncheckedUpdateWithoutStandardsMustHaveInput>
+  data: Prisma.XOR<Prisma.PhaseUpdateWithoutActionsMustHaveInput, Prisma.PhaseUncheckedUpdateWithoutActionsMustHaveInput>
 }
 
-export type PhaseUpdateWithoutStandardsMustHaveInput = {
+export type PhaseUpdateWithoutActionsMustHaveInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceDocBetaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standardsCouldHave?: Prisma.StandardUpdateManyWithoutCouldHavePhaseNestedInput
-  standardsShouldHave?: Prisma.StandardUpdateManyWithoutShouldHavePhaseNestedInput
+  actionsCouldHave?: Prisma.ActionUpdateManyWithoutCouldHavePhaseNestedInput
+  actionsShouldHave?: Prisma.ActionUpdateManyWithoutShouldHavePhaseNestedInput
   startupShadows?: Prisma.StartupShadowUpdateManyWithoutCurrentPhaseNestedInput
   snapshots?: Prisma.SnapshotUpdateManyWithoutPhaseNestedInput
 }
 
-export type PhaseUncheckedUpdateWithoutStandardsMustHaveInput = {
+export type PhaseUncheckedUpdateWithoutActionsMustHaveInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceDocBetaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standardsCouldHave?: Prisma.StandardUncheckedUpdateManyWithoutCouldHavePhaseNestedInput
-  standardsShouldHave?: Prisma.StandardUncheckedUpdateManyWithoutShouldHavePhaseNestedInput
+  actionsCouldHave?: Prisma.ActionUncheckedUpdateManyWithoutCouldHavePhaseNestedInput
+  actionsShouldHave?: Prisma.ActionUncheckedUpdateManyWithoutShouldHavePhaseNestedInput
   startupShadows?: Prisma.StartupShadowUncheckedUpdateManyWithoutCurrentPhaseNestedInput
   snapshots?: Prisma.SnapshotUncheckedUpdateManyWithoutPhaseNestedInput
 }
@@ -630,9 +630,9 @@ export type PhaseCreateWithoutStartupShadowsInput = {
   description?: string | null
   notionId?: string | null
   sourceDocBetaUrl?: string | null
-  standardsCouldHave?: Prisma.StandardCreateNestedManyWithoutCouldHavePhaseInput
-  standardsShouldHave?: Prisma.StandardCreateNestedManyWithoutShouldHavePhaseInput
-  standardsMustHave?: Prisma.StandardCreateNestedManyWithoutMustHavePhaseInput
+  actionsCouldHave?: Prisma.ActionCreateNestedManyWithoutCouldHavePhaseInput
+  actionsShouldHave?: Prisma.ActionCreateNestedManyWithoutShouldHavePhaseInput
+  actionsMustHave?: Prisma.ActionCreateNestedManyWithoutMustHavePhaseInput
   snapshots?: Prisma.SnapshotCreateNestedManyWithoutPhaseInput
 }
 
@@ -642,9 +642,9 @@ export type PhaseUncheckedCreateWithoutStartupShadowsInput = {
   description?: string | null
   notionId?: string | null
   sourceDocBetaUrl?: string | null
-  standardsCouldHave?: Prisma.StandardUncheckedCreateNestedManyWithoutCouldHavePhaseInput
-  standardsShouldHave?: Prisma.StandardUncheckedCreateNestedManyWithoutShouldHavePhaseInput
-  standardsMustHave?: Prisma.StandardUncheckedCreateNestedManyWithoutMustHavePhaseInput
+  actionsCouldHave?: Prisma.ActionUncheckedCreateNestedManyWithoutCouldHavePhaseInput
+  actionsShouldHave?: Prisma.ActionUncheckedCreateNestedManyWithoutShouldHavePhaseInput
+  actionsMustHave?: Prisma.ActionUncheckedCreateNestedManyWithoutMustHavePhaseInput
   snapshots?: Prisma.SnapshotUncheckedCreateNestedManyWithoutPhaseInput
 }
 
@@ -670,9 +670,9 @@ export type PhaseUpdateWithoutStartupShadowsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceDocBetaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standardsCouldHave?: Prisma.StandardUpdateManyWithoutCouldHavePhaseNestedInput
-  standardsShouldHave?: Prisma.StandardUpdateManyWithoutShouldHavePhaseNestedInput
-  standardsMustHave?: Prisma.StandardUpdateManyWithoutMustHavePhaseNestedInput
+  actionsCouldHave?: Prisma.ActionUpdateManyWithoutCouldHavePhaseNestedInput
+  actionsShouldHave?: Prisma.ActionUpdateManyWithoutShouldHavePhaseNestedInput
+  actionsMustHave?: Prisma.ActionUpdateManyWithoutMustHavePhaseNestedInput
   snapshots?: Prisma.SnapshotUpdateManyWithoutPhaseNestedInput
 }
 
@@ -682,9 +682,9 @@ export type PhaseUncheckedUpdateWithoutStartupShadowsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceDocBetaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standardsCouldHave?: Prisma.StandardUncheckedUpdateManyWithoutCouldHavePhaseNestedInput
-  standardsShouldHave?: Prisma.StandardUncheckedUpdateManyWithoutShouldHavePhaseNestedInput
-  standardsMustHave?: Prisma.StandardUncheckedUpdateManyWithoutMustHavePhaseNestedInput
+  actionsCouldHave?: Prisma.ActionUncheckedUpdateManyWithoutCouldHavePhaseNestedInput
+  actionsShouldHave?: Prisma.ActionUncheckedUpdateManyWithoutShouldHavePhaseNestedInput
+  actionsMustHave?: Prisma.ActionUncheckedUpdateManyWithoutMustHavePhaseNestedInput
   snapshots?: Prisma.SnapshotUncheckedUpdateManyWithoutPhaseNestedInput
 }
 
@@ -694,9 +694,9 @@ export type PhaseCreateWithoutSnapshotsInput = {
   description?: string | null
   notionId?: string | null
   sourceDocBetaUrl?: string | null
-  standardsCouldHave?: Prisma.StandardCreateNestedManyWithoutCouldHavePhaseInput
-  standardsShouldHave?: Prisma.StandardCreateNestedManyWithoutShouldHavePhaseInput
-  standardsMustHave?: Prisma.StandardCreateNestedManyWithoutMustHavePhaseInput
+  actionsCouldHave?: Prisma.ActionCreateNestedManyWithoutCouldHavePhaseInput
+  actionsShouldHave?: Prisma.ActionCreateNestedManyWithoutShouldHavePhaseInput
+  actionsMustHave?: Prisma.ActionCreateNestedManyWithoutMustHavePhaseInput
   startupShadows?: Prisma.StartupShadowCreateNestedManyWithoutCurrentPhaseInput
 }
 
@@ -706,9 +706,9 @@ export type PhaseUncheckedCreateWithoutSnapshotsInput = {
   description?: string | null
   notionId?: string | null
   sourceDocBetaUrl?: string | null
-  standardsCouldHave?: Prisma.StandardUncheckedCreateNestedManyWithoutCouldHavePhaseInput
-  standardsShouldHave?: Prisma.StandardUncheckedCreateNestedManyWithoutShouldHavePhaseInput
-  standardsMustHave?: Prisma.StandardUncheckedCreateNestedManyWithoutMustHavePhaseInput
+  actionsCouldHave?: Prisma.ActionUncheckedCreateNestedManyWithoutCouldHavePhaseInput
+  actionsShouldHave?: Prisma.ActionUncheckedCreateNestedManyWithoutShouldHavePhaseInput
+  actionsMustHave?: Prisma.ActionUncheckedCreateNestedManyWithoutMustHavePhaseInput
   startupShadows?: Prisma.StartupShadowUncheckedCreateNestedManyWithoutCurrentPhaseInput
 }
 
@@ -734,9 +734,9 @@ export type PhaseUpdateWithoutSnapshotsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceDocBetaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standardsCouldHave?: Prisma.StandardUpdateManyWithoutCouldHavePhaseNestedInput
-  standardsShouldHave?: Prisma.StandardUpdateManyWithoutShouldHavePhaseNestedInput
-  standardsMustHave?: Prisma.StandardUpdateManyWithoutMustHavePhaseNestedInput
+  actionsCouldHave?: Prisma.ActionUpdateManyWithoutCouldHavePhaseNestedInput
+  actionsShouldHave?: Prisma.ActionUpdateManyWithoutShouldHavePhaseNestedInput
+  actionsMustHave?: Prisma.ActionUpdateManyWithoutMustHavePhaseNestedInput
   startupShadows?: Prisma.StartupShadowUpdateManyWithoutCurrentPhaseNestedInput
 }
 
@@ -746,9 +746,9 @@ export type PhaseUncheckedUpdateWithoutSnapshotsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceDocBetaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  standardsCouldHave?: Prisma.StandardUncheckedUpdateManyWithoutCouldHavePhaseNestedInput
-  standardsShouldHave?: Prisma.StandardUncheckedUpdateManyWithoutShouldHavePhaseNestedInput
-  standardsMustHave?: Prisma.StandardUncheckedUpdateManyWithoutMustHavePhaseNestedInput
+  actionsCouldHave?: Prisma.ActionUncheckedUpdateManyWithoutCouldHavePhaseNestedInput
+  actionsShouldHave?: Prisma.ActionUncheckedUpdateManyWithoutShouldHavePhaseNestedInput
+  actionsMustHave?: Prisma.ActionUncheckedUpdateManyWithoutMustHavePhaseNestedInput
   startupShadows?: Prisma.StartupShadowUncheckedUpdateManyWithoutCurrentPhaseNestedInput
 }
 
@@ -758,17 +758,17 @@ export type PhaseUncheckedUpdateWithoutSnapshotsInput = {
  */
 
 export type PhaseCountOutputType = {
-  standardsCouldHave: number
-  standardsShouldHave: number
-  standardsMustHave: number
+  actionsCouldHave: number
+  actionsShouldHave: number
+  actionsMustHave: number
   startupShadows: number
   snapshots: number
 }
 
 export type PhaseCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  standardsCouldHave?: boolean | PhaseCountOutputTypeCountStandardsCouldHaveArgs
-  standardsShouldHave?: boolean | PhaseCountOutputTypeCountStandardsShouldHaveArgs
-  standardsMustHave?: boolean | PhaseCountOutputTypeCountStandardsMustHaveArgs
+  actionsCouldHave?: boolean | PhaseCountOutputTypeCountActionsCouldHaveArgs
+  actionsShouldHave?: boolean | PhaseCountOutputTypeCountActionsShouldHaveArgs
+  actionsMustHave?: boolean | PhaseCountOutputTypeCountActionsMustHaveArgs
   startupShadows?: boolean | PhaseCountOutputTypeCountStartupShadowsArgs
   snapshots?: boolean | PhaseCountOutputTypeCountSnapshotsArgs
 }
@@ -786,22 +786,22 @@ export type PhaseCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
 /**
  * PhaseCountOutputType without action
  */
-export type PhaseCountOutputTypeCountStandardsCouldHaveArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.StandardWhereInput
+export type PhaseCountOutputTypeCountActionsCouldHaveArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActionWhereInput
 }
 
 /**
  * PhaseCountOutputType without action
  */
-export type PhaseCountOutputTypeCountStandardsShouldHaveArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.StandardWhereInput
+export type PhaseCountOutputTypeCountActionsShouldHaveArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActionWhereInput
 }
 
 /**
  * PhaseCountOutputType without action
  */
-export type PhaseCountOutputTypeCountStandardsMustHaveArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.StandardWhereInput
+export type PhaseCountOutputTypeCountActionsMustHaveArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActionWhereInput
 }
 
 /**
@@ -825,9 +825,9 @@ export type PhaseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   description?: boolean
   notionId?: boolean
   sourceDocBetaUrl?: boolean
-  standardsCouldHave?: boolean | Prisma.Phase$standardsCouldHaveArgs<ExtArgs>
-  standardsShouldHave?: boolean | Prisma.Phase$standardsShouldHaveArgs<ExtArgs>
-  standardsMustHave?: boolean | Prisma.Phase$standardsMustHaveArgs<ExtArgs>
+  actionsCouldHave?: boolean | Prisma.Phase$actionsCouldHaveArgs<ExtArgs>
+  actionsShouldHave?: boolean | Prisma.Phase$actionsShouldHaveArgs<ExtArgs>
+  actionsMustHave?: boolean | Prisma.Phase$actionsMustHaveArgs<ExtArgs>
   startupShadows?: boolean | Prisma.Phase$startupShadowsArgs<ExtArgs>
   snapshots?: boolean | Prisma.Phase$snapshotsArgs<ExtArgs>
   _count?: boolean | Prisma.PhaseCountOutputTypeDefaultArgs<ExtArgs>
@@ -859,9 +859,9 @@ export type PhaseSelectScalar = {
 
 export type PhaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "notionId" | "sourceDocBetaUrl", ExtArgs["result"]["phase"]>
 export type PhaseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  standardsCouldHave?: boolean | Prisma.Phase$standardsCouldHaveArgs<ExtArgs>
-  standardsShouldHave?: boolean | Prisma.Phase$standardsShouldHaveArgs<ExtArgs>
-  standardsMustHave?: boolean | Prisma.Phase$standardsMustHaveArgs<ExtArgs>
+  actionsCouldHave?: boolean | Prisma.Phase$actionsCouldHaveArgs<ExtArgs>
+  actionsShouldHave?: boolean | Prisma.Phase$actionsShouldHaveArgs<ExtArgs>
+  actionsMustHave?: boolean | Prisma.Phase$actionsMustHaveArgs<ExtArgs>
   startupShadows?: boolean | Prisma.Phase$startupShadowsArgs<ExtArgs>
   snapshots?: boolean | Prisma.Phase$snapshotsArgs<ExtArgs>
   _count?: boolean | Prisma.PhaseCountOutputTypeDefaultArgs<ExtArgs>
@@ -873,18 +873,18 @@ export type $PhasePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "Phase"
   objects: {
     /**
-     * Back relations to standards for the different phase properties
+     * Back relations to actions for the different phase properties
      * @notion(false)
      */
-    standardsCouldHave: Prisma.$StandardPayload<ExtArgs>[]
+    actionsCouldHave: Prisma.$ActionPayload<ExtArgs>[]
     /**
      * @notion(false)
      */
-    standardsShouldHave: Prisma.$StandardPayload<ExtArgs>[]
+    actionsShouldHave: Prisma.$ActionPayload<ExtArgs>[]
     /**
      * @notion(false)
      */
-    standardsMustHave: Prisma.$StandardPayload<ExtArgs>[]
+    actionsMustHave: Prisma.$ActionPayload<ExtArgs>[]
     startupShadows: Prisma.$StartupShadowPayload<ExtArgs>[]
     snapshots: Prisma.$SnapshotPayload<ExtArgs>[]
   }
@@ -1306,9 +1306,9 @@ readonly fields: PhaseFieldRefs;
  */
 export interface Prisma__PhaseClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  standardsCouldHave<T extends Prisma.Phase$standardsCouldHaveArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Phase$standardsCouldHaveArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StandardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  standardsShouldHave<T extends Prisma.Phase$standardsShouldHaveArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Phase$standardsShouldHaveArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StandardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  standardsMustHave<T extends Prisma.Phase$standardsMustHaveArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Phase$standardsMustHaveArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StandardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  actionsCouldHave<T extends Prisma.Phase$actionsCouldHaveArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Phase$actionsCouldHaveArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  actionsShouldHave<T extends Prisma.Phase$actionsShouldHaveArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Phase$actionsShouldHaveArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  actionsMustHave<T extends Prisma.Phase$actionsMustHaveArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Phase$actionsMustHaveArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   startupShadows<T extends Prisma.Phase$startupShadowsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Phase$startupShadowsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StartupShadowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   snapshots<T extends Prisma.Phase$snapshotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Phase$snapshotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SnapshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1733,75 +1733,75 @@ export type PhaseDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Phase.standardsCouldHave
+ * Phase.actionsCouldHave
  */
-export type Phase$standardsCouldHaveArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Phase$actionsCouldHaveArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Standard
+   * Select specific fields to fetch from the Action
    */
-  select?: Prisma.StandardSelect<ExtArgs> | null
+  select?: Prisma.ActionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Standard
+   * Omit specific fields from the Action
    */
-  omit?: Prisma.StandardOmit<ExtArgs> | null
+  omit?: Prisma.ActionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.StandardInclude<ExtArgs> | null
-  where?: Prisma.StandardWhereInput
-  orderBy?: Prisma.StandardOrderByWithRelationInput | Prisma.StandardOrderByWithRelationInput[]
-  cursor?: Prisma.StandardWhereUniqueInput
+  include?: Prisma.ActionInclude<ExtArgs> | null
+  where?: Prisma.ActionWhereInput
+  orderBy?: Prisma.ActionOrderByWithRelationInput | Prisma.ActionOrderByWithRelationInput[]
+  cursor?: Prisma.ActionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.StandardScalarFieldEnum | Prisma.StandardScalarFieldEnum[]
+  distinct?: Prisma.ActionScalarFieldEnum | Prisma.ActionScalarFieldEnum[]
 }
 
 /**
- * Phase.standardsShouldHave
+ * Phase.actionsShouldHave
  */
-export type Phase$standardsShouldHaveArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Phase$actionsShouldHaveArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Standard
+   * Select specific fields to fetch from the Action
    */
-  select?: Prisma.StandardSelect<ExtArgs> | null
+  select?: Prisma.ActionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Standard
+   * Omit specific fields from the Action
    */
-  omit?: Prisma.StandardOmit<ExtArgs> | null
+  omit?: Prisma.ActionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.StandardInclude<ExtArgs> | null
-  where?: Prisma.StandardWhereInput
-  orderBy?: Prisma.StandardOrderByWithRelationInput | Prisma.StandardOrderByWithRelationInput[]
-  cursor?: Prisma.StandardWhereUniqueInput
+  include?: Prisma.ActionInclude<ExtArgs> | null
+  where?: Prisma.ActionWhereInput
+  orderBy?: Prisma.ActionOrderByWithRelationInput | Prisma.ActionOrderByWithRelationInput[]
+  cursor?: Prisma.ActionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.StandardScalarFieldEnum | Prisma.StandardScalarFieldEnum[]
+  distinct?: Prisma.ActionScalarFieldEnum | Prisma.ActionScalarFieldEnum[]
 }
 
 /**
- * Phase.standardsMustHave
+ * Phase.actionsMustHave
  */
-export type Phase$standardsMustHaveArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Phase$actionsMustHaveArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Standard
+   * Select specific fields to fetch from the Action
    */
-  select?: Prisma.StandardSelect<ExtArgs> | null
+  select?: Prisma.ActionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Standard
+   * Omit specific fields from the Action
    */
-  omit?: Prisma.StandardOmit<ExtArgs> | null
+  omit?: Prisma.ActionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.StandardInclude<ExtArgs> | null
-  where?: Prisma.StandardWhereInput
-  orderBy?: Prisma.StandardOrderByWithRelationInput | Prisma.StandardOrderByWithRelationInput[]
-  cursor?: Prisma.StandardWhereUniqueInput
+  include?: Prisma.ActionInclude<ExtArgs> | null
+  where?: Prisma.ActionWhereInput
+  orderBy?: Prisma.ActionOrderByWithRelationInput | Prisma.ActionOrderByWithRelationInput[]
+  cursor?: Prisma.ActionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.StandardScalarFieldEnum | Prisma.StandardScalarFieldEnum[]
+  distinct?: Prisma.ActionScalarFieldEnum | Prisma.ActionScalarFieldEnum[]
 }
 
 /**

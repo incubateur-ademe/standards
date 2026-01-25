@@ -18,11 +18,6 @@ export { Prisma }
 export * as $Enums from './enums'
 export * from './enums';
 /**
- * Model Standard
- * Standard model representing the Notion "Standards" database.
- */
-export type Standard = Prisma.StandardModel
-/**
  * Model Action
  * Action entries linked from Standards.
  */

@@ -51,7 +51,6 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Standard: 'Standard',
   Action: 'Action',
   ActionSource: 'ActionSource',
   Job: 'Job',
@@ -87,21 +86,6 @@ export const TransactionIsolationLevel = {
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const StandardScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  description: 'description',
-  notionId: 'notionId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  couldHavePhaseId: 'couldHavePhaseId',
-  shouldHavePhaseId: 'shouldHavePhaseId',
-  mustHavePhaseId: 'mustHavePhaseId'
-} as const
-
-export type StandardScalarFieldEnum = (typeof StandardScalarFieldEnum)[keyof typeof StandardScalarFieldEnum]
-
-
 export const ActionScalarFieldEnum = {
   id: 'id',
   notionId: 'notionId',
@@ -113,7 +97,10 @@ export const ActionScalarFieldEnum = {
   standardBeta: 'standardBeta',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  standardId: 'standardId'
+  couldHavePhaseId: 'couldHavePhaseId',
+  shouldHavePhaseId: 'shouldHavePhaseId',
+  mustHavePhaseId: 'mustHavePhaseId',
+  standards: 'standards'
 } as const
 
 export type ActionScalarFieldEnum = (typeof ActionScalarFieldEnum)[keyof typeof ActionScalarFieldEnum]
@@ -348,19 +335,6 @@ export const NullsOrder = {
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
-export const StandardOrderByRelevanceFieldEnum = {
-  id: 'id',
-  title: 'title',
-  description: 'description',
-  notionId: 'notionId',
-  couldHavePhaseId: 'couldHavePhaseId',
-  shouldHavePhaseId: 'shouldHavePhaseId',
-  mustHavePhaseId: 'mustHavePhaseId'
-} as const
-
-export type StandardOrderByRelevanceFieldEnum = (typeof StandardOrderByRelevanceFieldEnum)[keyof typeof StandardOrderByRelevanceFieldEnum]
-
-
 export const ActionOrderByRelevanceFieldEnum = {
   id: 'id',
   notionId: 'notionId',
@@ -370,7 +344,10 @@ export const ActionOrderByRelevanceFieldEnum = {
   reason: 'reason',
   sourcesUrls: 'sourcesUrls',
   standardBeta: 'standardBeta',
-  standardId: 'standardId'
+  couldHavePhaseId: 'couldHavePhaseId',
+  shouldHavePhaseId: 'shouldHavePhaseId',
+  mustHavePhaseId: 'mustHavePhaseId',
+  standards: 'standards'
 } as const
 
 export type ActionOrderByRelevanceFieldEnum = (typeof ActionOrderByRelevanceFieldEnum)[keyof typeof ActionOrderByRelevanceFieldEnum]

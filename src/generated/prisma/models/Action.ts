@@ -34,7 +34,9 @@ export type ActionMinAggregateOutputType = {
   standardBeta: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  standardId: string | null
+  couldHavePhaseId: string | null
+  shouldHavePhaseId: string | null
+  mustHavePhaseId: string | null
 }
 
 export type ActionMaxAggregateOutputType = {
@@ -47,7 +49,9 @@ export type ActionMaxAggregateOutputType = {
   standardBeta: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  standardId: string | null
+  couldHavePhaseId: string | null
+  shouldHavePhaseId: string | null
+  mustHavePhaseId: string | null
 }
 
 export type ActionCountAggregateOutputType = {
@@ -61,7 +65,10 @@ export type ActionCountAggregateOutputType = {
   standardBeta: number
   createdAt: number
   updatedAt: number
-  standardId: number
+  couldHavePhaseId: number
+  shouldHavePhaseId: number
+  mustHavePhaseId: number
+  standards: number
   _all: number
 }
 
@@ -76,7 +83,9 @@ export type ActionMinAggregateInputType = {
   standardBeta?: true
   createdAt?: true
   updatedAt?: true
-  standardId?: true
+  couldHavePhaseId?: true
+  shouldHavePhaseId?: true
+  mustHavePhaseId?: true
 }
 
 export type ActionMaxAggregateInputType = {
@@ -89,7 +98,9 @@ export type ActionMaxAggregateInputType = {
   standardBeta?: true
   createdAt?: true
   updatedAt?: true
-  standardId?: true
+  couldHavePhaseId?: true
+  shouldHavePhaseId?: true
+  mustHavePhaseId?: true
 }
 
 export type ActionCountAggregateInputType = {
@@ -103,7 +114,10 @@ export type ActionCountAggregateInputType = {
   standardBeta?: true
   createdAt?: true
   updatedAt?: true
-  standardId?: true
+  couldHavePhaseId?: true
+  shouldHavePhaseId?: true
+  mustHavePhaseId?: true
+  standards?: true
   _all?: true
 }
 
@@ -190,7 +204,10 @@ export type ActionGroupByOutputType = {
   standardBeta: string | null
   createdAt: Date
   updatedAt: Date
-  standardId: string | null
+  couldHavePhaseId: string | null
+  shouldHavePhaseId: string | null
+  mustHavePhaseId: string | null
+  standards: string[]
   _count: ActionCountAggregateOutputType | null
   _min: ActionMinAggregateOutputType | null
   _max: ActionMaxAggregateOutputType | null
@@ -225,9 +242,15 @@ export type ActionWhereInput = {
   standardBeta?: Prisma.StringNullableFilter<"Action"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Action"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Action"> | Date | string
-  standardId?: Prisma.StringNullableFilter<"Action"> | string | null
+  couldHavePhaseId?: Prisma.StringNullableFilter<"Action"> | string | null
+  shouldHavePhaseId?: Prisma.StringNullableFilter<"Action"> | string | null
+  mustHavePhaseId?: Prisma.StringNullableFilter<"Action"> | string | null
+  standards?: Prisma.StringNullableListFilter<"Action">
   sources?: Prisma.ActionSourceListRelationFilter
-  standard?: Prisma.XOR<Prisma.StandardNullableScalarRelationFilter, Prisma.StandardWhereInput> | null
+  roles?: Prisma.JobListRelationFilter
+  couldHavePhase?: Prisma.XOR<Prisma.PhaseNullableScalarRelationFilter, Prisma.PhaseWhereInput> | null
+  shouldHavePhase?: Prisma.XOR<Prisma.PhaseNullableScalarRelationFilter, Prisma.PhaseWhereInput> | null
+  mustHavePhase?: Prisma.XOR<Prisma.PhaseNullableScalarRelationFilter, Prisma.PhaseWhereInput> | null
   actionProgresses?: Prisma.ActionProgressListRelationFilter
   snapshotActionProgresses?: Prisma.SnapshotActionProgressListRelationFilter
 }
@@ -243,9 +266,15 @@ export type ActionOrderByWithRelationInput = {
   standardBeta?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  standardId?: Prisma.SortOrderInput | Prisma.SortOrder
+  couldHavePhaseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  shouldHavePhaseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  mustHavePhaseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  standards?: Prisma.SortOrder
   sources?: Prisma.ActionSourceOrderByRelationAggregateInput
-  standard?: Prisma.StandardOrderByWithRelationInput
+  roles?: Prisma.JobOrderByRelationAggregateInput
+  couldHavePhase?: Prisma.PhaseOrderByWithRelationInput
+  shouldHavePhase?: Prisma.PhaseOrderByWithRelationInput
+  mustHavePhase?: Prisma.PhaseOrderByWithRelationInput
   actionProgresses?: Prisma.ActionProgressOrderByRelationAggregateInput
   snapshotActionProgresses?: Prisma.SnapshotActionProgressOrderByRelationAggregateInput
   _relevance?: Prisma.ActionOrderByRelevanceInput
@@ -265,9 +294,15 @@ export type ActionWhereUniqueInput = Prisma.AtLeast<{
   standardBeta?: Prisma.StringNullableFilter<"Action"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Action"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Action"> | Date | string
-  standardId?: Prisma.StringNullableFilter<"Action"> | string | null
+  couldHavePhaseId?: Prisma.StringNullableFilter<"Action"> | string | null
+  shouldHavePhaseId?: Prisma.StringNullableFilter<"Action"> | string | null
+  mustHavePhaseId?: Prisma.StringNullableFilter<"Action"> | string | null
+  standards?: Prisma.StringNullableListFilter<"Action">
   sources?: Prisma.ActionSourceListRelationFilter
-  standard?: Prisma.XOR<Prisma.StandardNullableScalarRelationFilter, Prisma.StandardWhereInput> | null
+  roles?: Prisma.JobListRelationFilter
+  couldHavePhase?: Prisma.XOR<Prisma.PhaseNullableScalarRelationFilter, Prisma.PhaseWhereInput> | null
+  shouldHavePhase?: Prisma.XOR<Prisma.PhaseNullableScalarRelationFilter, Prisma.PhaseWhereInput> | null
+  mustHavePhase?: Prisma.XOR<Prisma.PhaseNullableScalarRelationFilter, Prisma.PhaseWhereInput> | null
   actionProgresses?: Prisma.ActionProgressListRelationFilter
   snapshotActionProgresses?: Prisma.SnapshotActionProgressListRelationFilter
 }, "id" | "notionId">
@@ -283,7 +318,10 @@ export type ActionOrderByWithAggregationInput = {
   standardBeta?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  standardId?: Prisma.SortOrderInput | Prisma.SortOrder
+  couldHavePhaseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  shouldHavePhaseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  mustHavePhaseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  standards?: Prisma.SortOrder
   _count?: Prisma.ActionCountOrderByAggregateInput
   _max?: Prisma.ActionMaxOrderByAggregateInput
   _min?: Prisma.ActionMinOrderByAggregateInput
@@ -303,7 +341,10 @@ export type ActionScalarWhereWithAggregatesInput = {
   standardBeta?: Prisma.StringNullableWithAggregatesFilter<"Action"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Action"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Action"> | Date | string
-  standardId?: Prisma.StringNullableWithAggregatesFilter<"Action"> | string | null
+  couldHavePhaseId?: Prisma.StringNullableWithAggregatesFilter<"Action"> | string | null
+  shouldHavePhaseId?: Prisma.StringNullableWithAggregatesFilter<"Action"> | string | null
+  mustHavePhaseId?: Prisma.StringNullableWithAggregatesFilter<"Action"> | string | null
+  standards?: Prisma.StringNullableListFilter<"Action">
 }
 
 export type ActionCreateInput = {
@@ -317,8 +358,12 @@ export type ActionCreateInput = {
   standardBeta?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  standards?: Prisma.ActionCreatestandardsInput | string[]
   sources?: Prisma.ActionSourceCreateNestedManyWithoutActionsInput
-  standard?: Prisma.StandardCreateNestedOneWithoutActionsInput
+  roles?: Prisma.JobCreateNestedManyWithoutActionsInput
+  couldHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsCouldHaveInput
+  shouldHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsShouldHaveInput
+  mustHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsMustHaveInput
   actionProgresses?: Prisma.ActionProgressCreateNestedManyWithoutActionInput
   snapshotActionProgresses?: Prisma.SnapshotActionProgressCreateNestedManyWithoutActionInput
 }
@@ -334,8 +379,12 @@ export type ActionUncheckedCreateInput = {
   standardBeta?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  standardId?: string | null
+  couldHavePhaseId?: string | null
+  shouldHavePhaseId?: string | null
+  mustHavePhaseId?: string | null
+  standards?: Prisma.ActionCreatestandardsInput | string[]
   sources?: Prisma.ActionSourceUncheckedCreateNestedManyWithoutActionsInput
+  roles?: Prisma.JobUncheckedCreateNestedManyWithoutActionsInput
   actionProgresses?: Prisma.ActionProgressUncheckedCreateNestedManyWithoutActionInput
   snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedCreateNestedManyWithoutActionInput
 }
@@ -351,8 +400,12 @@ export type ActionUpdateInput = {
   standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
   sources?: Prisma.ActionSourceUpdateManyWithoutActionsNestedInput
-  standard?: Prisma.StandardUpdateOneWithoutActionsNestedInput
+  roles?: Prisma.JobUpdateManyWithoutActionsNestedInput
+  couldHavePhase?: Prisma.PhaseUpdateOneWithoutActionsCouldHaveNestedInput
+  shouldHavePhase?: Prisma.PhaseUpdateOneWithoutActionsShouldHaveNestedInput
+  mustHavePhase?: Prisma.PhaseUpdateOneWithoutActionsMustHaveNestedInput
   actionProgresses?: Prisma.ActionProgressUpdateManyWithoutActionNestedInput
   snapshotActionProgresses?: Prisma.SnapshotActionProgressUpdateManyWithoutActionNestedInput
 }
@@ -368,8 +421,12 @@ export type ActionUncheckedUpdateInput = {
   standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  standardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  couldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shouldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mustHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
   sources?: Prisma.ActionSourceUncheckedUpdateManyWithoutActionsNestedInput
+  roles?: Prisma.JobUncheckedUpdateManyWithoutActionsNestedInput
   actionProgresses?: Prisma.ActionProgressUncheckedUpdateManyWithoutActionNestedInput
   snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedUpdateManyWithoutActionNestedInput
 }
@@ -385,7 +442,10 @@ export type ActionCreateManyInput = {
   standardBeta?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  standardId?: string | null
+  couldHavePhaseId?: string | null
+  shouldHavePhaseId?: string | null
+  mustHavePhaseId?: string | null
+  standards?: Prisma.ActionCreatestandardsInput | string[]
 }
 
 export type ActionUpdateManyMutationInput = {
@@ -399,6 +459,7 @@ export type ActionUpdateManyMutationInput = {
   standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
 }
 
 export type ActionUncheckedUpdateManyInput = {
@@ -412,17 +473,10 @@ export type ActionUncheckedUpdateManyInput = {
   standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  standardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type ActionListRelationFilter = {
-  every?: Prisma.ActionWhereInput
-  some?: Prisma.ActionWhereInput
-  none?: Prisma.ActionWhereInput
-}
-
-export type ActionOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
+  couldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shouldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mustHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -450,7 +504,10 @@ export type ActionCountOrderByAggregateInput = {
   standardBeta?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  standardId?: Prisma.SortOrder
+  couldHavePhaseId?: Prisma.SortOrder
+  shouldHavePhaseId?: Prisma.SortOrder
+  mustHavePhaseId?: Prisma.SortOrder
+  standards?: Prisma.SortOrder
 }
 
 export type ActionMaxOrderByAggregateInput = {
@@ -463,7 +520,9 @@ export type ActionMaxOrderByAggregateInput = {
   standardBeta?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  standardId?: Prisma.SortOrder
+  couldHavePhaseId?: Prisma.SortOrder
+  shouldHavePhaseId?: Prisma.SortOrder
+  mustHavePhaseId?: Prisma.SortOrder
 }
 
 export type ActionMinOrderByAggregateInput = {
@@ -476,7 +535,19 @@ export type ActionMinOrderByAggregateInput = {
   standardBeta?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  standardId?: Prisma.SortOrder
+  couldHavePhaseId?: Prisma.SortOrder
+  shouldHavePhaseId?: Prisma.SortOrder
+  mustHavePhaseId?: Prisma.SortOrder
+}
+
+export type ActionListRelationFilter = {
+  every?: Prisma.ActionWhereInput
+  some?: Prisma.ActionWhereInput
+  none?: Prisma.ActionWhereInput
+}
+
+export type ActionOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type ActionScalarRelationFilter = {
@@ -484,53 +555,32 @@ export type ActionScalarRelationFilter = {
   isNot?: Prisma.ActionWhereInput
 }
 
-export type ActionCreateNestedManyWithoutStandardInput = {
-  create?: Prisma.XOR<Prisma.ActionCreateWithoutStandardInput, Prisma.ActionUncheckedCreateWithoutStandardInput> | Prisma.ActionCreateWithoutStandardInput[] | Prisma.ActionUncheckedCreateWithoutStandardInput[]
-  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutStandardInput | Prisma.ActionCreateOrConnectWithoutStandardInput[]
-  createMany?: Prisma.ActionCreateManyStandardInputEnvelope
-  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
-}
-
-export type ActionUncheckedCreateNestedManyWithoutStandardInput = {
-  create?: Prisma.XOR<Prisma.ActionCreateWithoutStandardInput, Prisma.ActionUncheckedCreateWithoutStandardInput> | Prisma.ActionCreateWithoutStandardInput[] | Prisma.ActionUncheckedCreateWithoutStandardInput[]
-  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutStandardInput | Prisma.ActionCreateOrConnectWithoutStandardInput[]
-  createMany?: Prisma.ActionCreateManyStandardInputEnvelope
-  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
-}
-
-export type ActionUpdateManyWithoutStandardNestedInput = {
-  create?: Prisma.XOR<Prisma.ActionCreateWithoutStandardInput, Prisma.ActionUncheckedCreateWithoutStandardInput> | Prisma.ActionCreateWithoutStandardInput[] | Prisma.ActionUncheckedCreateWithoutStandardInput[]
-  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutStandardInput | Prisma.ActionCreateOrConnectWithoutStandardInput[]
-  upsert?: Prisma.ActionUpsertWithWhereUniqueWithoutStandardInput | Prisma.ActionUpsertWithWhereUniqueWithoutStandardInput[]
-  createMany?: Prisma.ActionCreateManyStandardInputEnvelope
-  set?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
-  disconnect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
-  delete?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
-  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
-  update?: Prisma.ActionUpdateWithWhereUniqueWithoutStandardInput | Prisma.ActionUpdateWithWhereUniqueWithoutStandardInput[]
-  updateMany?: Prisma.ActionUpdateManyWithWhereWithoutStandardInput | Prisma.ActionUpdateManyWithWhereWithoutStandardInput[]
-  deleteMany?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
-}
-
-export type ActionUncheckedUpdateManyWithoutStandardNestedInput = {
-  create?: Prisma.XOR<Prisma.ActionCreateWithoutStandardInput, Prisma.ActionUncheckedCreateWithoutStandardInput> | Prisma.ActionCreateWithoutStandardInput[] | Prisma.ActionUncheckedCreateWithoutStandardInput[]
-  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutStandardInput | Prisma.ActionCreateOrConnectWithoutStandardInput[]
-  upsert?: Prisma.ActionUpsertWithWhereUniqueWithoutStandardInput | Prisma.ActionUpsertWithWhereUniqueWithoutStandardInput[]
-  createMany?: Prisma.ActionCreateManyStandardInputEnvelope
-  set?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
-  disconnect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
-  delete?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
-  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
-  update?: Prisma.ActionUpdateWithWhereUniqueWithoutStandardInput | Prisma.ActionUpdateWithWhereUniqueWithoutStandardInput[]
-  updateMany?: Prisma.ActionUpdateManyWithWhereWithoutStandardInput | Prisma.ActionUpdateManyWithWhereWithoutStandardInput[]
-  deleteMany?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
-}
-
 export type ActionCreatesourcesUrlsInput = {
   set: string[]
 }
 
+export type ActionCreatestandardsInput = {
+  set: string[]
+}
+
+export type StringFieldUpdateOperationsInput = {
+  set?: string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type ActionUpdatesourcesUrlsInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
+export type ActionUpdatestandardsInput = {
   set?: string[]
   push?: string | string[]
 }
@@ -573,6 +623,170 @@ export type ActionUncheckedUpdateManyWithoutSourcesNestedInput = {
   deleteMany?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
 }
 
+export type ActionCreateNestedManyWithoutRolesInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutRolesInput, Prisma.ActionUncheckedCreateWithoutRolesInput> | Prisma.ActionCreateWithoutRolesInput[] | Prisma.ActionUncheckedCreateWithoutRolesInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutRolesInput | Prisma.ActionCreateOrConnectWithoutRolesInput[]
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+}
+
+export type ActionUncheckedCreateNestedManyWithoutRolesInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutRolesInput, Prisma.ActionUncheckedCreateWithoutRolesInput> | Prisma.ActionCreateWithoutRolesInput[] | Prisma.ActionUncheckedCreateWithoutRolesInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutRolesInput | Prisma.ActionCreateOrConnectWithoutRolesInput[]
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+}
+
+export type ActionUpdateManyWithoutRolesNestedInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutRolesInput, Prisma.ActionUncheckedCreateWithoutRolesInput> | Prisma.ActionCreateWithoutRolesInput[] | Prisma.ActionUncheckedCreateWithoutRolesInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutRolesInput | Prisma.ActionCreateOrConnectWithoutRolesInput[]
+  upsert?: Prisma.ActionUpsertWithWhereUniqueWithoutRolesInput | Prisma.ActionUpsertWithWhereUniqueWithoutRolesInput[]
+  set?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  disconnect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  delete?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  update?: Prisma.ActionUpdateWithWhereUniqueWithoutRolesInput | Prisma.ActionUpdateWithWhereUniqueWithoutRolesInput[]
+  updateMany?: Prisma.ActionUpdateManyWithWhereWithoutRolesInput | Prisma.ActionUpdateManyWithWhereWithoutRolesInput[]
+  deleteMany?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
+}
+
+export type ActionUncheckedUpdateManyWithoutRolesNestedInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutRolesInput, Prisma.ActionUncheckedCreateWithoutRolesInput> | Prisma.ActionCreateWithoutRolesInput[] | Prisma.ActionUncheckedCreateWithoutRolesInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutRolesInput | Prisma.ActionCreateOrConnectWithoutRolesInput[]
+  upsert?: Prisma.ActionUpsertWithWhereUniqueWithoutRolesInput | Prisma.ActionUpsertWithWhereUniqueWithoutRolesInput[]
+  set?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  disconnect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  delete?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  update?: Prisma.ActionUpdateWithWhereUniqueWithoutRolesInput | Prisma.ActionUpdateWithWhereUniqueWithoutRolesInput[]
+  updateMany?: Prisma.ActionUpdateManyWithWhereWithoutRolesInput | Prisma.ActionUpdateManyWithWhereWithoutRolesInput[]
+  deleteMany?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
+}
+
+export type ActionCreateNestedManyWithoutCouldHavePhaseInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutCouldHavePhaseInput, Prisma.ActionUncheckedCreateWithoutCouldHavePhaseInput> | Prisma.ActionCreateWithoutCouldHavePhaseInput[] | Prisma.ActionUncheckedCreateWithoutCouldHavePhaseInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutCouldHavePhaseInput | Prisma.ActionCreateOrConnectWithoutCouldHavePhaseInput[]
+  createMany?: Prisma.ActionCreateManyCouldHavePhaseInputEnvelope
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+}
+
+export type ActionCreateNestedManyWithoutShouldHavePhaseInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutShouldHavePhaseInput, Prisma.ActionUncheckedCreateWithoutShouldHavePhaseInput> | Prisma.ActionCreateWithoutShouldHavePhaseInput[] | Prisma.ActionUncheckedCreateWithoutShouldHavePhaseInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutShouldHavePhaseInput | Prisma.ActionCreateOrConnectWithoutShouldHavePhaseInput[]
+  createMany?: Prisma.ActionCreateManyShouldHavePhaseInputEnvelope
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+}
+
+export type ActionCreateNestedManyWithoutMustHavePhaseInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutMustHavePhaseInput, Prisma.ActionUncheckedCreateWithoutMustHavePhaseInput> | Prisma.ActionCreateWithoutMustHavePhaseInput[] | Prisma.ActionUncheckedCreateWithoutMustHavePhaseInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutMustHavePhaseInput | Prisma.ActionCreateOrConnectWithoutMustHavePhaseInput[]
+  createMany?: Prisma.ActionCreateManyMustHavePhaseInputEnvelope
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+}
+
+export type ActionUncheckedCreateNestedManyWithoutCouldHavePhaseInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutCouldHavePhaseInput, Prisma.ActionUncheckedCreateWithoutCouldHavePhaseInput> | Prisma.ActionCreateWithoutCouldHavePhaseInput[] | Prisma.ActionUncheckedCreateWithoutCouldHavePhaseInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutCouldHavePhaseInput | Prisma.ActionCreateOrConnectWithoutCouldHavePhaseInput[]
+  createMany?: Prisma.ActionCreateManyCouldHavePhaseInputEnvelope
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+}
+
+export type ActionUncheckedCreateNestedManyWithoutShouldHavePhaseInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutShouldHavePhaseInput, Prisma.ActionUncheckedCreateWithoutShouldHavePhaseInput> | Prisma.ActionCreateWithoutShouldHavePhaseInput[] | Prisma.ActionUncheckedCreateWithoutShouldHavePhaseInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutShouldHavePhaseInput | Prisma.ActionCreateOrConnectWithoutShouldHavePhaseInput[]
+  createMany?: Prisma.ActionCreateManyShouldHavePhaseInputEnvelope
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+}
+
+export type ActionUncheckedCreateNestedManyWithoutMustHavePhaseInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutMustHavePhaseInput, Prisma.ActionUncheckedCreateWithoutMustHavePhaseInput> | Prisma.ActionCreateWithoutMustHavePhaseInput[] | Prisma.ActionUncheckedCreateWithoutMustHavePhaseInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutMustHavePhaseInput | Prisma.ActionCreateOrConnectWithoutMustHavePhaseInput[]
+  createMany?: Prisma.ActionCreateManyMustHavePhaseInputEnvelope
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+}
+
+export type ActionUpdateManyWithoutCouldHavePhaseNestedInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutCouldHavePhaseInput, Prisma.ActionUncheckedCreateWithoutCouldHavePhaseInput> | Prisma.ActionCreateWithoutCouldHavePhaseInput[] | Prisma.ActionUncheckedCreateWithoutCouldHavePhaseInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutCouldHavePhaseInput | Prisma.ActionCreateOrConnectWithoutCouldHavePhaseInput[]
+  upsert?: Prisma.ActionUpsertWithWhereUniqueWithoutCouldHavePhaseInput | Prisma.ActionUpsertWithWhereUniqueWithoutCouldHavePhaseInput[]
+  createMany?: Prisma.ActionCreateManyCouldHavePhaseInputEnvelope
+  set?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  disconnect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  delete?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  update?: Prisma.ActionUpdateWithWhereUniqueWithoutCouldHavePhaseInput | Prisma.ActionUpdateWithWhereUniqueWithoutCouldHavePhaseInput[]
+  updateMany?: Prisma.ActionUpdateManyWithWhereWithoutCouldHavePhaseInput | Prisma.ActionUpdateManyWithWhereWithoutCouldHavePhaseInput[]
+  deleteMany?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
+}
+
+export type ActionUpdateManyWithoutShouldHavePhaseNestedInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutShouldHavePhaseInput, Prisma.ActionUncheckedCreateWithoutShouldHavePhaseInput> | Prisma.ActionCreateWithoutShouldHavePhaseInput[] | Prisma.ActionUncheckedCreateWithoutShouldHavePhaseInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutShouldHavePhaseInput | Prisma.ActionCreateOrConnectWithoutShouldHavePhaseInput[]
+  upsert?: Prisma.ActionUpsertWithWhereUniqueWithoutShouldHavePhaseInput | Prisma.ActionUpsertWithWhereUniqueWithoutShouldHavePhaseInput[]
+  createMany?: Prisma.ActionCreateManyShouldHavePhaseInputEnvelope
+  set?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  disconnect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  delete?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  update?: Prisma.ActionUpdateWithWhereUniqueWithoutShouldHavePhaseInput | Prisma.ActionUpdateWithWhereUniqueWithoutShouldHavePhaseInput[]
+  updateMany?: Prisma.ActionUpdateManyWithWhereWithoutShouldHavePhaseInput | Prisma.ActionUpdateManyWithWhereWithoutShouldHavePhaseInput[]
+  deleteMany?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
+}
+
+export type ActionUpdateManyWithoutMustHavePhaseNestedInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutMustHavePhaseInput, Prisma.ActionUncheckedCreateWithoutMustHavePhaseInput> | Prisma.ActionCreateWithoutMustHavePhaseInput[] | Prisma.ActionUncheckedCreateWithoutMustHavePhaseInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutMustHavePhaseInput | Prisma.ActionCreateOrConnectWithoutMustHavePhaseInput[]
+  upsert?: Prisma.ActionUpsertWithWhereUniqueWithoutMustHavePhaseInput | Prisma.ActionUpsertWithWhereUniqueWithoutMustHavePhaseInput[]
+  createMany?: Prisma.ActionCreateManyMustHavePhaseInputEnvelope
+  set?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  disconnect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  delete?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  update?: Prisma.ActionUpdateWithWhereUniqueWithoutMustHavePhaseInput | Prisma.ActionUpdateWithWhereUniqueWithoutMustHavePhaseInput[]
+  updateMany?: Prisma.ActionUpdateManyWithWhereWithoutMustHavePhaseInput | Prisma.ActionUpdateManyWithWhereWithoutMustHavePhaseInput[]
+  deleteMany?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
+}
+
+export type ActionUncheckedUpdateManyWithoutCouldHavePhaseNestedInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutCouldHavePhaseInput, Prisma.ActionUncheckedCreateWithoutCouldHavePhaseInput> | Prisma.ActionCreateWithoutCouldHavePhaseInput[] | Prisma.ActionUncheckedCreateWithoutCouldHavePhaseInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutCouldHavePhaseInput | Prisma.ActionCreateOrConnectWithoutCouldHavePhaseInput[]
+  upsert?: Prisma.ActionUpsertWithWhereUniqueWithoutCouldHavePhaseInput | Prisma.ActionUpsertWithWhereUniqueWithoutCouldHavePhaseInput[]
+  createMany?: Prisma.ActionCreateManyCouldHavePhaseInputEnvelope
+  set?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  disconnect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  delete?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  update?: Prisma.ActionUpdateWithWhereUniqueWithoutCouldHavePhaseInput | Prisma.ActionUpdateWithWhereUniqueWithoutCouldHavePhaseInput[]
+  updateMany?: Prisma.ActionUpdateManyWithWhereWithoutCouldHavePhaseInput | Prisma.ActionUpdateManyWithWhereWithoutCouldHavePhaseInput[]
+  deleteMany?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
+}
+
+export type ActionUncheckedUpdateManyWithoutShouldHavePhaseNestedInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutShouldHavePhaseInput, Prisma.ActionUncheckedCreateWithoutShouldHavePhaseInput> | Prisma.ActionCreateWithoutShouldHavePhaseInput[] | Prisma.ActionUncheckedCreateWithoutShouldHavePhaseInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutShouldHavePhaseInput | Prisma.ActionCreateOrConnectWithoutShouldHavePhaseInput[]
+  upsert?: Prisma.ActionUpsertWithWhereUniqueWithoutShouldHavePhaseInput | Prisma.ActionUpsertWithWhereUniqueWithoutShouldHavePhaseInput[]
+  createMany?: Prisma.ActionCreateManyShouldHavePhaseInputEnvelope
+  set?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  disconnect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  delete?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  update?: Prisma.ActionUpdateWithWhereUniqueWithoutShouldHavePhaseInput | Prisma.ActionUpdateWithWhereUniqueWithoutShouldHavePhaseInput[]
+  updateMany?: Prisma.ActionUpdateManyWithWhereWithoutShouldHavePhaseInput | Prisma.ActionUpdateManyWithWhereWithoutShouldHavePhaseInput[]
+  deleteMany?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
+}
+
+export type ActionUncheckedUpdateManyWithoutMustHavePhaseNestedInput = {
+  create?: Prisma.XOR<Prisma.ActionCreateWithoutMustHavePhaseInput, Prisma.ActionUncheckedCreateWithoutMustHavePhaseInput> | Prisma.ActionCreateWithoutMustHavePhaseInput[] | Prisma.ActionUncheckedCreateWithoutMustHavePhaseInput[]
+  connectOrCreate?: Prisma.ActionCreateOrConnectWithoutMustHavePhaseInput | Prisma.ActionCreateOrConnectWithoutMustHavePhaseInput[]
+  upsert?: Prisma.ActionUpsertWithWhereUniqueWithoutMustHavePhaseInput | Prisma.ActionUpsertWithWhereUniqueWithoutMustHavePhaseInput[]
+  createMany?: Prisma.ActionCreateManyMustHavePhaseInputEnvelope
+  set?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  disconnect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  delete?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  connect?: Prisma.ActionWhereUniqueInput | Prisma.ActionWhereUniqueInput[]
+  update?: Prisma.ActionUpdateWithWhereUniqueWithoutMustHavePhaseInput | Prisma.ActionUpdateWithWhereUniqueWithoutMustHavePhaseInput[]
+  updateMany?: Prisma.ActionUpdateManyWithWhereWithoutMustHavePhaseInput | Prisma.ActionUpdateManyWithWhereWithoutMustHavePhaseInput[]
+  deleteMany?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
+}
+
 export type ActionCreateNestedOneWithoutActionProgressesInput = {
   create?: Prisma.XOR<Prisma.ActionCreateWithoutActionProgressesInput, Prisma.ActionUncheckedCreateWithoutActionProgressesInput>
   connectOrCreate?: Prisma.ActionCreateOrConnectWithoutActionProgressesInput
@@ -601,81 +815,6 @@ export type ActionUpdateOneRequiredWithoutSnapshotActionProgressesNestedInput = 
   update?: Prisma.XOR<Prisma.XOR<Prisma.ActionUpdateToOneWithWhereWithoutSnapshotActionProgressesInput, Prisma.ActionUpdateWithoutSnapshotActionProgressesInput>, Prisma.ActionUncheckedUpdateWithoutSnapshotActionProgressesInput>
 }
 
-export type ActionCreateWithoutStandardInput = {
-  id?: string
-  notionId?: string | null
-  title?: string | null
-  description?: string | null
-  kpi?: string | null
-  reason?: string | null
-  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
-  standardBeta?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  sources?: Prisma.ActionSourceCreateNestedManyWithoutActionsInput
-  actionProgresses?: Prisma.ActionProgressCreateNestedManyWithoutActionInput
-  snapshotActionProgresses?: Prisma.SnapshotActionProgressCreateNestedManyWithoutActionInput
-}
-
-export type ActionUncheckedCreateWithoutStandardInput = {
-  id?: string
-  notionId?: string | null
-  title?: string | null
-  description?: string | null
-  kpi?: string | null
-  reason?: string | null
-  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
-  standardBeta?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  sources?: Prisma.ActionSourceUncheckedCreateNestedManyWithoutActionsInput
-  actionProgresses?: Prisma.ActionProgressUncheckedCreateNestedManyWithoutActionInput
-  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedCreateNestedManyWithoutActionInput
-}
-
-export type ActionCreateOrConnectWithoutStandardInput = {
-  where: Prisma.ActionWhereUniqueInput
-  create: Prisma.XOR<Prisma.ActionCreateWithoutStandardInput, Prisma.ActionUncheckedCreateWithoutStandardInput>
-}
-
-export type ActionCreateManyStandardInputEnvelope = {
-  data: Prisma.ActionCreateManyStandardInput | Prisma.ActionCreateManyStandardInput[]
-  skipDuplicates?: boolean
-}
-
-export type ActionUpsertWithWhereUniqueWithoutStandardInput = {
-  where: Prisma.ActionWhereUniqueInput
-  update: Prisma.XOR<Prisma.ActionUpdateWithoutStandardInput, Prisma.ActionUncheckedUpdateWithoutStandardInput>
-  create: Prisma.XOR<Prisma.ActionCreateWithoutStandardInput, Prisma.ActionUncheckedCreateWithoutStandardInput>
-}
-
-export type ActionUpdateWithWhereUniqueWithoutStandardInput = {
-  where: Prisma.ActionWhereUniqueInput
-  data: Prisma.XOR<Prisma.ActionUpdateWithoutStandardInput, Prisma.ActionUncheckedUpdateWithoutStandardInput>
-}
-
-export type ActionUpdateManyWithWhereWithoutStandardInput = {
-  where: Prisma.ActionScalarWhereInput
-  data: Prisma.XOR<Prisma.ActionUpdateManyMutationInput, Prisma.ActionUncheckedUpdateManyWithoutStandardInput>
-}
-
-export type ActionScalarWhereInput = {
-  AND?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
-  OR?: Prisma.ActionScalarWhereInput[]
-  NOT?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
-  id?: Prisma.StringFilter<"Action"> | string
-  notionId?: Prisma.StringNullableFilter<"Action"> | string | null
-  title?: Prisma.StringNullableFilter<"Action"> | string | null
-  description?: Prisma.StringNullableFilter<"Action"> | string | null
-  kpi?: Prisma.StringNullableFilter<"Action"> | string | null
-  reason?: Prisma.StringNullableFilter<"Action"> | string | null
-  sourcesUrls?: Prisma.StringNullableListFilter<"Action">
-  standardBeta?: Prisma.StringNullableFilter<"Action"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"Action"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Action"> | Date | string
-  standardId?: Prisma.StringNullableFilter<"Action"> | string | null
-}
-
 export type ActionCreateWithoutSourcesInput = {
   id?: string
   notionId?: string | null
@@ -687,7 +826,11 @@ export type ActionCreateWithoutSourcesInput = {
   standardBeta?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  standard?: Prisma.StandardCreateNestedOneWithoutActionsInput
+  standards?: Prisma.ActionCreatestandardsInput | string[]
+  roles?: Prisma.JobCreateNestedManyWithoutActionsInput
+  couldHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsCouldHaveInput
+  shouldHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsShouldHaveInput
+  mustHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsMustHaveInput
   actionProgresses?: Prisma.ActionProgressCreateNestedManyWithoutActionInput
   snapshotActionProgresses?: Prisma.SnapshotActionProgressCreateNestedManyWithoutActionInput
 }
@@ -703,7 +846,11 @@ export type ActionUncheckedCreateWithoutSourcesInput = {
   standardBeta?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  standardId?: string | null
+  couldHavePhaseId?: string | null
+  shouldHavePhaseId?: string | null
+  mustHavePhaseId?: string | null
+  standards?: Prisma.ActionCreatestandardsInput | string[]
+  roles?: Prisma.JobUncheckedCreateNestedManyWithoutActionsInput
   actionProgresses?: Prisma.ActionProgressUncheckedCreateNestedManyWithoutActionInput
   snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedCreateNestedManyWithoutActionInput
 }
@@ -729,6 +876,285 @@ export type ActionUpdateManyWithWhereWithoutSourcesInput = {
   data: Prisma.XOR<Prisma.ActionUpdateManyMutationInput, Prisma.ActionUncheckedUpdateManyWithoutSourcesInput>
 }
 
+export type ActionScalarWhereInput = {
+  AND?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
+  OR?: Prisma.ActionScalarWhereInput[]
+  NOT?: Prisma.ActionScalarWhereInput | Prisma.ActionScalarWhereInput[]
+  id?: Prisma.StringFilter<"Action"> | string
+  notionId?: Prisma.StringNullableFilter<"Action"> | string | null
+  title?: Prisma.StringNullableFilter<"Action"> | string | null
+  description?: Prisma.StringNullableFilter<"Action"> | string | null
+  kpi?: Prisma.StringNullableFilter<"Action"> | string | null
+  reason?: Prisma.StringNullableFilter<"Action"> | string | null
+  sourcesUrls?: Prisma.StringNullableListFilter<"Action">
+  standardBeta?: Prisma.StringNullableFilter<"Action"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Action"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Action"> | Date | string
+  couldHavePhaseId?: Prisma.StringNullableFilter<"Action"> | string | null
+  shouldHavePhaseId?: Prisma.StringNullableFilter<"Action"> | string | null
+  mustHavePhaseId?: Prisma.StringNullableFilter<"Action"> | string | null
+  standards?: Prisma.StringNullableListFilter<"Action">
+}
+
+export type ActionCreateWithoutRolesInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  standards?: Prisma.ActionCreatestandardsInput | string[]
+  sources?: Prisma.ActionSourceCreateNestedManyWithoutActionsInput
+  couldHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsCouldHaveInput
+  shouldHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsShouldHaveInput
+  mustHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsMustHaveInput
+  actionProgresses?: Prisma.ActionProgressCreateNestedManyWithoutActionInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressCreateNestedManyWithoutActionInput
+}
+
+export type ActionUncheckedCreateWithoutRolesInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  couldHavePhaseId?: string | null
+  shouldHavePhaseId?: string | null
+  mustHavePhaseId?: string | null
+  standards?: Prisma.ActionCreatestandardsInput | string[]
+  sources?: Prisma.ActionSourceUncheckedCreateNestedManyWithoutActionsInput
+  actionProgresses?: Prisma.ActionProgressUncheckedCreateNestedManyWithoutActionInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedCreateNestedManyWithoutActionInput
+}
+
+export type ActionCreateOrConnectWithoutRolesInput = {
+  where: Prisma.ActionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ActionCreateWithoutRolesInput, Prisma.ActionUncheckedCreateWithoutRolesInput>
+}
+
+export type ActionUpsertWithWhereUniqueWithoutRolesInput = {
+  where: Prisma.ActionWhereUniqueInput
+  update: Prisma.XOR<Prisma.ActionUpdateWithoutRolesInput, Prisma.ActionUncheckedUpdateWithoutRolesInput>
+  create: Prisma.XOR<Prisma.ActionCreateWithoutRolesInput, Prisma.ActionUncheckedCreateWithoutRolesInput>
+}
+
+export type ActionUpdateWithWhereUniqueWithoutRolesInput = {
+  where: Prisma.ActionWhereUniqueInput
+  data: Prisma.XOR<Prisma.ActionUpdateWithoutRolesInput, Prisma.ActionUncheckedUpdateWithoutRolesInput>
+}
+
+export type ActionUpdateManyWithWhereWithoutRolesInput = {
+  where: Prisma.ActionScalarWhereInput
+  data: Prisma.XOR<Prisma.ActionUpdateManyMutationInput, Prisma.ActionUncheckedUpdateManyWithoutRolesInput>
+}
+
+export type ActionCreateWithoutCouldHavePhaseInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  standards?: Prisma.ActionCreatestandardsInput | string[]
+  sources?: Prisma.ActionSourceCreateNestedManyWithoutActionsInput
+  roles?: Prisma.JobCreateNestedManyWithoutActionsInput
+  shouldHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsShouldHaveInput
+  mustHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsMustHaveInput
+  actionProgresses?: Prisma.ActionProgressCreateNestedManyWithoutActionInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressCreateNestedManyWithoutActionInput
+}
+
+export type ActionUncheckedCreateWithoutCouldHavePhaseInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  shouldHavePhaseId?: string | null
+  mustHavePhaseId?: string | null
+  standards?: Prisma.ActionCreatestandardsInput | string[]
+  sources?: Prisma.ActionSourceUncheckedCreateNestedManyWithoutActionsInput
+  roles?: Prisma.JobUncheckedCreateNestedManyWithoutActionsInput
+  actionProgresses?: Prisma.ActionProgressUncheckedCreateNestedManyWithoutActionInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedCreateNestedManyWithoutActionInput
+}
+
+export type ActionCreateOrConnectWithoutCouldHavePhaseInput = {
+  where: Prisma.ActionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ActionCreateWithoutCouldHavePhaseInput, Prisma.ActionUncheckedCreateWithoutCouldHavePhaseInput>
+}
+
+export type ActionCreateManyCouldHavePhaseInputEnvelope = {
+  data: Prisma.ActionCreateManyCouldHavePhaseInput | Prisma.ActionCreateManyCouldHavePhaseInput[]
+  skipDuplicates?: boolean
+}
+
+export type ActionCreateWithoutShouldHavePhaseInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  standards?: Prisma.ActionCreatestandardsInput | string[]
+  sources?: Prisma.ActionSourceCreateNestedManyWithoutActionsInput
+  roles?: Prisma.JobCreateNestedManyWithoutActionsInput
+  couldHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsCouldHaveInput
+  mustHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsMustHaveInput
+  actionProgresses?: Prisma.ActionProgressCreateNestedManyWithoutActionInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressCreateNestedManyWithoutActionInput
+}
+
+export type ActionUncheckedCreateWithoutShouldHavePhaseInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  couldHavePhaseId?: string | null
+  mustHavePhaseId?: string | null
+  standards?: Prisma.ActionCreatestandardsInput | string[]
+  sources?: Prisma.ActionSourceUncheckedCreateNestedManyWithoutActionsInput
+  roles?: Prisma.JobUncheckedCreateNestedManyWithoutActionsInput
+  actionProgresses?: Prisma.ActionProgressUncheckedCreateNestedManyWithoutActionInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedCreateNestedManyWithoutActionInput
+}
+
+export type ActionCreateOrConnectWithoutShouldHavePhaseInput = {
+  where: Prisma.ActionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ActionCreateWithoutShouldHavePhaseInput, Prisma.ActionUncheckedCreateWithoutShouldHavePhaseInput>
+}
+
+export type ActionCreateManyShouldHavePhaseInputEnvelope = {
+  data: Prisma.ActionCreateManyShouldHavePhaseInput | Prisma.ActionCreateManyShouldHavePhaseInput[]
+  skipDuplicates?: boolean
+}
+
+export type ActionCreateWithoutMustHavePhaseInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  standards?: Prisma.ActionCreatestandardsInput | string[]
+  sources?: Prisma.ActionSourceCreateNestedManyWithoutActionsInput
+  roles?: Prisma.JobCreateNestedManyWithoutActionsInput
+  couldHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsCouldHaveInput
+  shouldHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsShouldHaveInput
+  actionProgresses?: Prisma.ActionProgressCreateNestedManyWithoutActionInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressCreateNestedManyWithoutActionInput
+}
+
+export type ActionUncheckedCreateWithoutMustHavePhaseInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  couldHavePhaseId?: string | null
+  shouldHavePhaseId?: string | null
+  standards?: Prisma.ActionCreatestandardsInput | string[]
+  sources?: Prisma.ActionSourceUncheckedCreateNestedManyWithoutActionsInput
+  roles?: Prisma.JobUncheckedCreateNestedManyWithoutActionsInput
+  actionProgresses?: Prisma.ActionProgressUncheckedCreateNestedManyWithoutActionInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedCreateNestedManyWithoutActionInput
+}
+
+export type ActionCreateOrConnectWithoutMustHavePhaseInput = {
+  where: Prisma.ActionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ActionCreateWithoutMustHavePhaseInput, Prisma.ActionUncheckedCreateWithoutMustHavePhaseInput>
+}
+
+export type ActionCreateManyMustHavePhaseInputEnvelope = {
+  data: Prisma.ActionCreateManyMustHavePhaseInput | Prisma.ActionCreateManyMustHavePhaseInput[]
+  skipDuplicates?: boolean
+}
+
+export type ActionUpsertWithWhereUniqueWithoutCouldHavePhaseInput = {
+  where: Prisma.ActionWhereUniqueInput
+  update: Prisma.XOR<Prisma.ActionUpdateWithoutCouldHavePhaseInput, Prisma.ActionUncheckedUpdateWithoutCouldHavePhaseInput>
+  create: Prisma.XOR<Prisma.ActionCreateWithoutCouldHavePhaseInput, Prisma.ActionUncheckedCreateWithoutCouldHavePhaseInput>
+}
+
+export type ActionUpdateWithWhereUniqueWithoutCouldHavePhaseInput = {
+  where: Prisma.ActionWhereUniqueInput
+  data: Prisma.XOR<Prisma.ActionUpdateWithoutCouldHavePhaseInput, Prisma.ActionUncheckedUpdateWithoutCouldHavePhaseInput>
+}
+
+export type ActionUpdateManyWithWhereWithoutCouldHavePhaseInput = {
+  where: Prisma.ActionScalarWhereInput
+  data: Prisma.XOR<Prisma.ActionUpdateManyMutationInput, Prisma.ActionUncheckedUpdateManyWithoutCouldHavePhaseInput>
+}
+
+export type ActionUpsertWithWhereUniqueWithoutShouldHavePhaseInput = {
+  where: Prisma.ActionWhereUniqueInput
+  update: Prisma.XOR<Prisma.ActionUpdateWithoutShouldHavePhaseInput, Prisma.ActionUncheckedUpdateWithoutShouldHavePhaseInput>
+  create: Prisma.XOR<Prisma.ActionCreateWithoutShouldHavePhaseInput, Prisma.ActionUncheckedCreateWithoutShouldHavePhaseInput>
+}
+
+export type ActionUpdateWithWhereUniqueWithoutShouldHavePhaseInput = {
+  where: Prisma.ActionWhereUniqueInput
+  data: Prisma.XOR<Prisma.ActionUpdateWithoutShouldHavePhaseInput, Prisma.ActionUncheckedUpdateWithoutShouldHavePhaseInput>
+}
+
+export type ActionUpdateManyWithWhereWithoutShouldHavePhaseInput = {
+  where: Prisma.ActionScalarWhereInput
+  data: Prisma.XOR<Prisma.ActionUpdateManyMutationInput, Prisma.ActionUncheckedUpdateManyWithoutShouldHavePhaseInput>
+}
+
+export type ActionUpsertWithWhereUniqueWithoutMustHavePhaseInput = {
+  where: Prisma.ActionWhereUniqueInput
+  update: Prisma.XOR<Prisma.ActionUpdateWithoutMustHavePhaseInput, Prisma.ActionUncheckedUpdateWithoutMustHavePhaseInput>
+  create: Prisma.XOR<Prisma.ActionCreateWithoutMustHavePhaseInput, Prisma.ActionUncheckedCreateWithoutMustHavePhaseInput>
+}
+
+export type ActionUpdateWithWhereUniqueWithoutMustHavePhaseInput = {
+  where: Prisma.ActionWhereUniqueInput
+  data: Prisma.XOR<Prisma.ActionUpdateWithoutMustHavePhaseInput, Prisma.ActionUncheckedUpdateWithoutMustHavePhaseInput>
+}
+
+export type ActionUpdateManyWithWhereWithoutMustHavePhaseInput = {
+  where: Prisma.ActionScalarWhereInput
+  data: Prisma.XOR<Prisma.ActionUpdateManyMutationInput, Prisma.ActionUncheckedUpdateManyWithoutMustHavePhaseInput>
+}
+
 export type ActionCreateWithoutActionProgressesInput = {
   id?: string
   notionId?: string | null
@@ -740,8 +1166,12 @@ export type ActionCreateWithoutActionProgressesInput = {
   standardBeta?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  standards?: Prisma.ActionCreatestandardsInput | string[]
   sources?: Prisma.ActionSourceCreateNestedManyWithoutActionsInput
-  standard?: Prisma.StandardCreateNestedOneWithoutActionsInput
+  roles?: Prisma.JobCreateNestedManyWithoutActionsInput
+  couldHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsCouldHaveInput
+  shouldHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsShouldHaveInput
+  mustHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsMustHaveInput
   snapshotActionProgresses?: Prisma.SnapshotActionProgressCreateNestedManyWithoutActionInput
 }
 
@@ -756,8 +1186,12 @@ export type ActionUncheckedCreateWithoutActionProgressesInput = {
   standardBeta?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  standardId?: string | null
+  couldHavePhaseId?: string | null
+  shouldHavePhaseId?: string | null
+  mustHavePhaseId?: string | null
+  standards?: Prisma.ActionCreatestandardsInput | string[]
   sources?: Prisma.ActionSourceUncheckedCreateNestedManyWithoutActionsInput
+  roles?: Prisma.JobUncheckedCreateNestedManyWithoutActionsInput
   snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedCreateNestedManyWithoutActionInput
 }
 
@@ -788,8 +1222,12 @@ export type ActionUpdateWithoutActionProgressesInput = {
   standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
   sources?: Prisma.ActionSourceUpdateManyWithoutActionsNestedInput
-  standard?: Prisma.StandardUpdateOneWithoutActionsNestedInput
+  roles?: Prisma.JobUpdateManyWithoutActionsNestedInput
+  couldHavePhase?: Prisma.PhaseUpdateOneWithoutActionsCouldHaveNestedInput
+  shouldHavePhase?: Prisma.PhaseUpdateOneWithoutActionsShouldHaveNestedInput
+  mustHavePhase?: Prisma.PhaseUpdateOneWithoutActionsMustHaveNestedInput
   snapshotActionProgresses?: Prisma.SnapshotActionProgressUpdateManyWithoutActionNestedInput
 }
 
@@ -804,8 +1242,12 @@ export type ActionUncheckedUpdateWithoutActionProgressesInput = {
   standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  standardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  couldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shouldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mustHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
   sources?: Prisma.ActionSourceUncheckedUpdateManyWithoutActionsNestedInput
+  roles?: Prisma.JobUncheckedUpdateManyWithoutActionsNestedInput
   snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedUpdateManyWithoutActionNestedInput
 }
 
@@ -820,8 +1262,12 @@ export type ActionCreateWithoutSnapshotActionProgressesInput = {
   standardBeta?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  standards?: Prisma.ActionCreatestandardsInput | string[]
   sources?: Prisma.ActionSourceCreateNestedManyWithoutActionsInput
-  standard?: Prisma.StandardCreateNestedOneWithoutActionsInput
+  roles?: Prisma.JobCreateNestedManyWithoutActionsInput
+  couldHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsCouldHaveInput
+  shouldHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsShouldHaveInput
+  mustHavePhase?: Prisma.PhaseCreateNestedOneWithoutActionsMustHaveInput
   actionProgresses?: Prisma.ActionProgressCreateNestedManyWithoutActionInput
 }
 
@@ -836,8 +1282,12 @@ export type ActionUncheckedCreateWithoutSnapshotActionProgressesInput = {
   standardBeta?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  standardId?: string | null
+  couldHavePhaseId?: string | null
+  shouldHavePhaseId?: string | null
+  mustHavePhaseId?: string | null
+  standards?: Prisma.ActionCreatestandardsInput | string[]
   sources?: Prisma.ActionSourceUncheckedCreateNestedManyWithoutActionsInput
+  roles?: Prisma.JobUncheckedCreateNestedManyWithoutActionsInput
   actionProgresses?: Prisma.ActionProgressUncheckedCreateNestedManyWithoutActionInput
 }
 
@@ -868,8 +1318,12 @@ export type ActionUpdateWithoutSnapshotActionProgressesInput = {
   standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
   sources?: Prisma.ActionSourceUpdateManyWithoutActionsNestedInput
-  standard?: Prisma.StandardUpdateOneWithoutActionsNestedInput
+  roles?: Prisma.JobUpdateManyWithoutActionsNestedInput
+  couldHavePhase?: Prisma.PhaseUpdateOneWithoutActionsCouldHaveNestedInput
+  shouldHavePhase?: Prisma.PhaseUpdateOneWithoutActionsShouldHaveNestedInput
+  mustHavePhase?: Prisma.PhaseUpdateOneWithoutActionsMustHaveNestedInput
   actionProgresses?: Prisma.ActionProgressUpdateManyWithoutActionNestedInput
 }
 
@@ -884,67 +1338,13 @@ export type ActionUncheckedUpdateWithoutSnapshotActionProgressesInput = {
   standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  standardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  couldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shouldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mustHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
   sources?: Prisma.ActionSourceUncheckedUpdateManyWithoutActionsNestedInput
+  roles?: Prisma.JobUncheckedUpdateManyWithoutActionsNestedInput
   actionProgresses?: Prisma.ActionProgressUncheckedUpdateManyWithoutActionNestedInput
-}
-
-export type ActionCreateManyStandardInput = {
-  id?: string
-  notionId?: string | null
-  title?: string | null
-  description?: string | null
-  kpi?: string | null
-  reason?: string | null
-  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
-  standardBeta?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type ActionUpdateWithoutStandardInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
-  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sources?: Prisma.ActionSourceUpdateManyWithoutActionsNestedInput
-  actionProgresses?: Prisma.ActionProgressUpdateManyWithoutActionNestedInput
-  snapshotActionProgresses?: Prisma.SnapshotActionProgressUpdateManyWithoutActionNestedInput
-}
-
-export type ActionUncheckedUpdateWithoutStandardInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
-  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sources?: Prisma.ActionSourceUncheckedUpdateManyWithoutActionsNestedInput
-  actionProgresses?: Prisma.ActionProgressUncheckedUpdateManyWithoutActionNestedInput
-  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedUpdateManyWithoutActionNestedInput
-}
-
-export type ActionUncheckedUpdateManyWithoutStandardInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
-  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ActionUpdateWithoutSourcesInput = {
@@ -958,7 +1358,11 @@ export type ActionUpdateWithoutSourcesInput = {
   standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  standard?: Prisma.StandardUpdateOneWithoutActionsNestedInput
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
+  roles?: Prisma.JobUpdateManyWithoutActionsNestedInput
+  couldHavePhase?: Prisma.PhaseUpdateOneWithoutActionsCouldHaveNestedInput
+  shouldHavePhase?: Prisma.PhaseUpdateOneWithoutActionsShouldHaveNestedInput
+  mustHavePhase?: Prisma.PhaseUpdateOneWithoutActionsMustHaveNestedInput
   actionProgresses?: Prisma.ActionProgressUpdateManyWithoutActionNestedInput
   snapshotActionProgresses?: Prisma.SnapshotActionProgressUpdateManyWithoutActionNestedInput
 }
@@ -974,7 +1378,11 @@ export type ActionUncheckedUpdateWithoutSourcesInput = {
   standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  standardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  couldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shouldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mustHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
+  roles?: Prisma.JobUncheckedUpdateManyWithoutActionsNestedInput
   actionProgresses?: Prisma.ActionProgressUncheckedUpdateManyWithoutActionNestedInput
   snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedUpdateManyWithoutActionNestedInput
 }
@@ -990,7 +1398,283 @@ export type ActionUncheckedUpdateManyWithoutSourcesInput = {
   standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  standardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  couldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shouldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mustHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
+}
+
+export type ActionUpdateWithoutRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
+  sources?: Prisma.ActionSourceUpdateManyWithoutActionsNestedInput
+  couldHavePhase?: Prisma.PhaseUpdateOneWithoutActionsCouldHaveNestedInput
+  shouldHavePhase?: Prisma.PhaseUpdateOneWithoutActionsShouldHaveNestedInput
+  mustHavePhase?: Prisma.PhaseUpdateOneWithoutActionsMustHaveNestedInput
+  actionProgresses?: Prisma.ActionProgressUpdateManyWithoutActionNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUpdateManyWithoutActionNestedInput
+}
+
+export type ActionUncheckedUpdateWithoutRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  couldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shouldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mustHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
+  sources?: Prisma.ActionSourceUncheckedUpdateManyWithoutActionsNestedInput
+  actionProgresses?: Prisma.ActionProgressUncheckedUpdateManyWithoutActionNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedUpdateManyWithoutActionNestedInput
+}
+
+export type ActionUncheckedUpdateManyWithoutRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  couldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shouldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mustHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
+}
+
+export type ActionCreateManyCouldHavePhaseInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  shouldHavePhaseId?: string | null
+  mustHavePhaseId?: string | null
+  standards?: Prisma.ActionCreatestandardsInput | string[]
+}
+
+export type ActionCreateManyShouldHavePhaseInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  couldHavePhaseId?: string | null
+  mustHavePhaseId?: string | null
+  standards?: Prisma.ActionCreatestandardsInput | string[]
+}
+
+export type ActionCreateManyMustHavePhaseInput = {
+  id?: string
+  notionId?: string | null
+  title?: string | null
+  description?: string | null
+  kpi?: string | null
+  reason?: string | null
+  sourcesUrls?: Prisma.ActionCreatesourcesUrlsInput | string[]
+  standardBeta?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  couldHavePhaseId?: string | null
+  shouldHavePhaseId?: string | null
+  standards?: Prisma.ActionCreatestandardsInput | string[]
+}
+
+export type ActionUpdateWithoutCouldHavePhaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
+  sources?: Prisma.ActionSourceUpdateManyWithoutActionsNestedInput
+  roles?: Prisma.JobUpdateManyWithoutActionsNestedInput
+  shouldHavePhase?: Prisma.PhaseUpdateOneWithoutActionsShouldHaveNestedInput
+  mustHavePhase?: Prisma.PhaseUpdateOneWithoutActionsMustHaveNestedInput
+  actionProgresses?: Prisma.ActionProgressUpdateManyWithoutActionNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUpdateManyWithoutActionNestedInput
+}
+
+export type ActionUncheckedUpdateWithoutCouldHavePhaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shouldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mustHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
+  sources?: Prisma.ActionSourceUncheckedUpdateManyWithoutActionsNestedInput
+  roles?: Prisma.JobUncheckedUpdateManyWithoutActionsNestedInput
+  actionProgresses?: Prisma.ActionProgressUncheckedUpdateManyWithoutActionNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedUpdateManyWithoutActionNestedInput
+}
+
+export type ActionUncheckedUpdateManyWithoutCouldHavePhaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shouldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mustHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
+}
+
+export type ActionUpdateWithoutShouldHavePhaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
+  sources?: Prisma.ActionSourceUpdateManyWithoutActionsNestedInput
+  roles?: Prisma.JobUpdateManyWithoutActionsNestedInput
+  couldHavePhase?: Prisma.PhaseUpdateOneWithoutActionsCouldHaveNestedInput
+  mustHavePhase?: Prisma.PhaseUpdateOneWithoutActionsMustHaveNestedInput
+  actionProgresses?: Prisma.ActionProgressUpdateManyWithoutActionNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUpdateManyWithoutActionNestedInput
+}
+
+export type ActionUncheckedUpdateWithoutShouldHavePhaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  couldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mustHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
+  sources?: Prisma.ActionSourceUncheckedUpdateManyWithoutActionsNestedInput
+  roles?: Prisma.JobUncheckedUpdateManyWithoutActionsNestedInput
+  actionProgresses?: Prisma.ActionProgressUncheckedUpdateManyWithoutActionNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedUpdateManyWithoutActionNestedInput
+}
+
+export type ActionUncheckedUpdateManyWithoutShouldHavePhaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  couldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mustHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
+}
+
+export type ActionUpdateWithoutMustHavePhaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
+  sources?: Prisma.ActionSourceUpdateManyWithoutActionsNestedInput
+  roles?: Prisma.JobUpdateManyWithoutActionsNestedInput
+  couldHavePhase?: Prisma.PhaseUpdateOneWithoutActionsCouldHaveNestedInput
+  shouldHavePhase?: Prisma.PhaseUpdateOneWithoutActionsShouldHaveNestedInput
+  actionProgresses?: Prisma.ActionProgressUpdateManyWithoutActionNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUpdateManyWithoutActionNestedInput
+}
+
+export type ActionUncheckedUpdateWithoutMustHavePhaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  couldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shouldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
+  sources?: Prisma.ActionSourceUncheckedUpdateManyWithoutActionsNestedInput
+  roles?: Prisma.JobUncheckedUpdateManyWithoutActionsNestedInput
+  actionProgresses?: Prisma.ActionProgressUncheckedUpdateManyWithoutActionNestedInput
+  snapshotActionProgresses?: Prisma.SnapshotActionProgressUncheckedUpdateManyWithoutActionNestedInput
+}
+
+export type ActionUncheckedUpdateManyWithoutMustHavePhaseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  notionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourcesUrls?: Prisma.ActionUpdatesourcesUrlsInput | string[]
+  standardBeta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  couldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shouldHavePhaseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  standards?: Prisma.ActionUpdatestandardsInput | string[]
 }
 
 
@@ -1000,12 +1684,14 @@ export type ActionUncheckedUpdateManyWithoutSourcesInput = {
 
 export type ActionCountOutputType = {
   sources: number
+  roles: number
   actionProgresses: number
   snapshotActionProgresses: number
 }
 
 export type ActionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sources?: boolean | ActionCountOutputTypeCountSourcesArgs
+  roles?: boolean | ActionCountOutputTypeCountRolesArgs
   actionProgresses?: boolean | ActionCountOutputTypeCountActionProgressesArgs
   snapshotActionProgresses?: boolean | ActionCountOutputTypeCountSnapshotActionProgressesArgs
 }
@@ -1025,6 +1711,13 @@ export type ActionCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
  */
 export type ActionCountOutputTypeCountSourcesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ActionSourceWhereInput
+}
+
+/**
+ * ActionCountOutputType without action
+ */
+export type ActionCountOutputTypeCountRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.JobWhereInput
 }
 
 /**
@@ -1053,9 +1746,15 @@ export type ActionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   standardBeta?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  standardId?: boolean
+  couldHavePhaseId?: boolean
+  shouldHavePhaseId?: boolean
+  mustHavePhaseId?: boolean
+  standards?: boolean
   sources?: boolean | Prisma.Action$sourcesArgs<ExtArgs>
-  standard?: boolean | Prisma.Action$standardArgs<ExtArgs>
+  roles?: boolean | Prisma.Action$rolesArgs<ExtArgs>
+  couldHavePhase?: boolean | Prisma.Action$couldHavePhaseArgs<ExtArgs>
+  shouldHavePhase?: boolean | Prisma.Action$shouldHavePhaseArgs<ExtArgs>
+  mustHavePhase?: boolean | Prisma.Action$mustHavePhaseArgs<ExtArgs>
   actionProgresses?: boolean | Prisma.Action$actionProgressesArgs<ExtArgs>
   snapshotActionProgresses?: boolean | Prisma.Action$snapshotActionProgressesArgs<ExtArgs>
   _count?: boolean | Prisma.ActionCountOutputTypeDefaultArgs<ExtArgs>
@@ -1072,8 +1771,13 @@ export type ActionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   standardBeta?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  standardId?: boolean
-  standard?: boolean | Prisma.Action$standardArgs<ExtArgs>
+  couldHavePhaseId?: boolean
+  shouldHavePhaseId?: boolean
+  mustHavePhaseId?: boolean
+  standards?: boolean
+  couldHavePhase?: boolean | Prisma.Action$couldHavePhaseArgs<ExtArgs>
+  shouldHavePhase?: boolean | Prisma.Action$shouldHavePhaseArgs<ExtArgs>
+  mustHavePhase?: boolean | Prisma.Action$mustHavePhaseArgs<ExtArgs>
 }, ExtArgs["result"]["action"]>
 
 export type ActionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1087,8 +1791,13 @@ export type ActionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   standardBeta?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  standardId?: boolean
-  standard?: boolean | Prisma.Action$standardArgs<ExtArgs>
+  couldHavePhaseId?: boolean
+  shouldHavePhaseId?: boolean
+  mustHavePhaseId?: boolean
+  standards?: boolean
+  couldHavePhase?: boolean | Prisma.Action$couldHavePhaseArgs<ExtArgs>
+  shouldHavePhase?: boolean | Prisma.Action$shouldHavePhaseArgs<ExtArgs>
+  mustHavePhase?: boolean | Prisma.Action$mustHavePhaseArgs<ExtArgs>
 }, ExtArgs["result"]["action"]>
 
 export type ActionSelectScalar = {
@@ -1102,22 +1811,32 @@ export type ActionSelectScalar = {
   standardBeta?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  standardId?: boolean
+  couldHavePhaseId?: boolean
+  shouldHavePhaseId?: boolean
+  mustHavePhaseId?: boolean
+  standards?: boolean
 }
 
-export type ActionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "notionId" | "title" | "description" | "kpi" | "reason" | "sourcesUrls" | "standardBeta" | "createdAt" | "updatedAt" | "standardId", ExtArgs["result"]["action"]>
+export type ActionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "notionId" | "title" | "description" | "kpi" | "reason" | "sourcesUrls" | "standardBeta" | "createdAt" | "updatedAt" | "couldHavePhaseId" | "shouldHavePhaseId" | "mustHavePhaseId" | "standards", ExtArgs["result"]["action"]>
 export type ActionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sources?: boolean | Prisma.Action$sourcesArgs<ExtArgs>
-  standard?: boolean | Prisma.Action$standardArgs<ExtArgs>
+  roles?: boolean | Prisma.Action$rolesArgs<ExtArgs>
+  couldHavePhase?: boolean | Prisma.Action$couldHavePhaseArgs<ExtArgs>
+  shouldHavePhase?: boolean | Prisma.Action$shouldHavePhaseArgs<ExtArgs>
+  mustHavePhase?: boolean | Prisma.Action$mustHavePhaseArgs<ExtArgs>
   actionProgresses?: boolean | Prisma.Action$actionProgressesArgs<ExtArgs>
   snapshotActionProgresses?: boolean | Prisma.Action$snapshotActionProgressesArgs<ExtArgs>
   _count?: boolean | Prisma.ActionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ActionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  standard?: boolean | Prisma.Action$standardArgs<ExtArgs>
+  couldHavePhase?: boolean | Prisma.Action$couldHavePhaseArgs<ExtArgs>
+  shouldHavePhase?: boolean | Prisma.Action$shouldHavePhaseArgs<ExtArgs>
+  mustHavePhase?: boolean | Prisma.Action$mustHavePhaseArgs<ExtArgs>
 }
 export type ActionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  standard?: boolean | Prisma.Action$standardArgs<ExtArgs>
+  couldHavePhase?: boolean | Prisma.Action$couldHavePhaseArgs<ExtArgs>
+  shouldHavePhase?: boolean | Prisma.Action$shouldHavePhaseArgs<ExtArgs>
+  mustHavePhase?: boolean | Prisma.Action$mustHavePhaseArgs<ExtArgs>
 }
 
 export type $ActionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1129,10 +1848,12 @@ export type $ActionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
      */
     sources: Prisma.$ActionSourcePayload<ExtArgs>[]
     /**
-     * Relation back to Standard via Notion relation `Standard`
-     * @notion("Standard")
+     * Roles / métiers attendus pour cette `Action` (Notion multi-select)
      */
-    standard: Prisma.$StandardPayload<ExtArgs> | null
+    roles: Prisma.$JobPayload<ExtArgs>[]
+    couldHavePhase: Prisma.$PhasePayload<ExtArgs> | null
+    shouldHavePhase: Prisma.$PhasePayload<ExtArgs> | null
+    mustHavePhase: Prisma.$PhasePayload<ExtArgs> | null
     actionProgresses: Prisma.$ActionProgressPayload<ExtArgs>[]
     snapshotActionProgresses: Prisma.$SnapshotActionProgressPayload<ExtArgs>[]
   }
@@ -1183,7 +1904,16 @@ export type $ActionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
      * @notion(false)
      */
     updatedAt: Date
-    standardId: string | null
+    /**
+     * Phase prioritaires (MoSCoW) définies sur l'`Action`
+     */
+    couldHavePhaseId: string | null
+    shouldHavePhaseId: string | null
+    mustHavePhaseId: string | null
+    /**
+     * Standards (catégories) — multi-select depuis Notion
+     */
+    standards: string[]
   }, ExtArgs["result"]["action"]>
   composites: {}
 }
@@ -1579,7 +2309,10 @@ readonly fields: ActionFieldRefs;
 export interface Prisma__ActionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   sources<T extends Prisma.Action$sourcesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Action$sourcesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActionSourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  standard<T extends Prisma.Action$standardArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Action$standardArgs<ExtArgs>>): Prisma.Prisma__StandardClient<runtime.Types.Result.GetResult<Prisma.$StandardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  roles<T extends Prisma.Action$rolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Action$rolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  couldHavePhase<T extends Prisma.Action$couldHavePhaseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Action$couldHavePhaseArgs<ExtArgs>>): Prisma.Prisma__PhaseClient<runtime.Types.Result.GetResult<Prisma.$PhasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  shouldHavePhase<T extends Prisma.Action$shouldHavePhaseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Action$shouldHavePhaseArgs<ExtArgs>>): Prisma.Prisma__PhaseClient<runtime.Types.Result.GetResult<Prisma.$PhasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  mustHavePhase<T extends Prisma.Action$mustHavePhaseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Action$mustHavePhaseArgs<ExtArgs>>): Prisma.Prisma__PhaseClient<runtime.Types.Result.GetResult<Prisma.$PhasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   actionProgresses<T extends Prisma.Action$actionProgressesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Action$actionProgressesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActionProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   snapshotActionProgresses<T extends Prisma.Action$snapshotActionProgressesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Action$snapshotActionProgressesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SnapshotActionProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1621,7 +2354,10 @@ export interface ActionFieldRefs {
   readonly standardBeta: Prisma.FieldRef<"Action", 'String'>
   readonly createdAt: Prisma.FieldRef<"Action", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Action", 'DateTime'>
-  readonly standardId: Prisma.FieldRef<"Action", 'String'>
+  readonly couldHavePhaseId: Prisma.FieldRef<"Action", 'String'>
+  readonly shouldHavePhaseId: Prisma.FieldRef<"Action", 'String'>
+  readonly mustHavePhaseId: Prisma.FieldRef<"Action", 'String'>
+  readonly standards: Prisma.FieldRef<"Action", 'String[]'>
 }
     
 
@@ -2042,22 +2778,84 @@ export type Action$sourcesArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Action.standard
+ * Action.roles
  */
-export type Action$standardArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Action$rolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Standard
+   * Select specific fields to fetch from the Job
    */
-  select?: Prisma.StandardSelect<ExtArgs> | null
+  select?: Prisma.JobSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Standard
+   * Omit specific fields from the Job
    */
-  omit?: Prisma.StandardOmit<ExtArgs> | null
+  omit?: Prisma.JobOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.StandardInclude<ExtArgs> | null
-  where?: Prisma.StandardWhereInput
+  include?: Prisma.JobInclude<ExtArgs> | null
+  where?: Prisma.JobWhereInput
+  orderBy?: Prisma.JobOrderByWithRelationInput | Prisma.JobOrderByWithRelationInput[]
+  cursor?: Prisma.JobWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.JobScalarFieldEnum | Prisma.JobScalarFieldEnum[]
+}
+
+/**
+ * Action.couldHavePhase
+ */
+export type Action$couldHavePhaseArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Phase
+   */
+  select?: Prisma.PhaseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Phase
+   */
+  omit?: Prisma.PhaseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PhaseInclude<ExtArgs> | null
+  where?: Prisma.PhaseWhereInput
+}
+
+/**
+ * Action.shouldHavePhase
+ */
+export type Action$shouldHavePhaseArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Phase
+   */
+  select?: Prisma.PhaseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Phase
+   */
+  omit?: Prisma.PhaseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PhaseInclude<ExtArgs> | null
+  where?: Prisma.PhaseWhereInput
+}
+
+/**
+ * Action.mustHavePhase
+ */
+export type Action$mustHavePhaseArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Phase
+   */
+  select?: Prisma.PhaseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Phase
+   */
+  omit?: Prisma.PhaseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PhaseInclude<ExtArgs> | null
+  where?: Prisma.PhaseWhereInput
 }
 
 /**

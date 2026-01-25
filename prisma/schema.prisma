@@ -8,62 +8,9 @@ datasource db {
     provider = "postgresql"
 }
 
-/// Standard model representing the Notion "Standards" database.
-model Standard {
-    /// @notion(false)
-    id String @id @default(cuid())
-
-    /// Title of the standard
-    /// @notion("Standard")
-    title String?
-
-    /// Description (from Notion page content)
-    /// @notion(current.content)
-    description String?
-
-    /// Unique identifier from Notion (e.g. "STD14")
-    /// @notion("ID")
-    notionId String? @unique
-
-    /// Roles (formerly "Métier(s)") — relation to Job model
-    /// @notion("Métier(s)")
-    roles Job[]
-
-    /// Actions related to this standard (Notion relation property `Actions`)
-    /// @notion("Actions")
-    actions Action[]
-
-    /// @notion(false)
-    createdAt DateTime @default(now())
-    /// @notion(false)
-    updatedAt DateTime @updatedAt
-
-    /// @notion(false)
-    couldHavePhaseId  String?
-    /// @notion(false)
-    shouldHavePhaseId String?
-    /// @notion(false)
-    mustHavePhaseId   String?
-
-    /// Phase relations mapped from Notion properties (optional):
-    /// - Phase Could Have
-    /// - Phase Should Have
-    /// - Phase Must Have
-    /// @notion("Phase Could Have")
-    couldHavePhase  Phase? @relation("StandardPhaseCouldHave", fields: [couldHavePhaseId], references: [id])
-    /// @notion("Phase Should Have")
-    shouldHavePhase Phase? @relation("StandardPhaseShouldHave", fields: [shouldHavePhaseId], references: [id])
-    /// @notion("Phase Must Have")
-    mustHavePhase   Phase? @relation("StandardPhaseMustHave", fields: [mustHavePhaseId], references: [id])
-
-    // @@fulltext([title])
-    // @@fulltext([description])
-    // @@fulltext([title, description])
-
-    @@index([couldHavePhaseId])
-    @@index([shouldHavePhaseId])
-    @@index([mustHavePhaseId])
-}
+// The catalog exposes `Action` entries. Each `Action` carries three phase properties
+// (could/should/must) represented as relations to `Phase`, and a `standards`
+// multi-select stored as a string array.
 
 /// Action entries linked from Standards.
 model Action {
@@ -98,7 +45,7 @@ model Action {
     /// @notion("Type source")
     sources ActionSource[] @relation("ActionToActionSource")
 
-    /// notion("Standard Beta")
+    /// @notion("Standard Beta")
     standardBeta String?
 
     /// @notion(false)
@@ -106,14 +53,32 @@ model Action {
     /// @notion(false)
     updatedAt DateTime @updatedAt
 
-    /// Relation back to Standard via Notion relation `Standard`
-    /// @notion("Standard")
-    standard                 Standard?                @relation(fields: [standardId], references: [id])
-    standardId               String?
+    /// Roles / métiers attendus pour cette `Action` (Notion multi-select)
+    /// @notion("Métier(s)")
+    roles Job[]
+
+    /// Phase prioritaires (MoSCoW) définies sur l'`Action`
+    couldHavePhaseId  String?
+    shouldHavePhaseId String?
+    mustHavePhaseId   String?
+
+    couldHavePhase  Phase? @relation("ActionPhaseCouldHave", fields: [couldHavePhaseId], references: [id])
+    shouldHavePhase Phase? @relation("ActionPhaseShouldHave", fields: [shouldHavePhaseId], references: [id])
+    mustHavePhase   Phase? @relation("ActionPhaseMustHave", fields: [mustHavePhaseId], references: [id])
+
+    /// Standards (catégories) — multi-select depuis Notion
+    standards String[]
+
     actionProgresses         ActionProgress[]
     snapshotActionProgresses SnapshotActionProgress[]
 
-    @@index([standardId])
+    // @@fulltext([title])
+    // @@fulltext([description])
+    // @@fulltext([title, description])
+
+    @@index([couldHavePhaseId])
+    @@index([shouldHavePhaseId])
+    @@index([mustHavePhaseId])
 }
 
 model ActionSource {
@@ -121,7 +86,7 @@ model ActionSource {
     id String @id @default(cuid())
 
     /// Name of the source (got from "Select".name property in Notion)
-    /// @notion("Type source".name)
+    /// @notion("Type source")
     name String?
 
     /// Description
@@ -163,9 +128,9 @@ model Job {
     managerId String?
     manager   User?   @relation("JobManager", fields: [managerId], references: [id])
 
-    /// Back relation to standards — Notion relation `Métier(s)`
+    /// Back relation to actions — Notion relation `Métier(s)`
     /// @notion(false)
-    standards Standard[]
+    actions Action[]
 }
 
 /// Phase entries used by multiple phase relations.
@@ -188,15 +153,15 @@ model Phase {
     /// @notion("Source doc beta")
     sourceDocBetaUrl String?
 
-    /// Back relations to standards for the different phase properties
+    /// Back relations to actions for the different phase properties
     /// @notion(false)
-    standardsCouldHave  Standard[]      @relation("StandardPhaseCouldHave")
+    actionsCouldHave  Action[]        @relation("ActionPhaseCouldHave")
     /// @notion(false)
-    standardsShouldHave Standard[]      @relation("StandardPhaseShouldHave")
+    actionsShouldHave Action[]        @relation("ActionPhaseShouldHave")
     /// @notion(false)
-    standardsMustHave   Standard[]      @relation("StandardPhaseMustHave")
-    startupShadows      StartupShadow[]
-    snapshots           Snapshot[]
+    actionsMustHave   Action[]        @relation("ActionPhaseMustHave")
+    startupShadows    StartupShadow[]
+    snapshots         Snapshot[]
 }
 
 enum UserStatus {

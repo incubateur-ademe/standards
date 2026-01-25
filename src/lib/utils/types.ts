@@ -6,6 +6,8 @@ import { type EventEmitter } from "stream";
  */
 export type pvoid = Promise<void> | void;
 
+export type PromiseOrNot<T> = Promise<T> | T;
+
 /**
  * Convert enum or readonly array to their mutable equivalent.
  */
